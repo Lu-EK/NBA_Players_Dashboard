@@ -20,6 +20,15 @@ from streamlit_searchbox import st_searchbox
 START_YEAR = 2020
 END_YEAR = 2023
 
+st.set_page_config(
+    page_title="NBA Players Stats Dashboard",
+    page_icon="🏀",
+    layout="wide",
+    initial_sidebar_state="expanded",
+)
+
+alt.themes.enable("dark")
+
 # Define offensive profiles and their associated stats
 offensive_profiles = {
     "Creator/Facilitator": ["AST%", "USG%", "AST/TOV"],
@@ -37,20 +46,9 @@ defensive_profiles = {
     "Rebounding Specialist": ["TRB%", "DRB%"],
 }
 
-# Replace 'YOUR_PROJECT_CX' and 'YOUR_API_KEY' with your actual credentials
+# API
 gis = GoogleImagesSearch("AIzaSyC9hnhOztmyJ0S3uLueplwCtyBT3q3OQWY", "86df1f2dbf516493a")
 
-ranking_east_2024 = pd.read_csv("datasets/ranking/ranking_east_2023_2024.csv")
-ranking_west_2024 = pd.read_csv("datasets/ranking/ranking_west_2023_2024.csv")
-
-with open("homepage.txt", "r") as file:
-    homepage_text = file.read()
-
-homepage = f"""
-<div style='text-align: justify;'>
-{homepage_text}
-</div>
-"""
 
 con = duckdb.connect()
 
@@ -69,7 +67,6 @@ for year in range(START_YEAR, END_YEAR + 1):
     con.register(
         "players_stats_ranked_" + str(year) + "_" + str(year + 1), players_stats_ranked
     )
-    # all_players_df = pd.DataFrame({"player": all_players})
 
     # Get the list of all players
     all_players_query = con.execute(
@@ -82,15 +79,17 @@ for year in range(START_YEAR, END_YEAR + 1):
 
 stats_list = players_stats.columns.tolist()
 
-st.set_page_config(
-    page_title="NBA Players Stats Dashboard",
-    page_icon="🏀",
-    layout="wide",
-    initial_sidebar_state="expanded",
-)
+ranking_east_2024 = pd.read_csv("datasets/ranking/ranking_east_2023_2024.csv")
+ranking_west_2024 = pd.read_csv("datasets/ranking/ranking_west_2023_2024.csv")
 
-alt.themes.enable("dark")
+with open("homepage.txt", "r") as file:
+    homepage_text = file.read()
 
+homepage = f"""
+<div style='text-align: justify;'>
+{homepage_text}
+</div>
+"""
 
 def search_player(player: str) -> List[any]:
     if player:
@@ -101,10 +100,6 @@ def search_player(player: str) -> List[any]:
         return [row[0] for row in result]
     else:
         return []
-
-
-####### TRY GET IMAGES FOR PLAYER SELECTED
-
 
 ## function to create the pie + stats
 def compare_player(player, stat, ranked_stat):
@@ -125,9 +120,8 @@ def compare_player(player, stat, ranked_stat):
         "<p style='text-align:center;'>{player_compared}</p>", unsafe_allow_html=True
     )
 
-    # Iterate over player stats and display them in the columns
     with col1:
-        st.write("<br>", unsafe_allow_html=True)  # Use <br> tag for a line break
+        st.write("<br>", unsafe_allow_html=True) 
         st.write("", unsafe_allow_html=True)
         st.write("<br>", unsafe_allow_html=True)
         st.write("<p style='text-align:center;'>Stat</p>", unsafe_allow_html=True)
@@ -144,8 +138,8 @@ def show_glossary(glossary):
         "Glossary",
         key="glossary-modal",
         # Optional
-        padding=20,  # default value
-        max_width=744,  # default value
+        padding=20, 
+        max_width=744,  
     )
     open_modal = st.button("Show glossary")
     if open_modal:
@@ -177,6 +171,65 @@ def search_images(keyword, num_images=5):
             st.error("Quota exceeded. Please try again later.")
         return []
 
+
+def create_pie(player_name, stat, ranked_stat, year):
+    player = player_name.replace("'", "''")
+    percentile_query = con.execute(
+        f"SELECT \"{ranked_stat}\" FROM players_stats_ranked_{year}_{year + 1} WHERE player = '{player}'"
+    )
+    percentile_result = percentile_query.fetchone()
+    if percentile_result:
+        percentile = percentile_result[0]
+        fig = px.pie(
+            values=[percentile * 10, 100 - percentile * 10],
+            names=["Top", "Rest"],
+            hole=0.5,
+        )
+
+        # Update layout to adjust the size and position of the chart
+        fig.update_layout(
+            width=300, 
+            height=300,  
+            margin=dict(l=20, r=20, t=20, b=20),
+            grid=dict(rows=1, columns=2),
+        )
+
+        # Add annotation to position the pie chart
+        fig.add_annotation(
+            x=0.15, 
+            y=0.5,
+            xref="paper", 
+            yref="paper",
+            text="", 
+            showarrow=False,
+        )
+
+        # Add annotation to display "Top X%" inside the donut
+        fig.add_annotation(
+            x=0.5,
+            y=0.5,
+            text=f"Top {percentile*10}%<br>{stat}",  # Text to display inside the donut, REPLACE BY STAT
+            showarrow=False,
+            font=dict(size=15),  # Adjust font size as needed
+        )
+
+        # Customize colors and remove text from the chart
+        fig.update_traces(
+            marker=dict(colors=["red", "lightgrey"], line=dict(color="white", width=2)),
+            textinfo="none",
+            showlegend=False,
+        )
+
+        st.plotly_chart(fig, use_container_width=True)
+
+        value_query = con.execute(
+            f"SELECT \"{stat}\" FROM players_stats_{year}_{year + 1} WHERE player = '{player}'"
+        )
+        value_result = percentile_query.fetchone()
+        st.write(
+            f"### {player} averages {value_result[0]} {stat} per game in {year}-{year + 1}"
+        )
+        
 
 with st.sidebar:
     st.title("NBA Players Stats Dashboard")
@@ -214,10 +267,10 @@ with st.sidebar:
 
 if selected_player:
     st.header(f"{selected_player} statistics in {year} ")
+
     # Replace single quotes with two single quotes in the player name
     escaped_player_name = selected_player.replace("'", "''")
 
-    # Execute the SQL query with the escaped player name
     recap_stats = con.execute(
         f"SELECT * from players_stats_{year}_{year + 1} WHERE player = '{escaped_player_name}'"
     ).df()
@@ -233,7 +286,6 @@ else:
         st.write(f"Rankings in {year}-{year + 1}")
     else:
         st.write("Rankings for the current year")
-    # Handle the case where selected_player is None
     col1, col2 = st.columns(2)
     if os.path.exists(f"datasets/ranking/ranking_west_{year}_{year + 1}.csv"):
         with col1:
@@ -255,69 +307,6 @@ else:
         with col2:
             st.write("Ranking not available yet")
 
-
-def create_pie(player_name, stat, ranked_stat, year):
-    player = player_name.replace("'", "''")
-    percentile_query = con.execute(
-        f"SELECT \"{ranked_stat}\" FROM players_stats_ranked_{year}_{year + 1} WHERE player = '{player}'"
-    )
-    percentile_result = percentile_query.fetchone()
-    if percentile_result:
-        percentile = percentile_result[0]
-        # Create a donut chart
-        # fig = px.pie(values=[percentile, 0], names=['', ''], hole=0.5)
-        fig = px.pie(
-            values=[percentile * 10, 100 - percentile * 10],
-            names=["Top", "Rest"],
-            hole=0.5,
-        )
-
-        # Update layout to adjust the size and position of the chart
-        fig.update_layout(
-            width=300,  # Set width of the chart
-            height=300,  # Set height of the chart
-            margin=dict(l=20, r=20, t=20, b=20),  # Adjust margins as needed
-            grid=dict(rows=1, columns=2),
-            # domain=dict(x=[0, 0.4])  # Adjust the x values to move the pie chart to the left
-        )
-
-        # Add annotation to position the pie chart
-        fig.add_annotation(
-            x=0.15,  # Adjust the x position to move the pie chart to the left
-            y=0.5,
-            xref="paper",  # Specify the reference to the paper (overall plot)
-            yref="paper",
-            text="",  # You can add a label if needed
-            showarrow=False,
-        )
-
-        # Add annotation to display "Top X%" inside the donut
-        fig.add_annotation(
-            x=0.5,
-            y=0.5,
-            text=f"Top {percentile*10}%<br>{stat}",  # Text to display inside the donut, REPLACE BY STAT
-            showarrow=False,
-            font=dict(size=15),  # Adjust font size as needed
-        )
-
-        # Customize colors and remove text from the chart
-        fig.update_traces(
-            marker=dict(colors=["red", "lightgrey"], line=dict(color="white", width=2)),
-            textinfo="none",
-            showlegend=False,
-        )
-
-        # Display the donut chart in Streamlit
-        st.plotly_chart(fig, use_container_width=True)
-
-        # Write the actual value for the stat ranked
-        value_query = con.execute(
-            f"SELECT \"{stat}\" FROM players_stats_{year}_{year + 1} WHERE player = '{player}'"
-        )
-        value_result = percentile_query.fetchone()
-        st.write(
-            f"### {player} averages {value_result[0]} {stat} per game in {year}-{year + 1}"
-        )
 
 
 if selected_player and not recap_stats.empty:
@@ -394,7 +383,7 @@ if selected_player and not recap_stats.empty:
             )
             col1, col2, col3 = st.columns(
                 [1, 2, 2]
-            )  # Adjusting widths relative to each other
+            ) 
             if selected_player_comparison:
                 player_compared = selected_player_comparison.replace("'", "''")
                 # Fetch stat values for Player B
@@ -405,7 +394,7 @@ if selected_player and not recap_stats.empty:
                     ).fetchone()
                     values_player_B[stat] = (
                         value_stat_player_B[0] if value_stat_player_B else None
-                    )  # Fetch the actual value
+                    ) 
 
                 # Iterate over player stats and display them in the columns
                 for index in range(len(stats_list[2:])):
