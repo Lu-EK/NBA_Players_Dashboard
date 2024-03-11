@@ -1,6 +1,7 @@
 altair==5.2.0
 astroid==3.0.2
 attrs==23.2.0
+streamlit==1.30.0
 bcrypt==3.2.0
 beautifulsoup4==4.10.0
 black==23.12.1
@@ -98,7 +99,6 @@ setproctitle==1.2.2
 six==1.16.0
 smmap==5.0.1
 soupsieve==2.3.1
-streamlit==1.30.0
 systemd-python==234
 tenacity==8.2.3
 toml==0.10.2
