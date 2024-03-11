@@ -1,5 +1,4 @@
 altair==5.2.0
-apturl==0.5.2
 astroid==3.0.2
 attrs==23.2.0
 bcrypt==3.2.0
@@ -9,6 +8,7 @@ blinker==1.4
 Brlapi==0.8.3
 cachetools==5.3.2
 certifi==2020.6.20
+cffi==1.16.0
 chardet==4.0.0
 charset-normalizer==3.3.2
 click==8.0.3
@@ -71,6 +71,7 @@ protobuf==4.25.2
 ptyprocess==0.7.0
 pyarrow==14.0.2
 pycairo==1.20.1
+pycparser==2.21
 pycups==2.0.1
 pydeck==0.8.1b0
 Pygments==2.17.2
