@@ -1,7 +1,7 @@
 altair==5.2.0
 beautifulsoup4==4.10.0
 duckdb==0.9.2
-google_api_python_client==2.121.0
+google_api_python_client==2.48.0
 google_images_search==1.4.6
 numpy==1.26.4
 pandas==2.2.1
