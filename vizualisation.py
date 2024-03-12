@@ -264,7 +264,7 @@ with st.sidebar:
         st.write("Select a player")
 
     # Button to open the popup
-    show_glossary("filtered_glossary.txt")
+    show_glossary("docs/filtered_glossary.txt")
 
 
 if selected_player:
