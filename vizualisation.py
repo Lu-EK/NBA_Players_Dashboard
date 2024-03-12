@@ -82,7 +82,7 @@ stats_list = players_stats.columns.tolist()
 ranking_east_2024 = pd.read_csv("datasets/ranking/ranking_east_2023_2024.csv")
 ranking_west_2024 = pd.read_csv("datasets/ranking/ranking_west_2023_2024.csv")
 
-with open("homepage.txt", "r") as file:
+with open("docs/homepage.txt", "r") as file:
     homepage_text = file.read()
 
 homepage = f"""
@@ -90,6 +90,7 @@ homepage = f"""
 {homepage_text}
 </div>
 """
+
 
 def search_player(player: str) -> List[any]:
     if player:
@@ -100,6 +101,7 @@ def search_player(player: str) -> List[any]:
         return [row[0] for row in result]
     else:
         return []
+
 
 ## function to create the pie + stats
 def compare_player(player, stat, ranked_stat):
@@ -121,7 +123,7 @@ def compare_player(player, stat, ranked_stat):
     )
 
     with col1:
-        st.write("<br>", unsafe_allow_html=True) 
+        st.write("<br>", unsafe_allow_html=True)
         st.write("", unsafe_allow_html=True)
         st.write("<br>", unsafe_allow_html=True)
         st.write("<p style='text-align:center;'>Stat</p>", unsafe_allow_html=True)
@@ -138,8 +140,8 @@ def show_glossary(glossary):
         "Glossary",
         key="glossary-modal",
         # Optional
-        padding=20, 
-        max_width=744,  
+        padding=20,
+        max_width=744,
     )
     open_modal = st.button("Show glossary")
     if open_modal:
@@ -188,19 +190,19 @@ def create_pie(player_name, stat, ranked_stat, year):
 
         # Update layout to adjust the size and position of the chart
         fig.update_layout(
-            width=300, 
-            height=300,  
+            width=300,
+            height=300,
             margin=dict(l=20, r=20, t=20, b=20),
             grid=dict(rows=1, columns=2),
         )
 
         # Add annotation to position the pie chart
         fig.add_annotation(
-            x=0.15, 
+            x=0.15,
             y=0.5,
-            xref="paper", 
+            xref="paper",
             yref="paper",
-            text="", 
+            text="",
             showarrow=False,
         )
 
@@ -229,7 +231,7 @@ def create_pie(player_name, stat, ranked_stat, year):
         st.write(
             f"### {player} averages {value_result[0]} {stat} per game in {year}-{year + 1}"
         )
-        
+
 
 with st.sidebar:
     st.title("NBA Players Stats Dashboard")
@@ -274,7 +276,7 @@ if selected_player:
     recap_stats = con.execute(
         f"SELECT * from players_stats_{year}_{year + 1} WHERE player = '{escaped_player_name}'"
     ).df()
-    recap_stats.drop(["Unnamed: 0", "index"], axis=1, inplace=True)
+    recap_stats.drop(["Unnamed: 0", "index", "level_0"], axis=1, inplace=True)
     if not recap_stats.empty:
         st.write(recap_stats)
     else:
@@ -306,7 +308,6 @@ else:
     else:
         with col2:
             st.write("Ranking not available yet")
-
 
 
 if selected_player and not recap_stats.empty:
@@ -381,9 +382,7 @@ if selected_player and not recap_stats.empty:
                 label="Select a player",
                 default_options=all_players1,
             )
-            col1, col2, col3 = st.columns(
-                [1, 2, 2]
-            ) 
+            col1, col2, col3 = st.columns([1, 2, 2])
             if selected_player_comparison:
                 player_compared = selected_player_comparison.replace("'", "''")
                 # Fetch stat values for Player B
@@ -394,11 +393,11 @@ if selected_player and not recap_stats.empty:
                     ).fetchone()
                     values_player_B[stat] = (
                         value_stat_player_B[0] if value_stat_player_B else None
-                    ) 
+                    )
 
                 # Iterate over player stats and display them in the columns
                 for index in range(len(stats_list[2:])):
-                    stat = stats_list[2:][index]
+                    stat = stats_list[3:][index]
                     with col1:
                         st.write("")
                         st.write(
@@ -414,7 +413,7 @@ if selected_player and not recap_stats.empty:
                         value_stat_player_A = (
                             value_stat_player_A[0] if value_stat_player_A else None
                         )  # Fetch the actual value
-                        if index < 4:
+                        if index < 5:
                             COLOR_A = COLOR_B = "black"
                         elif value_stat_player_A > values_player_B[stat]:
                             COLOR_A = "green"
