@@ -7,7 +7,7 @@ The aim of this project is to access the statistics of the player of your choice
 https://nbaplayersdashboard.streamlit.app/
 
 # Project
-![alt text](schema project.png)
+![alt text](schema_project.png)
 
 # Sources
 https://www.basketball-reference.com/
