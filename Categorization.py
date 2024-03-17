@@ -132,11 +132,20 @@ def offensive_profile(player_stats, player_stats_ranked) -> str:
         return "Paint Threat"
 
     ## Slasher
+    #elif (
+    #    (player_stats["%FGA 0-3"]) > 0.2
+     #   and (player_stats["%FGA 3-10"] + player_stats["%FGA 10-16"]) > 0.2
+     #   and (player_stats_ranked["FTr ranked"] <= 4)
+     #   and (player_stats["%FGA 3P"] < 20.0)
+    #):
+     #   return "Slasher"
+
+    # Slasher
     elif (
-        (player_stats["%FGA 0-3"]) > 0.2
-        and (player_stats["%FGA 3-10"] + player_stats["%FGA 10-16"]) > 0.2
-        and (player_stats_ranked["FTr ranked"] <= 4)
-        and (player_stats["%FGA 3P"] < 20.0)
+        (player_stats["2P%"] > 0.50)
+        and (player_stats["FTr"] > 0.2)
+        and (player_stats_ranked["%FGA 0-3 ranked"] <= 5)
+        and (player_stats_ranked["%FGA 3-10 ranked"] <= 6)
     ):
         return "Slasher"
 
@@ -167,18 +176,19 @@ def defensive_profile(player_stats, player_stats_ranked) -> str:
     if (
         player_stats["DRB%"] >= 25.0
         and player_stats_ranked["BLK% ranked"] <= 3
-        and player_stats_ranked["DBPM"] <= 3
+        and player_stats_ranked["DBPM ranked"] <= 4
     ):
-        return "Paint Protector/Rim Defender"
+        return "Paint Protector"
 
-    ## Perimeter Lockdown Defender
-    elif player_stats["STL%"] >= 1.5 and player_stats_ranked["DBPM ranked"] <= 4:
-        return "Perimeter Lockdown Defender"
+    ## Perimeter Defender
+    elif player_stats["STL%"] >= 1.5 and player_stats_ranked["DBPM ranked"] <= 4 and player_stats["STL"] >= 0.8:
+        return "Perimeter Defender"
 
     ## Switchable Defender
     elif (
         player_stats["DRB%"] >= 20.0
         and player_stats_ranked["BLK% ranked"] <= 6
+        and player_stats["STL"] >= 0.5
         and player_stats_ranked["DBPM ranked"] <= 4
         and player_stats_ranked["DWS ranked"] <= 4
     ):

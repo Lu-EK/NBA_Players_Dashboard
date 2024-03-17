@@ -16,6 +16,10 @@ from googleapiclient.errors import HttpError
 from pandas import DataFrame
 from streamlit_modal import Modal
 from streamlit_searchbox import st_searchbox
+from datetime import datetime, timezone
+from dateutil import parser
+from nba_api.live.nba.endpoints import scoreboard
+from streamlit_theme import st_theme
 
 START_YEAR = 2020
 END_YEAR = 2023
@@ -34,16 +38,18 @@ offensive_profiles = {
     "Creator/Facilitator": ["AST%", "USG%", "AST/TOV"],
     "Pure Shooter/Stretcher": ["3P%", "3PAr", "eFG%", "USG%"],
     "Paint Threat": ["%FGA 0-3", "ORB%", "eFG%"],
-    "Slasher": ["%FGA 0-3", "%FGA 3-10", "%FGA 10-16", "FTr", "%FGA 3P"],
+    "Slasher": ["2P%", "FTr", "%FGA 0-3", "%FGA 3-10",],
     "Versatile Scorer": ["std_areas_FGA", "USG%", "FG"],
+    "No significant offensive role":  ["PTS", "AST", "FGA", "USG%", "OBPM"]
 }
 
 # Define defensive profiles and their associated stats
 defensive_profiles = {
-    "Paint Protector/Rim Defender": ["DRB%", "BLK%", "DBPM"],
-    "Perimeter Lockdown Defender": ["STL%", "DBPM"],
-    "Switchable Defender": ["DRB%", "BLK%", "DBPM ranked", "DWS"],
-    "Rebounding Specialist": ["TRB%", "DRB%"],
+    "Paint Protector": ["DRB%", "BLK%", "DBPM"],
+    "Perimeter Defender": ["STL%", "DBPM", "STL"],
+    "Switchable Defender": ["DRB%", "BLK%", "STL", "DBPM", "DWS"],
+    "Rebounding Specialist": ["TRB", "TRB%", "DRB", "DRB%"],
+    "No significant defensive role": ["DRB%", "BLK%", "STL%", "TRB%", "DBPM"]
 }
 
 # API
@@ -82,6 +88,8 @@ stats_list = players_stats.columns.tolist()
 ranking_east_2024 = pd.read_csv("datasets/ranking/ranking_east_2023_2024.csv")
 ranking_west_2024 = pd.read_csv("datasets/ranking/ranking_west_2023_2024.csv")
 
+theme = st_theme()
+
 with open("docs/homepage.txt", "r") as file:
     homepage_text = file.read()
 
@@ -91,7 +99,7 @@ homepage = f"""
 </div>
 """
 
-
+@st.cache_data
 def search_player(player: str) -> List[any]:
     if player:
         player_lower = player.lower()
@@ -104,6 +112,7 @@ def search_player(player: str) -> List[any]:
 
 
 ## function to create the pie + stats
+@st.cache_data
 def compare_player(player, stat, ranked_stat):
     selected_player_comparison = st_searchbox(
         search_player,
@@ -133,7 +142,6 @@ def compare_player(player, stat, ranked_stat):
     with col3:
         st.write("<p><hr><p style='text-align:center;'>0</p>", unsafe_allow_html=True)
         st.write("")
-
 
 def show_glossary(glossary):
     modal = Modal(
@@ -173,6 +181,25 @@ def search_images(keyword, num_images=5):
             st.error("Quota exceeded. Please try again later.")
         return []
 
+def get_todays_games():
+    f = "<h5>{awayTeam} vs. {homeTeam}</h5><p style='margin:0'><b>{gameTimeLTZ}</b></p>"
+
+    col1, col2 = st.columns(2)
+    board = scoreboard.ScoreBoard()
+    games = board.games.get_dict()
+    
+    midpoint = len(games) // 2
+    
+    for index, game in enumerate(games):
+        gameTimeLTZ = parser.parse(game["gameTimeUTC"]).replace(tzinfo=timezone.utc).astimezone(tz=None)
+        if index <= midpoint:
+            with col1:
+                st.write(f.format(awayTeam=game['awayTeam']['teamName'], homeTeam=game['homeTeam']['teamName'], gameTimeLTZ=gameTimeLTZ), unsafe_allow_html=True)
+                st.write("</b>", unsafe_allow_html=True)
+        else: 
+            with col2:
+                st.write(f.format(awayTeam=game['awayTeam']['teamName'], homeTeam=game['homeTeam']['teamName'], gameTimeLTZ=gameTimeLTZ),unsafe_allow_html=True)
+                st.write("</b>", unsafe_allow_html=True)
 
 def create_pie(player_name, stat, ranked_stat, year):
     player = player_name.replace("'", "''")
@@ -228,8 +255,9 @@ def create_pie(player_name, stat, ranked_stat, year):
             f"SELECT \"{stat}\" FROM players_stats_{year}_{year + 1} WHERE player = '{player}'"
         )
         value_result = percentile_query.fetchone()
-        st.write(
-            f"### {player} averages {value_result[0]} {stat} per game in {year}-{year + 1}"
+        st.markdown(
+            f"<h3 style='text-align: center;'>{player} averages {value_result[0]} {stat} in {year}-{year + 1}</h3>",
+            unsafe_allow_html=True
         )
 
 
@@ -282,8 +310,16 @@ if selected_player:
     else:
         st.write(f"Player was inactive in {year}_{year + 1}")
 else:
-    st.markdown(f"# NBA Analysis Dashboard")
+    st.markdown("<h1 style='text-align: center;'>NBA Analysis Dashboard</h1>", unsafe_allow_html=True)
+    col1, col2, col3 = st.columns([4, 9.5, 4])
+    with col2:
+        if theme.get("base") == "light":
+            st.image("docs/logo_dashboard_light.png", width=800)
+        else:
+            st.image("docs/logo_dashboard_dark.png", width=800)
+    st.write("<br/>", unsafe_allow_html=True)
     st.markdown(f"<h4>{homepage}</h4>", unsafe_allow_html=True)
+    get_todays_games()
     if year:
         st.write(f"Rankings in {year}-{year + 1}")
     else:
@@ -331,13 +367,22 @@ if selected_player and not recap_stats.empty:
                 offensive_profile_result = offensive_profile_cursor.fetchone()
                 if offensive_profile_result:
                     offensive_profile = offensive_profile_result[0]
-                    st.markdown(
+                    if theme.get("base") == "light": 
+                        st.markdown(
                         f"""
-                        <div style="display: flex; justify-content: center; align-items: center; height: 100%; border: 5px solid orange; padding: 10px; border-radius: 5px; background-color: #f9f9f9; text-align: center;">
-                            <p style='font-size: 1.5em;'>{offensive_profile}</p>
-                        </div>""",
+                            <div style="display: flex; justify-content: center; align-items: center; height: 100%; border: 5px solid orange; padding: 10px; border-radius: 5px; background-color: #f9f9f9; text-align: center;">
+                                <p style='font-size: 1.5em;'>{offensive_profile}</p>
+                            </div>""",
                         unsafe_allow_html=True,
-                    )
+                        )
+                    else:
+                        st.markdown(
+                        f"""
+                            <div style="display: flex; justify-content: center; align-items: center; height: 100%; border: 5px solid orange; padding: 10px; border-radius: 5px; background-color: #1c1c1c; text-align: center;">
+                                <p style='font-size: 1.5em;'>{offensive_profile}</p>
+                            </div>""",
+                        unsafe_allow_html=True,
+                        )
                     for profile, stats in offensive_profiles.items():
                         if offensive_profile == profile:
                             for stat in stats:
@@ -357,13 +402,22 @@ if selected_player and not recap_stats.empty:
             defensive_profile_result = defensive_profile_cursor.fetchone()
             if defensive_profile_result:
                 defensive_profile = defensive_profile_result[0]
-                st.markdown(
-                    f"""
-                        <div style="display: flex; justify-content: center; align-items: center; height: 100%; border: 5px solid orange; padding: 10px; border-radius: 5px; background-color: #f9f9f9; text-align: center;">
-                            <p style='font-size: 1.5em;'>{defensive_profile}</p>
-                        </div>""",
-                    unsafe_allow_html=True,
-                )
+                if theme.get("base") == "light": 
+                    st.markdown(
+                        f"""
+                            <div style="display: flex; justify-content: center; align-items: center; height: 100%; border: 5px solid orange; padding: 10px; border-radius: 5px; background-color: #f9f9f9; text-align: center;">
+                                <p style='font-size: 1.5em;'>{defensive_profile}</p>
+                            </div>""",
+                        unsafe_allow_html=True,
+                    )
+                else:
+                    st.markdown(
+                        f"""
+                            <div style="display: flex; justify-content: center; align-items: center; height: 100%; border: 5px solid orange; padding: 10px; border-radius: 5px; background-color: #1c1c1c; text-align: center;">
+                                <p style='font-size: 1.5em;'>{defensive_profile}</p>
+                            </div>""",
+                        unsafe_allow_html=True,
+                    )
                 for profile, stats in defensive_profiles.items():
                     if defensive_profile == profile:
                         for stat in stats:
@@ -396,7 +450,7 @@ if selected_player and not recap_stats.empty:
                     )
 
                 # Iterate over player stats and display them in the columns
-                for index in range(len(stats_list[2:])):
+                for index in range(len(stats_list[3:])):
                     stat = stats_list[3:][index]
                     with col1:
                         st.write("")
@@ -414,7 +468,10 @@ if selected_player and not recap_stats.empty:
                             value_stat_player_A[0] if value_stat_player_A else None
                         )  # Fetch the actual value
                         if index < 5:
-                            COLOR_A = COLOR_B = "black"
+                            if theme.get("base") == "light":
+                                COLOR_A = COLOR_B = "black"
+                            else:
+                                COLOR_A = COLOR_B = "white"
                         elif value_stat_player_A > values_player_B[stat]:
                             COLOR_A = "green"
                             COLOR_B = "red"
@@ -422,7 +479,10 @@ if selected_player and not recap_stats.empty:
                             COLOR_A = "red"
                             COLOR_B = "green"
                         else:
-                            COLOR_A = COLOR_B = "black"
+                            if theme.get("base") == "light":
+                                COLOR_A = COLOR_B = "black"
+                            else:
+                                COLOR_A = COLOR_B = "white"
                         st.write("")
                         st.write(
                             f"<h5 style='text-align:center; color:{COLOR_A};'>{value_stat_player_A}</h5>",

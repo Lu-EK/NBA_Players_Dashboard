@@ -131,7 +131,7 @@ def transform_data(regular_dataset, advanced_dataset, shooting_splits):
 
     # Select only the columns that are numeric for mean calculation
     numeric_columns = full_dataset.iloc[:, :].select_dtypes(include="number")
-
+    full_dataset.iloc[5:, :] = full_dataset.iloc[5:, :].round(1)
     # Calculate the mean
     # avg = numeric_columns.mean().round(1)
     # full_dataset.loc['Average'] = avg
