@@ -537,6 +537,6 @@ if selected_player and not recap_stats.empty:
             else:
                 st.write(f"Please select a player to compare to {selected_player}")
 else:
-    st.write("WIP")
+    st.write("<br>", unsafe_allow_html=True)
 
 con.close()
