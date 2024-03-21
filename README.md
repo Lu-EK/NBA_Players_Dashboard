@@ -28,3 +28,4 @@ In no order :
 - Display leads in major standard stat categories in frontpage
 - Allow filtering (by G, Mins, FT%, ...) on any players database
 - Build more accurate players profiles
+- ...
