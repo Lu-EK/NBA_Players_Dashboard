@@ -20,3 +20,11 @@ My aim with this project is to provide basketball fans and professionals alike w
 
 # Sources
 https://www.basketball-reference.com/
+
+# Next steps
+In no order :
+- Scrap the data through NBA's API and store the input data on the cloud
+- Get 10 years of data
+- Display leads in major standard stat categories in frontpage
+- Allow filtering (by G, Mins, FT%, ...) on any players database
+- Build more accurate players profiles
