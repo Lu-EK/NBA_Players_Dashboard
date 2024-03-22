@@ -1,3 +1,4 @@
+import datetime as dt
 import os
 import types
 from typing import List
@@ -11,14 +12,13 @@ import requests
 import streamlit as st
 import streamlit.components.v1 as components
 from bs4 import BeautifulSoup
+from dateutil import parser
 from google_images_search import GoogleImagesSearch
 from googleapiclient.errors import HttpError
+from nba_api.live.nba.endpoints import scoreboard
 from pandas import DataFrame
 from streamlit_modal import Modal
 from streamlit_searchbox import st_searchbox
-import datetime as dt
-from dateutil import parser
-from nba_api.live.nba.endpoints import scoreboard
 from streamlit_theme import st_theme
 
 START_YEAR = 2020
@@ -242,7 +242,6 @@ def create_pie(player_name, stat, ranked_stat, year):
             hole=0.5,
         )
 
-        # Update layout to adjust the size and position of the chart
         fig.update_layout(
             width=300,
             height=300,
@@ -250,7 +249,6 @@ def create_pie(player_name, stat, ranked_stat, year):
             grid=dict(rows=1, columns=2),
         )
 
-        # Add annotation to position the pie chart
         fig.add_annotation(
             x=0.15,
             y=0.5,
@@ -260,16 +258,14 @@ def create_pie(player_name, stat, ranked_stat, year):
             showarrow=False,
         )
 
-        # Add annotation to display "Top X%" inside the donut
         fig.add_annotation(
             x=0.5,
             y=0.5,
-            text=f"Top {percentile*10}%<br>{stat}",  # Text to display inside the donut, REPLACE BY STAT
+            text=f"Top {percentile*10}%<br>{stat}",
             showarrow=False,
-            font=dict(size=15),  # Adjust font size as needed
+            font=dict(size=15),
         )
 
-        # Customize colors and remove text from the chart
         fig.update_traces(
             marker=dict(colors=["red", "lightgrey"], line=dict(color="white", width=2)),
             textinfo="none",
@@ -306,7 +302,7 @@ with st.sidebar:
         default_options=all_players,
     )
 
-    google_image_query = f"{selected_player} {year} NBA"
+    google_image_query = f"{selected_player} {year}-{year + 1} NBA"
     num_images = 1
     image_url = search_images(google_image_query, num_images)
 
@@ -318,12 +314,11 @@ with st.sidebar:
     else:
         st.write("Select a player")
 
-    # Button to open the popup
     show_glossary("docs/filtered_glossary.txt")
 
 
 if selected_player:
-    st.header(f"{selected_player} statistics in {year} ")
+    st.header(f"{selected_player} statistics in {year}-{year + 1} ")
 
     # Replace single quotes with two single quotes in the player name
     escaped_player_name = selected_player.replace("'", "''")
@@ -335,7 +330,7 @@ if selected_player:
     if not recap_stats.empty:
         st.write(recap_stats)
     else:
-        st.write(f"Player was inactive in {year}_{year + 1}")
+        st.write(f"Player was inactive in {year}-{year + 1}")
 else:
     st.markdown(
         "<h1 style='text-align: center;'>NBA Analysis Dashboard</h1>",
@@ -349,7 +344,10 @@ else:
             st.image("docs/logo_dashboard_dark.png", width=800)
     st.write("<br/>", unsafe_allow_html=True)
     today = dt.date.today()
-    st.write(f"<div style='text-align: center;'><h2>Games of the day: {today}</h2></div>", unsafe_allow_html=True)
+    st.write(
+        f"<div style='text-align: center;'><h2>Games of the day: {today}</h2></div>",
+        unsafe_allow_html=True,
+    )
     st.write("<br><br>", unsafe_allow_html=True)
     get_todays_games()
     st.write("<br><br>", unsafe_allow_html=True)
@@ -473,7 +471,7 @@ if selected_player and not recap_stats.empty:
             if selected_player_comparison:
                 player_compared = selected_player_comparison.replace("'", "''")
                 player_exists = con.execute(
-                f"SELECT 1 FROM players_stats_{year}_{year + 1} WHERE player = '{player_compared}'"
+                    f"SELECT 1 FROM players_stats_{year}_{year + 1} WHERE player = '{player_compared}'"
                 ).fetchone()
 
                 if player_exists:
@@ -503,7 +501,7 @@ if selected_player and not recap_stats.empty:
                             ).fetchone()
                             value_stat_player_A = (
                                 value_stat_player_A[0] if value_stat_player_A else None
-                            ) 
+                            )
                             if index < 5:
                                 if theme.get("base") == "light":
                                     COLOR_A = COLOR_B = "black"
