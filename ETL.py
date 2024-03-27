@@ -21,21 +21,49 @@ if not os.path.exists(directory):
     os.makedirs(directory)
 
 
+# def create_yearly_dataframes(year):
+#     # File paths
+#     regular_dataset_path = f"datasets/regular/regular_dataset_{year}_{year + 1}.csv"
+#     advanced_dataset_path = f"datasets/advanced/advanced_dataset_{year}_{year + 1}.csv"
+#     shooting_splits_path = f"datasets/shootings_splits/SP_{year}_{year + 1}.csv"
+
+#     # Read CSV files
+#     regular_df = pd.read_csv(regular_dataset_path)
+#     advanced_df = pd.read_csv(advanced_dataset_path)
+#     shooting_splits_df = pd.read_csv(shooting_splits_path)
+
+#     return regular_df, advanced_df, shooting_splits_df
+
+## Functions
+
+class get_data:
+
+    def dataset_players(self, season, mode):
+        url = f'https://www.basketball-reference.com/leagues/NBA_{season}_{mode}.html'
+        table_web = BeautifulSoup(urlopen(url), 'html.parser').findAll('table')
+
+        df = pd.read_html(str(table_web))[0] 
+        df = df.drop(df[df.Player == 'Player'].index)
+        df = df.drop('Rk', axis=1) 
+        df.insert(0,'Season',season)
+        df = df.apply(pd.to_numeric, errors='coerce').fillna(df)
+
+        return df
+
 def create_yearly_dataframes(year):
     # File paths
-    regular_dataset_path = f"datasets/regular/regular_dataset_{year}_{year + 1}.csv"
-    advanced_dataset_path = f"datasets/advanced/advanced_dataset_{year}_{year + 1}.csv"
-    shooting_splits_path = f"datasets/shootings_splits/SP_{year}_{year + 1}.csv"
+    regular_df = dataset_obj.dataset_players(year, 'per_game')
+    advanced_df = dataset_obj.dataset_players(year, 'advanced')
+    shooting_splits_df = dataset_obj.dataset_players(year, 'shooting')
 
     # Read CSV files
-    regular_df = pd.read_csv(regular_dataset_path)
-    advanced_df = pd.read_csv(advanced_dataset_path)
-    shooting_splits_df = pd.read_csv(shooting_splits_path)
+    #regular_df = pd.read_csv(regular_dataset_path)
+    #advanced_df = pd.read_csv(advanced_dataset_path)
+    #shooting_splits_df = pd.read_csv(shooting_splits_path)
 
     return regular_df, advanced_df, shooting_splits_df
 
 
-## Functions
 
 
 def process_glossary_file(input_file, output_file):
@@ -53,9 +81,9 @@ def process_glossary_file(input_file, output_file):
 
 def transform_data(regular_dataset, advanced_dataset, shooting_splits):
     # In the case of multiples occurrences of a player, keep only the first occurrence
-    regular_dataset = regular_dataset[~regular_dataset["Rk"].duplicated(keep="first")]
+    regular_dataset = regular_dataset[~regular_dataset["Player"].duplicated(keep="first")]
     advanced_dataset = advanced_dataset[
-        ~advanced_dataset["Rk"].duplicated(keep="first")
+        ~advanced_dataset["Player"].duplicated(keep="first")
     ]
 
     # Concatenate the two tables, erasing the recurrent columns
