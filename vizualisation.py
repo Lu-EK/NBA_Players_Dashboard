@@ -21,7 +21,7 @@ from streamlit_modal import Modal
 from streamlit_searchbox import st_searchbox
 from streamlit_theme import st_theme
 
-START_YEAR = 2020
+START_YEAR = 2005
 END_YEAR = 2023
 
 st.set_page_config(
