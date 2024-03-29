@@ -6,8 +6,10 @@ from urllib.parse import quote_plus
 
 import altair as alt
 import duckdb
+from ETL import download_from_bucket
 import pandas as pd
 import plotly.express as px
+from io import BytesIO
 import requests
 import streamlit as st
 import streamlit.components.v1 as components
@@ -65,15 +67,25 @@ con = duckdb.connect()
 
 # Loop over the range of years
 for year in range(START_YEAR, END_YEAR + 1):
-    # Load data for the current year
-    players_stats = pd.read_csv(
-        f"datasets/combined/regular_dataset_{year}_{year + 1}.csv"
+    # # Load data for the current year
+    # players_stats = pd.read_csv(
+    #     f"datasets/combined/regular_dataset_{year}_{year + 1}.csv"
+    # )
+    # players_stats_ranked = pd.read_csv(
+    #     f"datasets/combined/ranked_dataset_{year}_{year + 1}.csv"
+    # )
+
+    players_stats_csv = download_csv_from_bucket(
+        "nba_dashboard_files", f"regular{year - 1}_{year}.csv"
     )
-    players_stats_ranked = pd.read_csv(
-        f"datasets/combined/ranked_dataset_{year}_{year + 1}.csv"
+    players_stats_ranked_csv = download_csv_from_bucket(
+        "nba_dashboard_files", f"ranked{year - 1}_{year}.csv"
     )
 
+    players_stats = pd.read_csv(BytesIO(players_stats_csv))
+    players_stats_ranked = pd.read_csv(BytesIO(players_stats_ranked_csv))
     # Create tables in DuckDB
+
     con.register("players_stats_" + str(year) + "_" + str(year + 1), players_stats)
     con.register(
         "players_stats_ranked_" + str(year) + "_" + str(year + 1), players_stats_ranked
@@ -304,9 +316,9 @@ with st.sidebar:
 
     google_image_query = f"{selected_player} {year}-{year + 1} NBA"
     num_images = 1
-    image_url = search_images(google_image_query, num_images)
 
     if selected_player:
+        image_url = search_images(google_image_query, num_images)
         if image_url:
             st.image(image_url, width=350, use_column_width=False)
         else:
