@@ -241,3 +241,59 @@ airflow.exceptions.AirflowException: The key 'Daily actualization' has to be mad
 [2024-04-03T10:13:48.190+0200] {logging_mixin.py:154} INFO - [2024-04-03T10:13:48.189+0200] {dag.py:2941} INFO - Sync 1 DAGs
 [2024-04-03T10:13:48.199+0200] {logging_mixin.py:154} INFO - [2024-04-03T10:13:48.199+0200] {dag.py:3722} INFO - Setting next_dagrun for daily_actualization to 2024-04-03T08:00:00+00:00, run_after=2024-04-04T08:00:00+00:00
 [2024-04-03T10:13:48.210+0200] {processor.py:179} INFO - Processing /home/lucas/Data Science/Project NBA/dags/dag_airflow.py took 0.036 seconds
+[2024-04-03T10:16:41.658+0200] {processor.py:157} INFO - Started process (PID=99687) to work on /home/lucas/Data Science/Project NBA/dags/dag_airflow.py
+[2024-04-03T10:16:41.659+0200] {processor.py:829} INFO - Processing file /home/lucas/Data Science/Project NBA/dags/dag_airflow.py for tasks to queue
+[2024-04-03T10:16:41.660+0200] {logging_mixin.py:154} INFO - [2024-04-03T10:16:41.660+0200] {dagbag.py:536} INFO - Filling up the DagBag from /home/lucas/Data Science/Project NBA/dags/dag_airflow.py
+[2024-04-03T10:16:41.666+0200] {processor.py:839} INFO - DAG(s) dict_keys(['daily_actualization']) retrieved from /home/lucas/Data Science/Project NBA/dags/dag_airflow.py
+[2024-04-03T10:16:41.716+0200] {logging_mixin.py:154} INFO - [2024-04-03T10:16:41.715+0200] {dag.py:2941} INFO - Sync 1 DAGs
+[2024-04-03T10:16:41.725+0200] {logging_mixin.py:154} INFO - [2024-04-03T10:16:41.725+0200] {dag.py:3722} INFO - Setting next_dagrun for daily_actualization to 2024-04-03T08:00:00+00:00, run_after=2024-04-04T08:00:00+00:00
+[2024-04-03T10:16:41.739+0200] {processor.py:179} INFO - Processing /home/lucas/Data Science/Project NBA/dags/dag_airflow.py took 0.082 seconds
+[2024-04-03T10:17:39.425+0200] {processor.py:157} INFO - Started process (PID=100315) to work on /home/lucas/Data Science/Project NBA/dags/dag_airflow.py
+[2024-04-03T10:17:39.425+0200] {processor.py:829} INFO - Processing file /home/lucas/Data Science/Project NBA/dags/dag_airflow.py for tasks to queue
+[2024-04-03T10:17:39.426+0200] {logging_mixin.py:154} INFO - [2024-04-03T10:17:39.426+0200] {dagbag.py:536} INFO - Filling up the DagBag from /home/lucas/Data Science/Project NBA/dags/dag_airflow.py
+[2024-04-03T10:17:39.430+0200] {processor.py:839} INFO - DAG(s) dict_keys(['daily_actualization']) retrieved from /home/lucas/Data Science/Project NBA/dags/dag_airflow.py
+[2024-04-03T10:17:39.439+0200] {logging_mixin.py:154} INFO - [2024-04-03T10:17:39.439+0200] {dag.py:2941} INFO - Sync 1 DAGs
+[2024-04-03T10:17:39.455+0200] {logging_mixin.py:154} INFO - [2024-04-03T10:17:39.454+0200] {dag.py:3722} INFO - Setting next_dagrun for daily_actualization to 2024-04-03T08:00:00+00:00, run_after=2024-04-04T08:00:00+00:00
+[2024-04-03T10:17:39.471+0200] {processor.py:179} INFO - Processing /home/lucas/Data Science/Project NBA/dags/dag_airflow.py took 0.049 seconds
+[2024-04-03T10:18:11.984+0200] {processor.py:157} INFO - Started process (PID=100456) to work on /home/lucas/Data Science/Project NBA/dags/dag_airflow.py
+[2024-04-03T10:18:11.987+0200] {processor.py:829} INFO - Processing file /home/lucas/Data Science/Project NBA/dags/dag_airflow.py for tasks to queue
+[2024-04-03T10:18:11.987+0200] {logging_mixin.py:154} INFO - [2024-04-03T10:18:11.987+0200] {dagbag.py:536} INFO - Filling up the DagBag from /home/lucas/Data Science/Project NBA/dags/dag_airflow.py
+[2024-04-03T10:18:11.991+0200] {processor.py:839} INFO - DAG(s) dict_keys(['daily_actualization']) retrieved from /home/lucas/Data Science/Project NBA/dags/dag_airflow.py
+[2024-04-03T10:18:11.998+0200] {logging_mixin.py:154} INFO - [2024-04-03T10:18:11.998+0200] {dag.py:2941} INFO - Sync 1 DAGs
+[2024-04-03T10:18:12.008+0200] {logging_mixin.py:154} INFO - [2024-04-03T10:18:12.008+0200] {dag.py:3722} INFO - Setting next_dagrun for daily_actualization to 2024-04-03T08:00:00+00:00, run_after=2024-04-04T08:00:00+00:00
+[2024-04-03T10:18:12.024+0200] {processor.py:179} INFO - Processing /home/lucas/Data Science/Project NBA/dags/dag_airflow.py took 0.042 seconds
+[2024-04-03T10:22:09.735+0200] {processor.py:157} INFO - Started process (PID=100973) to work on /home/lucas/Data Science/Project NBA/dags/dag_airflow.py
+[2024-04-03T10:22:09.736+0200] {processor.py:829} INFO - Processing file /home/lucas/Data Science/Project NBA/dags/dag_airflow.py for tasks to queue
+[2024-04-03T10:22:09.736+0200] {logging_mixin.py:154} INFO - [2024-04-03T10:22:09.736+0200] {dagbag.py:536} INFO - Filling up the DagBag from /home/lucas/Data Science/Project NBA/dags/dag_airflow.py
+[2024-04-03T10:22:09.742+0200] {processor.py:839} INFO - DAG(s) dict_keys(['daily_actualization']) retrieved from /home/lucas/Data Science/Project NBA/dags/dag_airflow.py
+[2024-04-03T10:22:09.792+0200] {logging_mixin.py:154} INFO - [2024-04-03T10:22:09.792+0200] {dag.py:2941} INFO - Sync 1 DAGs
+[2024-04-03T10:22:09.801+0200] {logging_mixin.py:154} INFO - [2024-04-03T10:22:09.801+0200] {dag.py:3722} INFO - Setting next_dagrun for daily_actualization to 2024-04-03T08:00:00+00:00, run_after=2024-04-04T08:00:00+00:00
+[2024-04-03T10:22:09.812+0200] {processor.py:179} INFO - Processing /home/lucas/Data Science/Project NBA/dags/dag_airflow.py took 0.079 seconds
+[2024-04-03T10:23:08.749+0200] {processor.py:157} INFO - Started process (PID=101690) to work on /home/lucas/Data Science/Project NBA/dags/dag_airflow.py
+[2024-04-03T10:23:08.752+0200] {processor.py:829} INFO - Processing file /home/lucas/Data Science/Project NBA/dags/dag_airflow.py for tasks to queue
+[2024-04-03T10:23:08.753+0200] {logging_mixin.py:154} INFO - [2024-04-03T10:23:08.753+0200] {dagbag.py:536} INFO - Filling up the DagBag from /home/lucas/Data Science/Project NBA/dags/dag_airflow.py
+[2024-04-03T10:23:08.757+0200] {processor.py:839} INFO - DAG(s) dict_keys(['daily_actualization']) retrieved from /home/lucas/Data Science/Project NBA/dags/dag_airflow.py
+[2024-04-03T10:23:08.764+0200] {logging_mixin.py:154} INFO - [2024-04-03T10:23:08.764+0200] {dag.py:2941} INFO - Sync 1 DAGs
+[2024-04-03T10:23:08.775+0200] {logging_mixin.py:154} INFO - [2024-04-03T10:23:08.774+0200] {dag.py:3722} INFO - Setting next_dagrun for daily_actualization to 2024-04-03T08:00:00+00:00, run_after=2024-04-04T08:00:00+00:00
+[2024-04-03T10:23:08.786+0200] {processor.py:179} INFO - Processing /home/lucas/Data Science/Project NBA/dags/dag_airflow.py took 0.038 seconds
+[2024-04-03T10:23:40.777+0200] {processor.py:157} INFO - Started process (PID=101827) to work on /home/lucas/Data Science/Project NBA/dags/dag_airflow.py
+[2024-04-03T10:23:40.780+0200] {processor.py:829} INFO - Processing file /home/lucas/Data Science/Project NBA/dags/dag_airflow.py for tasks to queue
+[2024-04-03T10:23:40.780+0200] {logging_mixin.py:154} INFO - [2024-04-03T10:23:40.780+0200] {dagbag.py:536} INFO - Filling up the DagBag from /home/lucas/Data Science/Project NBA/dags/dag_airflow.py
+[2024-04-03T10:23:40.784+0200] {processor.py:839} INFO - DAG(s) dict_keys(['daily_actualization']) retrieved from /home/lucas/Data Science/Project NBA/dags/dag_airflow.py
+[2024-04-03T10:23:40.904+0200] {logging_mixin.py:154} INFO - [2024-04-03T10:23:40.904+0200] {dag.py:2941} INFO - Sync 1 DAGs
+[2024-04-03T10:23:40.912+0200] {logging_mixin.py:154} INFO - [2024-04-03T10:23:40.912+0200] {dag.py:3722} INFO - Setting next_dagrun for daily_actualization to 2024-04-02T08:00:00+00:00, run_after=2024-04-03T08:00:00+00:00
+[2024-04-03T10:23:40.926+0200] {processor.py:179} INFO - Processing /home/lucas/Data Science/Project NBA/dags/dag_airflow.py took 0.151 seconds
+[2024-04-03T10:24:38.460+0200] {processor.py:157} INFO - Started process (PID=102415) to work on /home/lucas/Data Science/Project NBA/dags/dag_airflow.py
+[2024-04-03T10:24:38.463+0200] {processor.py:829} INFO - Processing file /home/lucas/Data Science/Project NBA/dags/dag_airflow.py for tasks to queue
+[2024-04-03T10:24:38.463+0200] {logging_mixin.py:154} INFO - [2024-04-03T10:24:38.463+0200] {dagbag.py:536} INFO - Filling up the DagBag from /home/lucas/Data Science/Project NBA/dags/dag_airflow.py
+[2024-04-03T10:24:38.467+0200] {processor.py:839} INFO - DAG(s) dict_keys(['daily_actualization']) retrieved from /home/lucas/Data Science/Project NBA/dags/dag_airflow.py
+[2024-04-03T10:24:38.475+0200] {logging_mixin.py:154} INFO - [2024-04-03T10:24:38.474+0200] {dag.py:2941} INFO - Sync 1 DAGs
+[2024-04-03T10:24:38.568+0200] {logging_mixin.py:154} INFO - [2024-04-03T10:24:38.568+0200] {dag.py:3722} INFO - Setting next_dagrun for daily_actualization to 2024-04-03T08:00:00+00:00, run_after=2024-04-04T08:00:00+00:00
+[2024-04-03T10:24:38.581+0200] {processor.py:179} INFO - Processing /home/lucas/Data Science/Project NBA/dags/dag_airflow.py took 0.122 seconds
+[2024-04-03T10:25:12.527+0200] {processor.py:157} INFO - Started process (PID=102821) to work on /home/lucas/Data Science/Project NBA/dags/dag_airflow.py
+[2024-04-03T10:25:12.530+0200] {processor.py:829} INFO - Processing file /home/lucas/Data Science/Project NBA/dags/dag_airflow.py for tasks to queue
+[2024-04-03T10:25:12.530+0200] {logging_mixin.py:154} INFO - [2024-04-03T10:25:12.530+0200] {dagbag.py:536} INFO - Filling up the DagBag from /home/lucas/Data Science/Project NBA/dags/dag_airflow.py
+[2024-04-03T10:25:12.534+0200] {processor.py:839} INFO - DAG(s) dict_keys(['daily_actualization']) retrieved from /home/lucas/Data Science/Project NBA/dags/dag_airflow.py
+[2024-04-03T10:25:12.542+0200] {logging_mixin.py:154} INFO - [2024-04-03T10:25:12.542+0200] {dag.py:2941} INFO - Sync 1 DAGs
+[2024-04-03T10:25:12.552+0200] {logging_mixin.py:154} INFO - [2024-04-03T10:25:12.552+0200] {dag.py:3722} INFO - Setting next_dagrun for daily_actualization to 2024-04-03T08:00:00+00:00, run_after=2024-04-04T08:00:00+00:00
+[2024-04-03T10:25:12.563+0200] {processor.py:179} INFO - Processing /home/lucas/Data Science/Project NBA/dags/dag_airflow.py took 0.037 seconds

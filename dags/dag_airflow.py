@@ -6,7 +6,7 @@ with DAG(
     dag_id="daily_actualization",
     schedule="0 8 * * *",
     catchup=False,
-    start_date=datetime.datetime(2024, 4, 3),
+    start_date=datetime.datetime(2024, 4, 2),
     dagrun_timeout=datetime.timedelta(minutes=60),
     ) as dag:
     actualize = BashOperator(

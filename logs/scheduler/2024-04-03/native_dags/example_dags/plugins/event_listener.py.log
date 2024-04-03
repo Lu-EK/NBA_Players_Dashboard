@@ -303,3 +303,28 @@
 [2024-04-03T10:14:00.271+0200] {logging_mixin.py:154} INFO - [2024-04-03T10:14:00.271+0200] {dagbag.py:536} INFO - Filling up the DagBag from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/event_listener.py
 [2024-04-03T10:14:00.272+0200] {processor.py:841} WARNING - No viable dags retrieved from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/event_listener.py
 [2024-04-03T10:14:00.277+0200] {processor.py:179} INFO - Processing /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/event_listener.py took 0.011 seconds
+[2024-04-03T10:17:24.308+0200] {processor.py:157} INFO - Started process (PID=100240) to work on /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/event_listener.py
+[2024-04-03T10:17:24.311+0200] {processor.py:829} INFO - Processing file /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/event_listener.py for tasks to queue
+[2024-04-03T10:17:24.311+0200] {logging_mixin.py:154} INFO - [2024-04-03T10:17:24.311+0200] {dagbag.py:536} INFO - Filling up the DagBag from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/event_listener.py
+[2024-04-03T10:17:24.312+0200] {processor.py:841} WARNING - No viable dags retrieved from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/event_listener.py
+[2024-04-03T10:17:24.317+0200] {processor.py:179} INFO - Processing /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/event_listener.py took 0.011 seconds
+[2024-04-03T10:18:10.836+0200] {processor.py:157} INFO - Started process (PID=100455) to work on /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/event_listener.py
+[2024-04-03T10:18:10.844+0200] {processor.py:829} INFO - Processing file /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/event_listener.py for tasks to queue
+[2024-04-03T10:18:10.844+0200] {logging_mixin.py:154} INFO - [2024-04-03T10:18:10.844+0200] {dagbag.py:536} INFO - Filling up the DagBag from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/event_listener.py
+[2024-04-03T10:18:10.846+0200] {processor.py:841} WARNING - No viable dags retrieved from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/event_listener.py
+[2024-04-03T10:18:10.854+0200] {processor.py:179} INFO - Processing /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/event_listener.py took 0.020 seconds
+[2024-04-03T10:22:53.149+0200] {processor.py:157} INFO - Started process (PID=101552) to work on /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/event_listener.py
+[2024-04-03T10:22:53.149+0200] {processor.py:829} INFO - Processing file /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/event_listener.py for tasks to queue
+[2024-04-03T10:22:53.149+0200] {logging_mixin.py:154} INFO - [2024-04-03T10:22:53.149+0200] {dagbag.py:536} INFO - Filling up the DagBag from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/event_listener.py
+[2024-04-03T10:22:53.151+0200] {processor.py:841} WARNING - No viable dags retrieved from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/event_listener.py
+[2024-04-03T10:22:53.155+0200] {processor.py:179} INFO - Processing /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/event_listener.py took 0.008 seconds
+[2024-04-03T10:23:39.653+0200] {processor.py:157} INFO - Started process (PID=101826) to work on /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/event_listener.py
+[2024-04-03T10:23:39.654+0200] {processor.py:829} INFO - Processing file /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/event_listener.py for tasks to queue
+[2024-04-03T10:23:39.655+0200] {logging_mixin.py:154} INFO - [2024-04-03T10:23:39.654+0200] {dagbag.py:536} INFO - Filling up the DagBag from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/event_listener.py
+[2024-04-03T10:23:39.656+0200] {processor.py:841} WARNING - No viable dags retrieved from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/event_listener.py
+[2024-04-03T10:23:39.660+0200] {processor.py:179} INFO - Processing /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/event_listener.py took 0.009 seconds
+[2024-04-03T10:24:40.155+0200] {processor.py:157} INFO - Started process (PID=102417) to work on /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/event_listener.py
+[2024-04-03T10:24:40.158+0200] {processor.py:829} INFO - Processing file /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/event_listener.py for tasks to queue
+[2024-04-03T10:24:40.158+0200] {logging_mixin.py:154} INFO - [2024-04-03T10:24:40.158+0200] {dagbag.py:536} INFO - Filling up the DagBag from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/event_listener.py
+[2024-04-03T10:24:40.159+0200] {processor.py:841} WARNING - No viable dags retrieved from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/event_listener.py
+[2024-04-03T10:24:40.164+0200] {processor.py:179} INFO - Processing /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/event_listener.py took 0.011 seconds
