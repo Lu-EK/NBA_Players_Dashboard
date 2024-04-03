@@ -26,3 +26,402 @@
 [2024-04-03T09:16:39.954+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:16:39.954+0200] {utils.py:160} INFO - NumExpr defaulting to 8 threads.
 [2024-04-03T09:16:40.049+0200] {processor.py:841} WARNING - No viable dags retrieved from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
 [2024-04-03T09:16:40.053+0200] {processor.py:179} INFO - Processing /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py took 0.183 seconds
+[2024-04-03T09:18:55.998+0200] {processor.py:157} INFO - Started process (PID=13765) to work on /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T09:18:55.999+0200] {processor.py:829} INFO - Processing file /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py for tasks to queue
+[2024-04-03T09:18:56.000+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:18:56.000+0200] {dagbag.py:536} INFO - Filling up the DagBag from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T09:18:56.089+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:18:56.089+0200] {utils.py:148} INFO - Note: NumExpr detected 12 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-04-03T09:18:56.089+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:18:56.089+0200] {utils.py:160} INFO - NumExpr defaulting to 8 threads.
+[2024-04-03T09:18:56.188+0200] {processor.py:841} WARNING - No viable dags retrieved from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T09:18:56.193+0200] {processor.py:179} INFO - Processing /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py took 0.196 seconds
+[2024-04-03T09:19:38.802+0200] {processor.py:157} INFO - Started process (PID=14095) to work on /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T09:19:38.805+0200] {processor.py:829} INFO - Processing file /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py for tasks to queue
+[2024-04-03T09:19:38.805+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:19:38.805+0200] {dagbag.py:536} INFO - Filling up the DagBag from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T09:19:38.889+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:19:38.889+0200] {utils.py:148} INFO - Note: NumExpr detected 12 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-04-03T09:19:38.889+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:19:38.889+0200] {utils.py:160} INFO - NumExpr defaulting to 8 threads.
+[2024-04-03T09:19:38.988+0200] {processor.py:841} WARNING - No viable dags retrieved from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T09:19:38.993+0200] {processor.py:179} INFO - Processing /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py took 0.192 seconds
+[2024-04-03T09:20:22.051+0200] {processor.py:157} INFO - Started process (PID=14284) to work on /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T09:20:22.054+0200] {processor.py:829} INFO - Processing file /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py for tasks to queue
+[2024-04-03T09:20:22.054+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:20:22.054+0200] {dagbag.py:536} INFO - Filling up the DagBag from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T09:20:22.135+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:20:22.135+0200] {utils.py:148} INFO - Note: NumExpr detected 12 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-04-03T09:20:22.135+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:20:22.135+0200] {utils.py:160} INFO - NumExpr defaulting to 8 threads.
+[2024-04-03T09:20:22.230+0200] {processor.py:841} WARNING - No viable dags retrieved from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T09:20:22.234+0200] {processor.py:179} INFO - Processing /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py took 0.184 seconds
+[2024-04-03T09:21:05.891+0200] {processor.py:157} INFO - Started process (PID=14411) to work on /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T09:21:05.894+0200] {processor.py:829} INFO - Processing file /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py for tasks to queue
+[2024-04-03T09:21:05.894+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:21:05.894+0200] {dagbag.py:536} INFO - Filling up the DagBag from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T09:21:05.974+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:21:05.974+0200] {utils.py:148} INFO - Note: NumExpr detected 12 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-04-03T09:21:05.975+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:21:05.975+0200] {utils.py:160} INFO - NumExpr defaulting to 8 threads.
+[2024-04-03T09:21:06.073+0200] {processor.py:841} WARNING - No viable dags retrieved from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T09:21:06.077+0200] {processor.py:179} INFO - Processing /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py took 0.188 seconds
+[2024-04-03T09:21:55.344+0200] {processor.py:157} INFO - Started process (PID=14576) to work on /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T09:21:55.347+0200] {processor.py:829} INFO - Processing file /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py for tasks to queue
+[2024-04-03T09:21:55.348+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:21:55.347+0200] {dagbag.py:536} INFO - Filling up the DagBag from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T09:21:55.427+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:21:55.427+0200] {utils.py:148} INFO - Note: NumExpr detected 12 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-04-03T09:21:55.427+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:21:55.427+0200] {utils.py:160} INFO - NumExpr defaulting to 8 threads.
+[2024-04-03T09:21:55.521+0200] {processor.py:841} WARNING - No viable dags retrieved from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T09:21:55.525+0200] {processor.py:179} INFO - Processing /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py took 0.182 seconds
+[2024-04-03T09:22:38.150+0200] {processor.py:157} INFO - Started process (PID=14815) to work on /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T09:22:38.153+0200] {processor.py:829} INFO - Processing file /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py for tasks to queue
+[2024-04-03T09:22:38.153+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:22:38.153+0200] {dagbag.py:536} INFO - Filling up the DagBag from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T09:22:38.234+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:22:38.234+0200] {utils.py:148} INFO - Note: NumExpr detected 12 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-04-03T09:22:38.234+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:22:38.234+0200] {utils.py:160} INFO - NumExpr defaulting to 8 threads.
+[2024-04-03T09:22:38.328+0200] {processor.py:841} WARNING - No viable dags retrieved from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T09:22:38.333+0200] {processor.py:179} INFO - Processing /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py took 0.184 seconds
+[2024-04-03T09:23:23.143+0200] {processor.py:157} INFO - Started process (PID=15023) to work on /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T09:23:23.144+0200] {processor.py:829} INFO - Processing file /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py for tasks to queue
+[2024-04-03T09:23:23.145+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:23:23.144+0200] {dagbag.py:536} INFO - Filling up the DagBag from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T09:23:23.225+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:23:23.225+0200] {utils.py:148} INFO - Note: NumExpr detected 12 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-04-03T09:23:23.225+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:23:23.225+0200] {utils.py:160} INFO - NumExpr defaulting to 8 threads.
+[2024-04-03T09:23:23.318+0200] {processor.py:841} WARNING - No viable dags retrieved from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T09:23:23.322+0200] {processor.py:179} INFO - Processing /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py took 0.180 seconds
+[2024-04-03T09:24:06.443+0200] {processor.py:157} INFO - Started process (PID=15343) to work on /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T09:24:06.446+0200] {processor.py:829} INFO - Processing file /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py for tasks to queue
+[2024-04-03T09:24:06.447+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:24:06.447+0200] {dagbag.py:536} INFO - Filling up the DagBag from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T09:24:06.528+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:24:06.528+0200] {utils.py:148} INFO - Note: NumExpr detected 12 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-04-03T09:24:06.528+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:24:06.528+0200] {utils.py:160} INFO - NumExpr defaulting to 8 threads.
+[2024-04-03T09:24:06.629+0200] {processor.py:841} WARNING - No viable dags retrieved from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T09:24:06.633+0200] {processor.py:179} INFO - Processing /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py took 0.191 seconds
+[2024-04-03T09:24:47.450+0200] {processor.py:157} INFO - Started process (PID=15581) to work on /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T09:24:47.452+0200] {processor.py:829} INFO - Processing file /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py for tasks to queue
+[2024-04-03T09:24:47.453+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:24:47.453+0200] {dagbag.py:536} INFO - Filling up the DagBag from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T09:24:47.534+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:24:47.534+0200] {utils.py:148} INFO - Note: NumExpr detected 12 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-04-03T09:24:47.534+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:24:47.534+0200] {utils.py:160} INFO - NumExpr defaulting to 8 threads.
+[2024-04-03T09:24:47.626+0200] {processor.py:841} WARNING - No viable dags retrieved from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T09:24:47.630+0200] {processor.py:179} INFO - Processing /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py took 0.182 seconds
+[2024-04-03T09:25:37.664+0200] {processor.py:157} INFO - Started process (PID=15823) to work on /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T09:25:37.667+0200] {processor.py:829} INFO - Processing file /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py for tasks to queue
+[2024-04-03T09:25:37.667+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:25:37.667+0200] {dagbag.py:536} INFO - Filling up the DagBag from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T09:25:37.748+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:25:37.748+0200] {utils.py:148} INFO - Note: NumExpr detected 12 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-04-03T09:25:37.749+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:25:37.749+0200] {utils.py:160} INFO - NumExpr defaulting to 8 threads.
+[2024-04-03T09:25:37.845+0200] {processor.py:841} WARNING - No viable dags retrieved from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T09:25:37.850+0200] {processor.py:179} INFO - Processing /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py took 0.188 seconds
+[2024-04-03T09:26:25.983+0200] {processor.py:157} INFO - Started process (PID=15999) to work on /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T09:26:25.986+0200] {processor.py:829} INFO - Processing file /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py for tasks to queue
+[2024-04-03T09:26:25.987+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:26:25.986+0200] {dagbag.py:536} INFO - Filling up the DagBag from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T09:26:26.081+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:26:26.081+0200] {utils.py:148} INFO - Note: NumExpr detected 12 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-04-03T09:26:26.081+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:26:26.081+0200] {utils.py:160} INFO - NumExpr defaulting to 8 threads.
+[2024-04-03T09:26:26.187+0200] {processor.py:841} WARNING - No viable dags retrieved from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T09:26:26.192+0200] {processor.py:179} INFO - Processing /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py took 0.210 seconds
+[2024-04-03T09:27:07.035+0200] {processor.py:157} INFO - Started process (PID=16133) to work on /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T09:27:07.038+0200] {processor.py:829} INFO - Processing file /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py for tasks to queue
+[2024-04-03T09:27:07.039+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:27:07.039+0200] {dagbag.py:536} INFO - Filling up the DagBag from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T09:27:07.137+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:27:07.137+0200] {utils.py:148} INFO - Note: NumExpr detected 12 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-04-03T09:27:07.138+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:27:07.138+0200] {utils.py:160} INFO - NumExpr defaulting to 8 threads.
+[2024-04-03T09:27:07.252+0200] {processor.py:841} WARNING - No viable dags retrieved from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T09:27:07.257+0200] {processor.py:179} INFO - Processing /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py took 0.224 seconds
+[2024-04-03T09:27:52.075+0200] {processor.py:157} INFO - Started process (PID=16315) to work on /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T09:27:52.078+0200] {processor.py:829} INFO - Processing file /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py for tasks to queue
+[2024-04-03T09:27:52.078+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:27:52.078+0200] {dagbag.py:536} INFO - Filling up the DagBag from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T09:27:52.182+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:27:52.182+0200] {utils.py:148} INFO - Note: NumExpr detected 12 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-04-03T09:27:52.182+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:27:52.182+0200] {utils.py:160} INFO - NumExpr defaulting to 8 threads.
+[2024-04-03T09:27:52.296+0200] {processor.py:841} WARNING - No viable dags retrieved from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T09:27:52.301+0200] {processor.py:179} INFO - Processing /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py took 0.228 seconds
+[2024-04-03T09:28:33.016+0200] {processor.py:157} INFO - Started process (PID=16483) to work on /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T09:28:33.019+0200] {processor.py:829} INFO - Processing file /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py for tasks to queue
+[2024-04-03T09:28:33.019+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:28:33.019+0200] {dagbag.py:536} INFO - Filling up the DagBag from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T09:28:33.113+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:28:33.112+0200] {utils.py:148} INFO - Note: NumExpr detected 12 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-04-03T09:28:33.113+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:28:33.113+0200] {utils.py:160} INFO - NumExpr defaulting to 8 threads.
+[2024-04-03T09:28:33.210+0200] {processor.py:841} WARNING - No viable dags retrieved from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T09:28:33.215+0200] {processor.py:179} INFO - Processing /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py took 0.200 seconds
+[2024-04-03T09:29:14.784+0200] {processor.py:157} INFO - Started process (PID=16698) to work on /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T09:29:14.787+0200] {processor.py:829} INFO - Processing file /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py for tasks to queue
+[2024-04-03T09:29:14.787+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:29:14.787+0200] {dagbag.py:536} INFO - Filling up the DagBag from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T09:29:14.880+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:29:14.879+0200] {utils.py:148} INFO - Note: NumExpr detected 12 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-04-03T09:29:14.880+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:29:14.880+0200] {utils.py:160} INFO - NumExpr defaulting to 8 threads.
+[2024-04-03T09:29:14.970+0200] {processor.py:841} WARNING - No viable dags retrieved from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T09:29:14.974+0200] {processor.py:179} INFO - Processing /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py took 0.191 seconds
+[2024-04-03T09:29:59.029+0200] {processor.py:157} INFO - Started process (PID=16854) to work on /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T09:29:59.031+0200] {processor.py:829} INFO - Processing file /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py for tasks to queue
+[2024-04-03T09:29:59.032+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:29:59.032+0200] {dagbag.py:536} INFO - Filling up the DagBag from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T09:29:59.115+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:29:59.114+0200] {utils.py:148} INFO - Note: NumExpr detected 12 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-04-03T09:29:59.115+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:29:59.115+0200] {utils.py:160} INFO - NumExpr defaulting to 8 threads.
+[2024-04-03T09:29:59.208+0200] {processor.py:841} WARNING - No viable dags retrieved from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T09:29:59.213+0200] {processor.py:179} INFO - Processing /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py took 0.186 seconds
+[2024-04-03T09:30:47.654+0200] {processor.py:157} INFO - Started process (PID=17109) to work on /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T09:30:47.657+0200] {processor.py:829} INFO - Processing file /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py for tasks to queue
+[2024-04-03T09:30:47.658+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:30:47.658+0200] {dagbag.py:536} INFO - Filling up the DagBag from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T09:30:47.749+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:30:47.749+0200] {utils.py:148} INFO - Note: NumExpr detected 12 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-04-03T09:30:47.749+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:30:47.749+0200] {utils.py:160} INFO - NumExpr defaulting to 8 threads.
+[2024-04-03T09:30:47.848+0200] {processor.py:841} WARNING - No viable dags retrieved from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T09:30:47.853+0200] {processor.py:179} INFO - Processing /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py took 0.200 seconds
+[2024-04-03T09:31:34.150+0200] {processor.py:157} INFO - Started process (PID=17254) to work on /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T09:31:34.153+0200] {processor.py:829} INFO - Processing file /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py for tasks to queue
+[2024-04-03T09:31:34.154+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:31:34.154+0200] {dagbag.py:536} INFO - Filling up the DagBag from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T09:31:34.240+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:31:34.240+0200] {utils.py:148} INFO - Note: NumExpr detected 12 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-04-03T09:31:34.240+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:31:34.240+0200] {utils.py:160} INFO - NumExpr defaulting to 8 threads.
+[2024-04-03T09:31:34.331+0200] {processor.py:841} WARNING - No viable dags retrieved from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T09:31:34.335+0200] {processor.py:179} INFO - Processing /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py took 0.186 seconds
+[2024-04-03T09:32:41.799+0200] {processor.py:157} INFO - Started process (PID=17858) to work on /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T09:32:41.802+0200] {processor.py:829} INFO - Processing file /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py for tasks to queue
+[2024-04-03T09:32:41.802+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:32:41.802+0200] {dagbag.py:536} INFO - Filling up the DagBag from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T09:32:41.890+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:32:41.890+0200] {utils.py:148} INFO - Note: NumExpr detected 12 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-04-03T09:32:41.891+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:32:41.891+0200] {utils.py:160} INFO - NumExpr defaulting to 8 threads.
+[2024-04-03T09:32:42.001+0200] {processor.py:841} WARNING - No viable dags retrieved from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T09:32:42.006+0200] {processor.py:179} INFO - Processing /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py took 0.209 seconds
+[2024-04-03T09:33:25.513+0200] {processor.py:157} INFO - Started process (PID=18146) to work on /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T09:33:25.516+0200] {processor.py:829} INFO - Processing file /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py for tasks to queue
+[2024-04-03T09:33:25.516+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:33:25.516+0200] {dagbag.py:536} INFO - Filling up the DagBag from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T09:33:25.598+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:33:25.598+0200] {utils.py:148} INFO - Note: NumExpr detected 12 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-04-03T09:33:25.598+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:33:25.598+0200] {utils.py:160} INFO - NumExpr defaulting to 8 threads.
+[2024-04-03T09:33:25.692+0200] {processor.py:841} WARNING - No viable dags retrieved from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T09:33:25.697+0200] {processor.py:179} INFO - Processing /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py took 0.185 seconds
+[2024-04-03T09:34:09.453+0200] {processor.py:157} INFO - Started process (PID=18375) to work on /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T09:34:09.454+0200] {processor.py:829} INFO - Processing file /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py for tasks to queue
+[2024-04-03T09:34:09.455+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:34:09.454+0200] {dagbag.py:536} INFO - Filling up the DagBag from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T09:34:09.537+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:34:09.537+0200] {utils.py:148} INFO - Note: NumExpr detected 12 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-04-03T09:34:09.537+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:34:09.537+0200] {utils.py:160} INFO - NumExpr defaulting to 8 threads.
+[2024-04-03T09:34:09.634+0200] {processor.py:841} WARNING - No viable dags retrieved from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T09:34:09.638+0200] {processor.py:179} INFO - Processing /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py took 0.186 seconds
+[2024-04-03T09:35:19.099+0200] {processor.py:157} INFO - Started process (PID=19057) to work on /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T09:35:19.102+0200] {processor.py:829} INFO - Processing file /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py for tasks to queue
+[2024-04-03T09:35:19.102+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:35:19.102+0200] {dagbag.py:536} INFO - Filling up the DagBag from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T09:35:19.183+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:35:19.183+0200] {utils.py:148} INFO - Note: NumExpr detected 12 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-04-03T09:35:19.184+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:35:19.184+0200] {utils.py:160} INFO - NumExpr defaulting to 8 threads.
+[2024-04-03T09:35:19.306+0200] {processor.py:841} WARNING - No viable dags retrieved from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T09:35:19.311+0200] {processor.py:179} INFO - Processing /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py took 0.213 seconds
+[2024-04-03T09:36:03.735+0200] {processor.py:157} INFO - Started process (PID=19337) to work on /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T09:36:03.738+0200] {processor.py:829} INFO - Processing file /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py for tasks to queue
+[2024-04-03T09:36:03.738+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:36:03.738+0200] {dagbag.py:536} INFO - Filling up the DagBag from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T09:36:03.819+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:36:03.819+0200] {utils.py:148} INFO - Note: NumExpr detected 12 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-04-03T09:36:03.819+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:36:03.819+0200] {utils.py:160} INFO - NumExpr defaulting to 8 threads.
+[2024-04-03T09:36:03.912+0200] {processor.py:841} WARNING - No viable dags retrieved from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T09:36:03.916+0200] {processor.py:179} INFO - Processing /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py took 0.182 seconds
+[2024-04-03T09:36:47.620+0200] {processor.py:157} INFO - Started process (PID=19451) to work on /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T09:36:47.623+0200] {processor.py:829} INFO - Processing file /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py for tasks to queue
+[2024-04-03T09:36:47.623+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:36:47.623+0200] {dagbag.py:536} INFO - Filling up the DagBag from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T09:36:47.703+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:36:47.703+0200] {utils.py:148} INFO - Note: NumExpr detected 12 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-04-03T09:36:47.703+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:36:47.703+0200] {utils.py:160} INFO - NumExpr defaulting to 8 threads.
+[2024-04-03T09:36:47.797+0200] {processor.py:841} WARNING - No viable dags retrieved from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T09:36:47.801+0200] {processor.py:179} INFO - Processing /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py took 0.183 seconds
+[2024-04-03T09:37:31.625+0200] {processor.py:157} INFO - Started process (PID=19589) to work on /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T09:37:31.628+0200] {processor.py:829} INFO - Processing file /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py for tasks to queue
+[2024-04-03T09:37:31.629+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:37:31.628+0200] {dagbag.py:536} INFO - Filling up the DagBag from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T09:37:31.708+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:37:31.708+0200] {utils.py:148} INFO - Note: NumExpr detected 12 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-04-03T09:37:31.708+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:37:31.708+0200] {utils.py:160} INFO - NumExpr defaulting to 8 threads.
+[2024-04-03T09:37:31.802+0200] {processor.py:841} WARNING - No viable dags retrieved from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T09:37:31.806+0200] {processor.py:179} INFO - Processing /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py took 0.182 seconds
+[2024-04-03T09:38:15.905+0200] {processor.py:157} INFO - Started process (PID=19705) to work on /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T09:38:15.908+0200] {processor.py:829} INFO - Processing file /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py for tasks to queue
+[2024-04-03T09:38:15.908+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:38:15.908+0200] {dagbag.py:536} INFO - Filling up the DagBag from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T09:38:15.988+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:38:15.988+0200] {utils.py:148} INFO - Note: NumExpr detected 12 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-04-03T09:38:15.988+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:38:15.988+0200] {utils.py:160} INFO - NumExpr defaulting to 8 threads.
+[2024-04-03T09:38:16.080+0200] {processor.py:841} WARNING - No viable dags retrieved from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T09:38:16.085+0200] {processor.py:179} INFO - Processing /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py took 0.181 seconds
+[2024-04-03T09:39:01.624+0200] {processor.py:157} INFO - Started process (PID=19824) to work on /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T09:39:01.627+0200] {processor.py:829} INFO - Processing file /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py for tasks to queue
+[2024-04-03T09:39:01.627+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:39:01.627+0200] {dagbag.py:536} INFO - Filling up the DagBag from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T09:39:01.707+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:39:01.707+0200] {utils.py:148} INFO - Note: NumExpr detected 12 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-04-03T09:39:01.707+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:39:01.707+0200] {utils.py:160} INFO - NumExpr defaulting to 8 threads.
+[2024-04-03T09:39:01.799+0200] {processor.py:841} WARNING - No viable dags retrieved from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T09:39:01.803+0200] {processor.py:179} INFO - Processing /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py took 0.181 seconds
+[2024-04-03T09:39:45.595+0200] {processor.py:157} INFO - Started process (PID=19881) to work on /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T09:39:45.598+0200] {processor.py:829} INFO - Processing file /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py for tasks to queue
+[2024-04-03T09:39:45.598+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:39:45.598+0200] {dagbag.py:536} INFO - Filling up the DagBag from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T09:39:45.678+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:39:45.677+0200] {utils.py:148} INFO - Note: NumExpr detected 12 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-04-03T09:39:45.678+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:39:45.678+0200] {utils.py:160} INFO - NumExpr defaulting to 8 threads.
+[2024-04-03T09:39:45.770+0200] {processor.py:841} WARNING - No viable dags retrieved from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T09:39:45.774+0200] {processor.py:179} INFO - Processing /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py took 0.181 seconds
+[2024-04-03T09:40:26.862+0200] {processor.py:157} INFO - Started process (PID=20057) to work on /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T09:40:26.864+0200] {processor.py:829} INFO - Processing file /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py for tasks to queue
+[2024-04-03T09:40:26.865+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:40:26.865+0200] {dagbag.py:536} INFO - Filling up the DagBag from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T09:40:26.946+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:40:26.946+0200] {utils.py:148} INFO - Note: NumExpr detected 12 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-04-03T09:40:26.946+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:40:26.946+0200] {utils.py:160} INFO - NumExpr defaulting to 8 threads.
+[2024-04-03T09:40:27.043+0200] {processor.py:841} WARNING - No viable dags retrieved from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T09:40:27.047+0200] {processor.py:179} INFO - Processing /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py took 0.187 seconds
+[2024-04-03T09:41:13.346+0200] {processor.py:157} INFO - Started process (PID=20176) to work on /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T09:41:13.349+0200] {processor.py:829} INFO - Processing file /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py for tasks to queue
+[2024-04-03T09:41:13.350+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:41:13.349+0200] {dagbag.py:536} INFO - Filling up the DagBag from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T09:41:13.430+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:41:13.430+0200] {utils.py:148} INFO - Note: NumExpr detected 12 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-04-03T09:41:13.430+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:41:13.430+0200] {utils.py:160} INFO - NumExpr defaulting to 8 threads.
+[2024-04-03T09:41:13.523+0200] {processor.py:841} WARNING - No viable dags retrieved from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T09:41:13.527+0200] {processor.py:179} INFO - Processing /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py took 0.182 seconds
+[2024-04-03T09:41:56.291+0200] {processor.py:157} INFO - Started process (PID=20295) to work on /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T09:41:56.293+0200] {processor.py:829} INFO - Processing file /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py for tasks to queue
+[2024-04-03T09:41:56.294+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:41:56.293+0200] {dagbag.py:536} INFO - Filling up the DagBag from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T09:41:56.375+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:41:56.375+0200] {utils.py:148} INFO - Note: NumExpr detected 12 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-04-03T09:41:56.375+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:41:56.375+0200] {utils.py:160} INFO - NumExpr defaulting to 8 threads.
+[2024-04-03T09:41:56.467+0200] {processor.py:841} WARNING - No viable dags retrieved from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T09:41:56.471+0200] {processor.py:179} INFO - Processing /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py took 0.182 seconds
+[2024-04-03T09:42:41.348+0200] {processor.py:157} INFO - Started process (PID=20446) to work on /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T09:42:41.351+0200] {processor.py:829} INFO - Processing file /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py for tasks to queue
+[2024-04-03T09:42:41.351+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:42:41.351+0200] {dagbag.py:536} INFO - Filling up the DagBag from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T09:42:41.435+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:42:41.435+0200] {utils.py:148} INFO - Note: NumExpr detected 12 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-04-03T09:42:41.435+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:42:41.435+0200] {utils.py:160} INFO - NumExpr defaulting to 8 threads.
+[2024-04-03T09:42:41.531+0200] {processor.py:841} WARNING - No viable dags retrieved from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T09:42:41.535+0200] {processor.py:179} INFO - Processing /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py took 0.189 seconds
+[2024-04-03T09:43:30.674+0200] {processor.py:157} INFO - Started process (PID=20567) to work on /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T09:43:30.676+0200] {processor.py:829} INFO - Processing file /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py for tasks to queue
+[2024-04-03T09:43:30.677+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:43:30.677+0200] {dagbag.py:536} INFO - Filling up the DagBag from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T09:43:30.757+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:43:30.757+0200] {utils.py:148} INFO - Note: NumExpr detected 12 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-04-03T09:43:30.757+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:43:30.757+0200] {utils.py:160} INFO - NumExpr defaulting to 8 threads.
+[2024-04-03T09:43:30.849+0200] {processor.py:841} WARNING - No viable dags retrieved from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T09:43:30.853+0200] {processor.py:179} INFO - Processing /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py took 0.181 seconds
+[2024-04-03T09:44:16.445+0200] {processor.py:157} INFO - Started process (PID=20869) to work on /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T09:44:16.459+0200] {processor.py:829} INFO - Processing file /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py for tasks to queue
+[2024-04-03T09:44:16.459+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:44:16.459+0200] {dagbag.py:536} INFO - Filling up the DagBag from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T09:44:16.544+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:44:16.544+0200] {utils.py:148} INFO - Note: NumExpr detected 12 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-04-03T09:44:16.544+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:44:16.544+0200] {utils.py:160} INFO - NumExpr defaulting to 8 threads.
+[2024-04-03T09:44:16.637+0200] {processor.py:841} WARNING - No viable dags retrieved from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T09:44:16.641+0200] {processor.py:179} INFO - Processing /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py took 0.197 seconds
+[2024-04-03T09:44:58.342+0200] {processor.py:157} INFO - Started process (PID=21142) to work on /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T09:44:58.343+0200] {processor.py:829} INFO - Processing file /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py for tasks to queue
+[2024-04-03T09:44:58.344+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:44:58.344+0200] {dagbag.py:536} INFO - Filling up the DagBag from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T09:44:58.432+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:44:58.431+0200] {utils.py:148} INFO - Note: NumExpr detected 12 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-04-03T09:44:58.432+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:44:58.432+0200] {utils.py:160} INFO - NumExpr defaulting to 8 threads.
+[2024-04-03T09:44:58.521+0200] {processor.py:841} WARNING - No viable dags retrieved from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T09:44:58.525+0200] {processor.py:179} INFO - Processing /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py took 0.184 seconds
+[2024-04-03T09:48:20.555+0200] {processor.py:157} INFO - Started process (PID=21929) to work on /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T09:48:20.558+0200] {processor.py:829} INFO - Processing file /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py for tasks to queue
+[2024-04-03T09:48:20.559+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:48:20.558+0200] {dagbag.py:536} INFO - Filling up the DagBag from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T09:48:20.640+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:48:20.640+0200] {utils.py:148} INFO - Note: NumExpr detected 12 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-04-03T09:48:20.640+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:48:20.640+0200] {utils.py:160} INFO - NumExpr defaulting to 8 threads.
+[2024-04-03T09:48:20.733+0200] {processor.py:841} WARNING - No viable dags retrieved from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T09:48:20.737+0200] {processor.py:179} INFO - Processing /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py took 0.183 seconds
+[2024-04-03T09:49:03.482+0200] {processor.py:157} INFO - Started process (PID=22167) to work on /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T09:49:03.485+0200] {processor.py:829} INFO - Processing file /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py for tasks to queue
+[2024-04-03T09:49:03.486+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:49:03.485+0200] {dagbag.py:536} INFO - Filling up the DagBag from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T09:49:03.572+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:49:03.572+0200] {utils.py:148} INFO - Note: NumExpr detected 12 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-04-03T09:49:03.572+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:49:03.572+0200] {utils.py:160} INFO - NumExpr defaulting to 8 threads.
+[2024-04-03T09:49:03.682+0200] {processor.py:841} WARNING - No viable dags retrieved from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T09:49:03.686+0200] {processor.py:179} INFO - Processing /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py took 0.205 seconds
+[2024-04-03T09:49:47.874+0200] {processor.py:157} INFO - Started process (PID=22355) to work on /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T09:49:47.877+0200] {processor.py:829} INFO - Processing file /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py for tasks to queue
+[2024-04-03T09:49:47.878+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:49:47.877+0200] {dagbag.py:536} INFO - Filling up the DagBag from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T09:49:47.961+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:49:47.961+0200] {utils.py:148} INFO - Note: NumExpr detected 12 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-04-03T09:49:47.961+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:49:47.961+0200] {utils.py:160} INFO - NumExpr defaulting to 8 threads.
+[2024-04-03T09:49:48.069+0200] {processor.py:841} WARNING - No viable dags retrieved from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T09:49:48.073+0200] {processor.py:179} INFO - Processing /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py took 0.200 seconds
+[2024-04-03T09:50:31.797+0200] {processor.py:157} INFO - Started process (PID=22564) to work on /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T09:50:31.798+0200] {processor.py:829} INFO - Processing file /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py for tasks to queue
+[2024-04-03T09:50:31.798+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:50:31.798+0200] {dagbag.py:536} INFO - Filling up the DagBag from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T09:50:31.879+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:50:31.879+0200] {utils.py:148} INFO - Note: NumExpr detected 12 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-04-03T09:50:31.879+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:50:31.879+0200] {utils.py:160} INFO - NumExpr defaulting to 8 threads.
+[2024-04-03T09:50:31.974+0200] {processor.py:841} WARNING - No viable dags retrieved from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T09:50:31.979+0200] {processor.py:179} INFO - Processing /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py took 0.184 seconds
+[2024-04-03T09:54:17.606+0200] {processor.py:157} INFO - Started process (PID=23789) to work on /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T09:54:17.608+0200] {processor.py:829} INFO - Processing file /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py for tasks to queue
+[2024-04-03T09:54:17.609+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:54:17.609+0200] {dagbag.py:536} INFO - Filling up the DagBag from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T09:54:17.692+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:54:17.692+0200] {utils.py:148} INFO - Note: NumExpr detected 12 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-04-03T09:54:17.692+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:54:17.692+0200] {utils.py:160} INFO - NumExpr defaulting to 8 threads.
+[2024-04-03T09:54:17.785+0200] {processor.py:841} WARNING - No viable dags retrieved from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T09:54:17.789+0200] {processor.py:179} INFO - Processing /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py took 0.185 seconds
+[2024-04-03T09:55:00.053+0200] {processor.py:157} INFO - Started process (PID=23926) to work on /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T09:55:00.054+0200] {processor.py:829} INFO - Processing file /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py for tasks to queue
+[2024-04-03T09:55:00.055+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:55:00.054+0200] {dagbag.py:536} INFO - Filling up the DagBag from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T09:55:00.142+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:55:00.142+0200] {utils.py:148} INFO - Note: NumExpr detected 12 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-04-03T09:55:00.142+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:55:00.142+0200] {utils.py:160} INFO - NumExpr defaulting to 8 threads.
+[2024-04-03T09:55:00.240+0200] {processor.py:841} WARNING - No viable dags retrieved from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T09:55:00.245+0200] {processor.py:179} INFO - Processing /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py took 0.193 seconds
+[2024-04-03T10:00:01.358+0200] {processor.py:157} INFO - Started process (PID=93028) to work on /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T10:00:01.361+0200] {processor.py:829} INFO - Processing file /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py for tasks to queue
+[2024-04-03T10:00:01.361+0200] {logging_mixin.py:154} INFO - [2024-04-03T10:00:01.361+0200] {dagbag.py:536} INFO - Filling up the DagBag from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T10:00:01.500+0200] {logging_mixin.py:154} INFO - [2024-04-03T10:00:01.500+0200] {utils.py:148} INFO - Note: NumExpr detected 12 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-04-03T10:00:01.500+0200] {logging_mixin.py:154} INFO - [2024-04-03T10:00:01.500+0200] {utils.py:160} INFO - NumExpr defaulting to 8 threads.
+[2024-04-03T10:00:01.591+0200] {processor.py:841} WARNING - No viable dags retrieved from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T10:00:01.594+0200] {processor.py:179} INFO - Processing /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py took 0.239 seconds
+[2024-04-03T10:01:41.927+0200] {processor.py:157} INFO - Started process (PID=93788) to work on /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T10:01:41.930+0200] {processor.py:829} INFO - Processing file /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py for tasks to queue
+[2024-04-03T10:01:41.930+0200] {logging_mixin.py:154} INFO - [2024-04-03T10:01:41.930+0200] {dagbag.py:536} INFO - Filling up the DagBag from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T10:01:42.063+0200] {logging_mixin.py:154} INFO - [2024-04-03T10:01:42.063+0200] {utils.py:148} INFO - Note: NumExpr detected 12 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-04-03T10:01:42.063+0200] {logging_mixin.py:154} INFO - [2024-04-03T10:01:42.063+0200] {utils.py:160} INFO - NumExpr defaulting to 8 threads.
+[2024-04-03T10:01:42.151+0200] {processor.py:841} WARNING - No viable dags retrieved from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T10:01:42.154+0200] {processor.py:179} INFO - Processing /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py took 0.229 seconds
+[2024-04-03T10:02:26.996+0200] {processor.py:157} INFO - Started process (PID=93953) to work on /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T10:02:26.999+0200] {processor.py:829} INFO - Processing file /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py for tasks to queue
+[2024-04-03T10:02:27.000+0200] {logging_mixin.py:154} INFO - [2024-04-03T10:02:26.999+0200] {dagbag.py:536} INFO - Filling up the DagBag from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T10:02:27.151+0200] {logging_mixin.py:154} INFO - [2024-04-03T10:02:27.151+0200] {utils.py:148} INFO - Note: NumExpr detected 12 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-04-03T10:02:27.151+0200] {logging_mixin.py:154} INFO - [2024-04-03T10:02:27.151+0200] {utils.py:160} INFO - NumExpr defaulting to 8 threads.
+[2024-04-03T10:02:27.250+0200] {processor.py:841} WARNING - No viable dags retrieved from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T10:02:27.254+0200] {processor.py:179} INFO - Processing /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py took 0.259 seconds
+[2024-04-03T10:03:15.539+0200] {processor.py:157} INFO - Started process (PID=94236) to work on /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T10:03:15.540+0200] {processor.py:829} INFO - Processing file /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py for tasks to queue
+[2024-04-03T10:03:15.540+0200] {logging_mixin.py:154} INFO - [2024-04-03T10:03:15.540+0200] {dagbag.py:536} INFO - Filling up the DagBag from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T10:03:15.683+0200] {logging_mixin.py:154} INFO - [2024-04-03T10:03:15.683+0200] {utils.py:148} INFO - Note: NumExpr detected 12 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-04-03T10:03:15.683+0200] {logging_mixin.py:154} INFO - [2024-04-03T10:03:15.683+0200] {utils.py:160} INFO - NumExpr defaulting to 8 threads.
+[2024-04-03T10:03:15.774+0200] {processor.py:841} WARNING - No viable dags retrieved from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T10:03:15.778+0200] {processor.py:179} INFO - Processing /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py took 0.240 seconds
+[2024-04-03T10:04:09.902+0200] {processor.py:157} INFO - Started process (PID=94542) to work on /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T10:04:09.905+0200] {processor.py:829} INFO - Processing file /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py for tasks to queue
+[2024-04-03T10:04:09.905+0200] {logging_mixin.py:154} INFO - [2024-04-03T10:04:09.905+0200] {dagbag.py:536} INFO - Filling up the DagBag from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T10:04:09.956+0200] {logging_mixin.py:154} INFO - [2024-04-03T10:04:09.956+0200] {utils.py:148} INFO - Note: NumExpr detected 12 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-04-03T10:04:09.956+0200] {logging_mixin.py:154} INFO - [2024-04-03T10:04:09.956+0200] {utils.py:160} INFO - NumExpr defaulting to 8 threads.
+[2024-04-03T10:04:10.046+0200] {processor.py:841} WARNING - No viable dags retrieved from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T10:04:10.050+0200] {processor.py:179} INFO - Processing /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py took 0.149 seconds
+[2024-04-03T10:04:56.124+0200] {processor.py:157} INFO - Started process (PID=95075) to work on /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T10:04:56.127+0200] {processor.py:829} INFO - Processing file /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py for tasks to queue
+[2024-04-03T10:04:56.127+0200] {logging_mixin.py:154} INFO - [2024-04-03T10:04:56.127+0200] {dagbag.py:536} INFO - Filling up the DagBag from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T10:04:56.179+0200] {logging_mixin.py:154} INFO - [2024-04-03T10:04:56.179+0200] {utils.py:148} INFO - Note: NumExpr detected 12 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-04-03T10:04:56.179+0200] {logging_mixin.py:154} INFO - [2024-04-03T10:04:56.179+0200] {utils.py:160} INFO - NumExpr defaulting to 8 threads.
+[2024-04-03T10:04:56.285+0200] {processor.py:841} WARNING - No viable dags retrieved from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T10:04:56.289+0200] {processor.py:179} INFO - Processing /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py took 0.166 seconds
+[2024-04-03T10:05:43.393+0200] {processor.py:157} INFO - Started process (PID=95516) to work on /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T10:05:43.396+0200] {processor.py:829} INFO - Processing file /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py for tasks to queue
+[2024-04-03T10:05:43.396+0200] {logging_mixin.py:154} INFO - [2024-04-03T10:05:43.396+0200] {dagbag.py:536} INFO - Filling up the DagBag from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T10:05:43.446+0200] {logging_mixin.py:154} INFO - [2024-04-03T10:05:43.446+0200] {utils.py:148} INFO - Note: NumExpr detected 12 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-04-03T10:05:43.447+0200] {logging_mixin.py:154} INFO - [2024-04-03T10:05:43.447+0200] {utils.py:160} INFO - NumExpr defaulting to 8 threads.
+[2024-04-03T10:05:43.535+0200] {processor.py:841} WARNING - No viable dags retrieved from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T10:05:43.539+0200] {processor.py:179} INFO - Processing /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py took 0.147 seconds
+[2024-04-03T10:06:28.334+0200] {processor.py:157} INFO - Started process (PID=96029) to work on /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T10:06:28.335+0200] {processor.py:829} INFO - Processing file /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py for tasks to queue
+[2024-04-03T10:06:28.336+0200] {logging_mixin.py:154} INFO - [2024-04-03T10:06:28.335+0200] {dagbag.py:536} INFO - Filling up the DagBag from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T10:06:28.386+0200] {logging_mixin.py:154} INFO - [2024-04-03T10:06:28.385+0200] {utils.py:148} INFO - Note: NumExpr detected 12 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-04-03T10:06:28.386+0200] {logging_mixin.py:154} INFO - [2024-04-03T10:06:28.386+0200] {utils.py:160} INFO - NumExpr defaulting to 8 threads.
+[2024-04-03T10:06:28.495+0200] {processor.py:841} WARNING - No viable dags retrieved from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T10:06:28.500+0200] {processor.py:179} INFO - Processing /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py took 0.167 seconds
+[2024-04-03T10:07:13.209+0200] {processor.py:157} INFO - Started process (PID=96596) to work on /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T10:07:13.212+0200] {processor.py:829} INFO - Processing file /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py for tasks to queue
+[2024-04-03T10:07:13.212+0200] {logging_mixin.py:154} INFO - [2024-04-03T10:07:13.212+0200] {dagbag.py:536} INFO - Filling up the DagBag from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T10:07:13.352+0200] {logging_mixin.py:154} INFO - [2024-04-03T10:07:13.352+0200] {utils.py:148} INFO - Note: NumExpr detected 12 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-04-03T10:07:13.352+0200] {logging_mixin.py:154} INFO - [2024-04-03T10:07:13.352+0200] {utils.py:160} INFO - NumExpr defaulting to 8 threads.
+[2024-04-03T10:07:13.443+0200] {processor.py:841} WARNING - No viable dags retrieved from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T10:07:13.446+0200] {processor.py:179} INFO - Processing /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py took 0.239 seconds
+[2024-04-03T10:08:33.631+0200] {processor.py:157} INFO - Started process (PID=97411) to work on /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T10:08:33.632+0200] {processor.py:829} INFO - Processing file /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py for tasks to queue
+[2024-04-03T10:08:33.633+0200] {logging_mixin.py:154} INFO - [2024-04-03T10:08:33.633+0200] {dagbag.py:536} INFO - Filling up the DagBag from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T10:08:33.803+0200] {logging_mixin.py:154} INFO - [2024-04-03T10:08:33.803+0200] {utils.py:148} INFO - Note: NumExpr detected 12 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-04-03T10:08:33.803+0200] {logging_mixin.py:154} INFO - [2024-04-03T10:08:33.803+0200] {utils.py:160} INFO - NumExpr defaulting to 8 threads.
+[2024-04-03T10:08:33.930+0200] {processor.py:841} WARNING - No viable dags retrieved from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T10:08:33.944+0200] {processor.py:179} INFO - Processing /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py took 0.315 seconds
+[2024-04-03T10:09:20.416+0200] {processor.py:157} INFO - Started process (PID=97730) to work on /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T10:09:20.419+0200] {processor.py:829} INFO - Processing file /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py for tasks to queue
+[2024-04-03T10:09:20.419+0200] {logging_mixin.py:154} INFO - [2024-04-03T10:09:20.419+0200] {dagbag.py:536} INFO - Filling up the DagBag from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T10:09:20.549+0200] {logging_mixin.py:154} INFO - [2024-04-03T10:09:20.549+0200] {utils.py:148} INFO - Note: NumExpr detected 12 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-04-03T10:09:20.549+0200] {logging_mixin.py:154} INFO - [2024-04-03T10:09:20.549+0200] {utils.py:160} INFO - NumExpr defaulting to 8 threads.
+[2024-04-03T10:09:20.637+0200] {processor.py:841} WARNING - No viable dags retrieved from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T10:09:20.640+0200] {processor.py:179} INFO - Processing /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py took 0.225 seconds
+[2024-04-03T10:10:42.888+0200] {processor.py:157} INFO - Started process (PID=98346) to work on /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T10:10:42.890+0200] {processor.py:829} INFO - Processing file /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py for tasks to queue
+[2024-04-03T10:10:42.891+0200] {logging_mixin.py:154} INFO - [2024-04-03T10:10:42.890+0200] {dagbag.py:536} INFO - Filling up the DagBag from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T10:10:43.022+0200] {logging_mixin.py:154} INFO - [2024-04-03T10:10:43.021+0200] {utils.py:148} INFO - Note: NumExpr detected 12 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-04-03T10:10:43.022+0200] {logging_mixin.py:154} INFO - [2024-04-03T10:10:43.022+0200] {utils.py:160} INFO - NumExpr defaulting to 8 threads.
+[2024-04-03T10:10:43.110+0200] {processor.py:841} WARNING - No viable dags retrieved from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T10:10:43.113+0200] {processor.py:179} INFO - Processing /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py took 0.227 seconds
+[2024-04-03T10:11:29.700+0200] {processor.py:157} INFO - Started process (PID=98533) to work on /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T10:11:29.703+0200] {processor.py:829} INFO - Processing file /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py for tasks to queue
+[2024-04-03T10:11:29.704+0200] {logging_mixin.py:154} INFO - [2024-04-03T10:11:29.703+0200] {dagbag.py:536} INFO - Filling up the DagBag from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T10:11:29.835+0200] {logging_mixin.py:154} INFO - [2024-04-03T10:11:29.835+0200] {utils.py:148} INFO - Note: NumExpr detected 12 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-04-03T10:11:29.836+0200] {logging_mixin.py:154} INFO - [2024-04-03T10:11:29.836+0200] {utils.py:160} INFO - NumExpr defaulting to 8 threads.
+[2024-04-03T10:11:29.926+0200] {processor.py:841} WARNING - No viable dags retrieved from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T10:11:29.929+0200] {processor.py:179} INFO - Processing /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py took 0.230 seconds
+[2024-04-03T10:12:21.205+0200] {processor.py:157} INFO - Started process (PID=98738) to work on /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T10:12:21.208+0200] {processor.py:829} INFO - Processing file /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py for tasks to queue
+[2024-04-03T10:12:21.209+0200] {logging_mixin.py:154} INFO - [2024-04-03T10:12:21.208+0200] {dagbag.py:536} INFO - Filling up the DagBag from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T10:12:21.343+0200] {logging_mixin.py:154} INFO - [2024-04-03T10:12:21.343+0200] {utils.py:148} INFO - Note: NumExpr detected 12 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-04-03T10:12:21.343+0200] {logging_mixin.py:154} INFO - [2024-04-03T10:12:21.343+0200] {utils.py:160} INFO - NumExpr defaulting to 8 threads.
+[2024-04-03T10:12:21.432+0200] {processor.py:841} WARNING - No viable dags retrieved from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T10:12:21.435+0200] {processor.py:179} INFO - Processing /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py took 0.231 seconds
+[2024-04-03T10:13:13.072+0200] {processor.py:157} INFO - Started process (PID=98882) to work on /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T10:13:13.075+0200] {processor.py:829} INFO - Processing file /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py for tasks to queue
+[2024-04-03T10:13:13.075+0200] {logging_mixin.py:154} INFO - [2024-04-03T10:13:13.075+0200] {dagbag.py:536} INFO - Filling up the DagBag from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T10:13:13.127+0200] {logging_mixin.py:154} INFO - [2024-04-03T10:13:13.127+0200] {utils.py:148} INFO - Note: NumExpr detected 12 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-04-03T10:13:13.127+0200] {logging_mixin.py:154} INFO - [2024-04-03T10:13:13.127+0200] {utils.py:160} INFO - NumExpr defaulting to 8 threads.
+[2024-04-03T10:13:13.223+0200] {processor.py:841} WARNING - No viable dags retrieved from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T10:13:13.227+0200] {processor.py:179} INFO - Processing /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py took 0.157 seconds
+[2024-04-03T10:13:59.718+0200] {processor.py:157} INFO - Started process (PID=99055) to work on /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T10:13:59.719+0200] {processor.py:829} INFO - Processing file /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py for tasks to queue
+[2024-04-03T10:13:59.719+0200] {logging_mixin.py:154} INFO - [2024-04-03T10:13:59.719+0200] {dagbag.py:536} INFO - Filling up the DagBag from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T10:13:59.772+0200] {logging_mixin.py:154} INFO - [2024-04-03T10:13:59.772+0200] {utils.py:148} INFO - Note: NumExpr detected 12 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+[2024-04-03T10:13:59.772+0200] {logging_mixin.py:154} INFO - [2024-04-03T10:13:59.772+0200] {utils.py:160} INFO - NumExpr defaulting to 8 threads.
+[2024-04-03T10:13:59.863+0200] {processor.py:841} WARNING - No viable dags retrieved from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2024-04-03T10:13:59.867+0200] {processor.py:179} INFO - Processing /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py took 0.152 seconds
