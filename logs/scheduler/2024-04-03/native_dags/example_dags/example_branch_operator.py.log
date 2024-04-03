@@ -1,0 +1,32 @@
+[2024-04-03T09:14:30.647+0200] {processor.py:157} INFO - Started process (PID=12649) to work on /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/example_branch_operator.py
+[2024-04-03T09:14:30.648+0200] {processor.py:829} INFO - Processing file /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/example_branch_operator.py for tasks to queue
+[2024-04-03T09:14:30.648+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:14:30.648+0200] {dagbag.py:536} INFO - Filling up the DagBag from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/example_branch_operator.py
+[2024-04-03T09:14:30.654+0200] {processor.py:839} INFO - DAG(s) dict_keys(['example_branch_operator']) retrieved from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/example_branch_operator.py
+[2024-04-03T09:14:30.737+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:14:30.737+0200] {manager.py:499} INFO - Created Permission View: %s
+[2024-04-03T09:14:30.748+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:14:30.748+0200] {manager.py:499} INFO - Created Permission View: %s
+[2024-04-03T09:14:30.754+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:14:30.754+0200] {manager.py:499} INFO - Created Permission View: %s
+[2024-04-03T09:14:30.754+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:14:30.754+0200] {dag.py:2941} INFO - Sync 1 DAGs
+[2024-04-03T09:14:30.763+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:14:30.763+0200] {dag.py:2963} INFO - Creating ORM DAG for example_branch_operator
+[2024-04-03T09:14:30.768+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:14:30.768+0200] {dag.py:3722} INFO - Setting next_dagrun for example_branch_operator to 2024-04-02T00:00:00+00:00, run_after=2024-04-03T00:00:00+00:00
+[2024-04-03T09:14:30.783+0200] {processor.py:179} INFO - Processing /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/example_branch_operator.py took 0.138 seconds
+[2024-04-03T09:15:19.317+0200] {processor.py:157} INFO - Started process (PID=12955) to work on /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/example_branch_operator.py
+[2024-04-03T09:15:19.320+0200] {processor.py:829} INFO - Processing file /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/example_branch_operator.py for tasks to queue
+[2024-04-03T09:15:19.320+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:15:19.320+0200] {dagbag.py:536} INFO - Filling up the DagBag from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/example_branch_operator.py
+[2024-04-03T09:15:19.325+0200] {processor.py:839} INFO - DAG(s) dict_keys(['example_branch_operator']) retrieved from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/example_branch_operator.py
+[2024-04-03T09:15:19.337+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:15:19.337+0200] {dag.py:2941} INFO - Sync 1 DAGs
+[2024-04-03T09:15:19.350+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:15:19.349+0200] {dag.py:3722} INFO - Setting next_dagrun for example_branch_operator to 2024-04-02T00:00:00+00:00, run_after=2024-04-03T00:00:00+00:00
+[2024-04-03T09:15:19.365+0200] {processor.py:179} INFO - Processing /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/example_branch_operator.py took 0.049 seconds
+[2024-04-03T09:16:04.226+0200] {processor.py:157} INFO - Started process (PID=13118) to work on /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/example_branch_operator.py
+[2024-04-03T09:16:04.229+0200] {processor.py:829} INFO - Processing file /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/example_branch_operator.py for tasks to queue
+[2024-04-03T09:16:04.229+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:16:04.229+0200] {dagbag.py:536} INFO - Filling up the DagBag from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/example_branch_operator.py
+[2024-04-03T09:16:04.234+0200] {processor.py:839} INFO - DAG(s) dict_keys(['example_branch_operator']) retrieved from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/example_branch_operator.py
+[2024-04-03T09:16:04.243+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:16:04.242+0200] {dag.py:2941} INFO - Sync 1 DAGs
+[2024-04-03T09:16:04.252+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:16:04.252+0200] {dag.py:3722} INFO - Setting next_dagrun for example_branch_operator to 2024-04-02T00:00:00+00:00, run_after=2024-04-03T00:00:00+00:00
+[2024-04-03T09:16:04.265+0200] {processor.py:179} INFO - Processing /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/example_branch_operator.py took 0.040 seconds
+[2024-04-03T09:16:48.656+0200] {processor.py:157} INFO - Started process (PID=13216) to work on /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/example_branch_operator.py
+[2024-04-03T09:16:48.659+0200] {processor.py:829} INFO - Processing file /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/example_branch_operator.py for tasks to queue
+[2024-04-03T09:16:48.659+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:16:48.659+0200] {dagbag.py:536} INFO - Filling up the DagBag from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/example_branch_operator.py
+[2024-04-03T09:16:48.664+0200] {processor.py:839} INFO - DAG(s) dict_keys(['example_branch_operator']) retrieved from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/example_branch_operator.py
+[2024-04-03T09:16:48.672+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:16:48.672+0200] {dag.py:2941} INFO - Sync 1 DAGs
+[2024-04-03T09:16:48.682+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:16:48.682+0200] {dag.py:3722} INFO - Setting next_dagrun for example_branch_operator to 2024-04-02T00:00:00+00:00, run_after=2024-04-03T00:00:00+00:00
+[2024-04-03T09:16:48.695+0200] {processor.py:179} INFO - Processing /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/example_branch_operator.py took 0.040 seconds

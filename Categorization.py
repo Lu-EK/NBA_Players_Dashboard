@@ -6,17 +6,17 @@
 #
 # **Pure Shooter/Stretcher**:
 #
-# - Three-Point Shooting Percentage (3P%): Indicates the player's accuracy from beyond the arc. 
-# - Three-Point Attempt Rate (3PAr): Measures the proportion of field goal attempts taken from three-point range. 
-# - Effective Field Goal Percentage (eFG%): Reflects a player's shooting efficiency, giving extra weight to three-pointers made. 
+# - Three-Point Shooting Percentage (3P%): Indicates the player's accuracy from beyond the arc.
+# - Three-Point Attempt Rate (3PAr): Measures the proportion of field goal attempts taken from three-point range.
+# - Effective Field Goal Percentage (eFG%): Reflects a player's shooting efficiency, giving extra weight to three-pointers made.
 # - Usage Rate (USG%): Provides insight into how involved the player is in the team's offensive possessions.
 #
 # **Slasher**:
 #
-# - Field Goal Percentage (FG%): Measures overall shooting accuracy. 
-# - Percentage of Field Goals Attempted within 0-10 Feet (FGA 0-10 ft): Shows the player's tendency to attack the basket. 
-# - Free Throw Rate (FTR): Indicates how frequently the player gets to the free-throw line relative to their field goal attempts. 
-# - Drives Per Game: Quantifies how often the player attempts to penetrate into the paint off the dribble. 
+# - Field Goal Percentage (FG%): Measures overall shooting accuracy.
+# - Percentage of Field Goals Attempted within 0-10 Feet (FGA 0-10 ft): Shows the player's tendency to attack the basket.
+# - Free Throw Rate (FTR): Indicates how frequently the player gets to the free-throw line relative to their field goal attempts.
+# - Drives Per Game: Quantifies how often the player attempts to penetrate into the paint off the dribble.
 #
 # **Versatile Scorer**:
 #
@@ -26,31 +26,31 @@
 #
 # **Paint Threat**:
 #
-# - Percentage of Field Goals Attempted within 0-3 Feet (FGA 0-3 ft): Indicates proficiency in scoring close to the basket. 
-# - Offensive Rebound Percentage (ORB%): Reflects the player's ability to grab offensive rebounds. 
-# - Effective Field Goal Percentage (eFG%): Reflects a player's shooting efficiency, favorising players with a high 2FG%. 
+# - Percentage of Field Goals Attempted within 0-3 Feet (FGA 0-3 ft): Indicates proficiency in scoring close to the basket.
+# - Offensive Rebound Percentage (ORB%): Reflects the player's ability to grab offensive rebounds.
+# - Effective Field Goal Percentage (eFG%): Reflects a player's shooting efficiency, favorising players with a high 2FG%.
 #
 # **Creator/Facilitator**:
 #
-# - Assist Percentage (AST%): Reflects the percentage of teammate field goals a player assists on while on the court. 
-# - Usage Rate (USG%): Indicates the player's involvement in initiating and orchestrating offensive plays. 
+# - Assist Percentage (AST%): Reflects the percentage of teammate field goals a player assists on while on the court.
+# - Usage Rate (USG%): Indicates the player's involvement in initiating and orchestrating offensive plays.
 # - Assist-to-Turnover Ratio (AST/TO): Highlights the player's ability to facilitate scoring while minimizing turnovers.
 #
 # # Defense:
 #
 # **Paint Protector/Rim Defender**:
 #
-# - Defensive Rebound Percentage (DRB%): Reflects the player's ability to secure defensive rebounds. 
-# - Blocks Percentage (BLK%): Measures the player's shot-blocking prowess. 
-# - Opponent Field Goal Percentage at the Rim: Indicates the effectiveness of the player in deterring shots near the basket. 
-# - Defensive Box Plus/Minus (DBPM): Provides an estimate of the player's defensive contribution per 100 possessions. *maybe WS would be more convenient?* 
+# - Defensive Rebound Percentage (DRB%): Reflects the player's ability to secure defensive rebounds.
+# - Blocks Percentage (BLK%): Measures the player's shot-blocking prowess.
+# - Opponent Field Goal Percentage at the Rim: Indicates the effectiveness of the player in deterring shots near the basket.
+# - Defensive Box Plus/Minus (DBPM): Provides an estimate of the player's defensive contribution per 100 possessions. *maybe WS would be more convenient?*
 #
 # **Perimeter Lockdown Defender**:
 #
-# - Steals percentage (STL%): Quantifies the player's ability to disrupt passing lanes and create turnovers. 
+# - Steals percentage (STL%): Quantifies the player's ability to disrupt passing lanes and create turnovers.
 # - Deflections Per Game: Indicates the player's activity in deflecting passes and disrupting offensive plays.
-# - Defensive Box Plus/Minus (DBPM): Provides an estimate of the player's defensive contribution per 100 possessions. *maybe WS would be more convenient?* 
-# - Opponent Field Goal Percentage: Reflects the shooting efficiency of opponents when guarded by the player. 
+# - Defensive Box Plus/Minus (DBPM): Provides an estimate of the player's defensive contribution per 100 possessions. *maybe WS would be more convenient?*
+# - Opponent Field Goal Percentage: Reflects the shooting efficiency of opponents when guarded by the player.
 #
 # **Switchable Defender**:
 #
@@ -61,15 +61,15 @@
 #
 # **Rebounding Specialist**:
 #
-# - Total Rebound Percentage (TRB%): Reflects the player's ability to secure both offensive and defensive rebounds. 
-# - Offensive Rebound Percentage (DRB%): Indicates the player's effectiveness in grabbing offensive rebounds. 
-# - Box Outs Per Game: Demonstrates the player's effort in boxing out opponents to secure rebounds. 
+# - Total Rebound Percentage (TRB%): Reflects the player's ability to secure both offensive and defensive rebounds.
+# - Offensive Rebound Percentage (DRB%): Indicates the player's effectiveness in grabbing offensive rebounds.
+# - Box Outs Per Game: Demonstrates the player's effort in boxing out opponents to secure rebounds.
 #
 # **Defensive Anchor**:
 #
-# - Defensive Box Plus/Minus (DBPM): Provides an estimate of the player's defensive contribution per 100 possessions. *maybe WS would be more convenient?* 
+# - Defensive Box Plus/Minus (DBPM): Provides an estimate of the player's defensive contribution per 100 possessions. *maybe WS would be more convenient?*
 # - Overall defensive statistics : combine (blocks, steals, deflection, box out)
-# - Opponent Field Goal Percentage Differential: Compares the shooting efficiency of opponents when the player is on and off the court. 
+# - Opponent Field Goal Percentage Differential: Compares the shooting efficiency of opponents when the player is on and off the court.
 
 # In[ ]:
 

@@ -1,15 +1,14 @@
 import datetime as dt
 import os
 import types
+from io import BytesIO
 from typing import List
 from urllib.parse import quote_plus
 
 import altair as alt
 import duckdb
-from ETL import download_from_bucket
 import pandas as pd
 import plotly.express as px
-from io import BytesIO
 import requests
 import streamlit as st
 import streamlit.components.v1 as components
@@ -22,6 +21,8 @@ from pandas import DataFrame
 from streamlit_modal import Modal
 from streamlit_searchbox import st_searchbox
 from streamlit_theme import st_theme
+
+from etl import download_from_bucket
 
 START_YEAR = 2005
 END_YEAR = 2023
@@ -67,14 +68,6 @@ con = duckdb.connect()
 
 # Loop over the range of years
 for year in range(START_YEAR, END_YEAR + 1):
-    # # Load data for the current year
-    # players_stats = pd.read_csv(
-    #     f"datasets/combined/regular_dataset_{year}_{year + 1}.csv"
-    # )
-    # players_stats_ranked = pd.read_csv(
-    #     f"datasets/combined/ranked_dataset_{year}_{year + 1}.csv"
-    # )
-
     players_stats_csv = download_csv_from_bucket(
         "nba_dashboard_files", f"regular{year - 1}_{year}.csv"
     )
@@ -101,9 +94,6 @@ for year in range(START_YEAR, END_YEAR + 1):
     con.register("all_players_" + str(year) + "_" + str(year + 1), all_players_df)
 
 stats_list = players_stats.columns.tolist()
-
-ranking_east_2024 = pd.read_csv("datasets/ranking/ranking_east_2023_2024.csv")
-ranking_west_2024 = pd.read_csv("datasets/ranking/ranking_west_2023_2024.csv")
 
 theme = st_theme()
 

@@ -1,0 +1,32 @@
+[2024-04-03T09:13:59.959+0200] {processor.py:157} INFO - Started process (PID=12321) to work on /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/example_latest_only_with_trigger.py
+[2024-04-03T09:13:59.960+0200] {processor.py:829} INFO - Processing file /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/example_latest_only_with_trigger.py for tasks to queue
+[2024-04-03T09:13:59.960+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:13:59.960+0200] {dagbag.py:536} INFO - Filling up the DagBag from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/example_latest_only_with_trigger.py
+[2024-04-03T09:13:59.965+0200] {processor.py:839} INFO - DAG(s) dict_keys(['latest_only_with_trigger']) retrieved from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/example_latest_only_with_trigger.py
+[2024-04-03T09:14:00.023+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:14:00.023+0200] {manager.py:499} INFO - Created Permission View: %s
+[2024-04-03T09:14:00.030+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:14:00.030+0200] {manager.py:499} INFO - Created Permission View: %s
+[2024-04-03T09:14:00.036+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:14:00.035+0200] {manager.py:499} INFO - Created Permission View: %s
+[2024-04-03T09:14:00.036+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:14:00.036+0200] {dag.py:2941} INFO - Sync 1 DAGs
+[2024-04-03T09:14:00.042+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:14:00.042+0200] {dag.py:2963} INFO - Creating ORM DAG for latest_only_with_trigger
+[2024-04-03T09:14:00.046+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:14:00.046+0200] {dag.py:3722} INFO - Setting next_dagrun for latest_only_with_trigger to 2024-04-03T03:14:00.046530+00:00, run_after=2024-04-03T07:14:00.046530+00:00
+[2024-04-03T09:14:00.059+0200] {processor.py:179} INFO - Processing /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/example_latest_only_with_trigger.py took 0.101 seconds
+[2024-04-03T09:14:48.512+0200] {processor.py:157} INFO - Started process (PID=12807) to work on /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/example_latest_only_with_trigger.py
+[2024-04-03T09:14:48.515+0200] {processor.py:829} INFO - Processing file /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/example_latest_only_with_trigger.py for tasks to queue
+[2024-04-03T09:14:48.516+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:14:48.515+0200] {dagbag.py:536} INFO - Filling up the DagBag from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/example_latest_only_with_trigger.py
+[2024-04-03T09:14:48.519+0200] {processor.py:839} INFO - DAG(s) dict_keys(['latest_only_with_trigger']) retrieved from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/example_latest_only_with_trigger.py
+[2024-04-03T09:14:48.527+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:14:48.527+0200] {dag.py:2941} INFO - Sync 1 DAGs
+[2024-04-03T09:14:48.536+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:14:48.536+0200] {dag.py:3722} INFO - Setting next_dagrun for latest_only_with_trigger to 2024-04-03T03:14:48.536431+00:00, run_after=2024-04-03T07:14:48.536431+00:00
+[2024-04-03T09:14:48.549+0200] {processor.py:179} INFO - Processing /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/example_latest_only_with_trigger.py took 0.038 seconds
+[2024-04-03T09:15:32.542+0200] {processor.py:157} INFO - Started process (PID=12975) to work on /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/example_latest_only_with_trigger.py
+[2024-04-03T09:15:32.545+0200] {processor.py:829} INFO - Processing file /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/example_latest_only_with_trigger.py for tasks to queue
+[2024-04-03T09:15:32.546+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:15:32.545+0200] {dagbag.py:536} INFO - Filling up the DagBag from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/example_latest_only_with_trigger.py
+[2024-04-03T09:15:32.549+0200] {processor.py:839} INFO - DAG(s) dict_keys(['latest_only_with_trigger']) retrieved from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/example_latest_only_with_trigger.py
+[2024-04-03T09:15:32.557+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:15:32.557+0200] {dag.py:2941} INFO - Sync 1 DAGs
+[2024-04-03T09:15:32.566+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:15:32.566+0200] {dag.py:3722} INFO - Setting next_dagrun for latest_only_with_trigger to 2024-04-03T03:15:32.566431+00:00, run_after=2024-04-03T07:15:32.566431+00:00
+[2024-04-03T09:15:32.578+0200] {processor.py:179} INFO - Processing /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/example_latest_only_with_trigger.py took 0.037 seconds
+[2024-04-03T09:16:16.744+0200] {processor.py:157} INFO - Started process (PID=13132) to work on /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/example_latest_only_with_trigger.py
+[2024-04-03T09:16:16.745+0200] {processor.py:829} INFO - Processing file /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/example_latest_only_with_trigger.py for tasks to queue
+[2024-04-03T09:16:16.745+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:16:16.745+0200] {dagbag.py:536} INFO - Filling up the DagBag from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/example_latest_only_with_trigger.py
+[2024-04-03T09:16:16.748+0200] {processor.py:839} INFO - DAG(s) dict_keys(['latest_only_with_trigger']) retrieved from /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/example_latest_only_with_trigger.py
+[2024-04-03T09:16:16.756+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:16:16.756+0200] {dag.py:2941} INFO - Sync 1 DAGs
+[2024-04-03T09:16:16.764+0200] {logging_mixin.py:154} INFO - [2024-04-03T09:16:16.764+0200] {dag.py:3722} INFO - Setting next_dagrun for latest_only_with_trigger to 2024-04-03T03:16:16.764778+00:00, run_after=2024-04-03T07:16:16.764778+00:00
+[2024-04-03T09:16:16.776+0200] {processor.py:179} INFO - Processing /home/lucas/anaconda3/lib/python3.11/site-packages/airflow/example_dags/example_latest_only_with_trigger.py took 0.034 seconds
