@@ -1,6 +1,7 @@
 import datetime as dt
 import os
 import types
+from io import BytesIO
 from typing import List
 from urllib.parse import quote_plus
 
@@ -21,7 +22,9 @@ from streamlit_modal import Modal
 from streamlit_searchbox import st_searchbox
 from streamlit_theme import st_theme
 
-START_YEAR = 2020
+from etl import download_from_bucket
+
+START_YEAR = 2005
 END_YEAR = 2023
 
 st.set_page_config(
@@ -65,15 +68,17 @@ con = duckdb.connect()
 
 # Loop over the range of years
 for year in range(START_YEAR, END_YEAR + 1):
-    # Load data for the current year
-    players_stats = pd.read_csv(
-        f"datasets/combined/regular_dataset_{year}_{year + 1}.csv"
+    players_stats_csv = download_csv_from_bucket(
+        "nba_dashboard_files", f"regular{year - 1}_{year}.csv"
     )
-    players_stats_ranked = pd.read_csv(
-        f"datasets/combined/ranked_dataset_{year}_{year + 1}.csv"
+    players_stats_ranked_csv = download_csv_from_bucket(
+        "nba_dashboard_files", f"ranked{year - 1}_{year}.csv"
     )
 
+    players_stats = pd.read_csv(BytesIO(players_stats_csv))
+    players_stats_ranked = pd.read_csv(BytesIO(players_stats_ranked_csv))
     # Create tables in DuckDB
+
     con.register("players_stats_" + str(year) + "_" + str(year + 1), players_stats)
     con.register(
         "players_stats_ranked_" + str(year) + "_" + str(year + 1), players_stats_ranked
@@ -89,9 +94,6 @@ for year in range(START_YEAR, END_YEAR + 1):
     con.register("all_players_" + str(year) + "_" + str(year + 1), all_players_df)
 
 stats_list = players_stats.columns.tolist()
-
-ranking_east_2024 = pd.read_csv("datasets/ranking/ranking_east_2023_2024.csv")
-ranking_west_2024 = pd.read_csv("datasets/ranking/ranking_west_2023_2024.csv")
 
 theme = st_theme()
 
@@ -304,9 +306,9 @@ with st.sidebar:
 
     google_image_query = f"{selected_player} {year}-{year + 1} NBA"
     num_images = 1
-    image_url = search_images(google_image_query, num_images)
 
     if selected_player:
+        image_url = search_images(google_image_query, num_images)
         if image_url:
             st.image(image_url, width=350, use_column_width=False)
         else:
