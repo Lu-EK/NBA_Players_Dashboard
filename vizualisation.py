@@ -22,7 +22,7 @@ from streamlit_modal import Modal
 from streamlit_searchbox import st_searchbox
 from streamlit_theme import st_theme
 
-from etl import download_from_bucket
+from etl import download_csv_from_bucket
 
 START_YEAR = 2005
 END_YEAR = 2023

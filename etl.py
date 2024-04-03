@@ -273,7 +273,6 @@ def download_csv_from_bucket(bucket_name, source_blob_name):
     blob = bucket.blob(source_blob_name)
     if os.path.exists(destination_file_name):
         os.remove()
-    # Download the file to the local filesystem
     file = blob.download_as_string()
 
     return file
