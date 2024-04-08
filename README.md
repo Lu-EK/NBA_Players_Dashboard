@@ -9,6 +9,16 @@ https://nbaplayersdashboard.streamlit.app/
 # Project
 ![alt text](docs/schema_project.png)
 
+# Stack
+
+## Python :
+## SQL :
+## DuckDB :
+## Jupyter Notebook
+## Streamlit :
+## Airflow :
+## Google API :
+
 # Context
 As a basketball player, NBA fan and aspiring to work in data architecture and analysis, I created this dashboard application to provide detailed statistics on a player and his strengths, as well as the ability to compare players against each other.
 These analyses are based on statistics gathered from the BasketballReference.com website in csv format.

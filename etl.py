@@ -45,7 +45,7 @@ class get_data:
     def dataset_players(self, season, mode):
         url = f"https://www.basketball-reference.com/leagues/NBA_{season}_{mode}.html"
         try:
-            time.sleep(2)
+            time.sleep(5)
             response = urlopen(url)
             table_web = BeautifulSoup(response, "html.parser").findAll("table")
 
@@ -177,9 +177,9 @@ def transform_data(regular_dataset, advanced_dataset, shooting_splits):
     full_dataset.iloc[:, -4:] = full_dataset.iloc[:, -4:].apply(
         lambda x: x.astype(float) * 100
     )
-    full_dataset["%FGA 3P"] = 1 - full_dataset[
-        ["%FGA 0-3", "%FGA 3-10", "%FGA 10-16", "%FGA 16-3P"]
-    ].sum(axis=1)
+    #full_dataset["%FGA 3P"] = 1 - full_dataset[
+    #    ["%FGA 0-3", "%FGA 3-10", "%FGA 10-16", "%FGA 16-3P"]
+    #].sum(axis=1)
 
     # Select only the columns that are numeric for mean calculation
     numeric_columns = full_dataset.iloc[:, :].select_dtypes(include="number")
@@ -194,7 +194,7 @@ def transform_data(regular_dataset, advanced_dataset, shooting_splits):
 
     # Add std_areas_FGA
     fga_area_columns = full_dataset[
-        ["%FGA 0-3", "%FGA 3-10", "%FGA 10-16", "%FGA 16-3P", "%FGA 3P"]
+        ["%FGA 0-3", "%FGA 3-10", "%FGA 10-16", "%FGA 16-3P", "%3PA"]
     ]
 
     full_dataset["std_areas_FGA"] = fga_area_columns.apply(
@@ -271,8 +271,8 @@ def download_csv_from_bucket(bucket_name, source_blob_name):
     storage_client = storage.Client()
     bucket = storage_client.bucket(bucket_name)
     blob = bucket.blob(source_blob_name)
-    if os.path.exists(destination_file_name):
-        os.remove()
+    #if os.path.exists(destination_file_name):
+        #os.remove()
     file = blob.download_as_string()
 
     return file
@@ -288,6 +288,12 @@ def upload_to_bucket(bucket_name, source_file_name, destination_blob_name):
         blob.delete()
     blob.upload_from_filename(source_file_name, content_type="text/csv")
 
+def check_file_exists(bucket_name, source_file_name):
+    """Checks if a file already exists in the bucket"""
+    storage_client = storage.Client()
+    bucket = storage_client.bucket(bucket_name)
+    blob = bucket.blob(source_file_name)
+    return blob.exists()
 
 if __name__ == "__main__":
     # Functions to assign the offensive and defensive roles
