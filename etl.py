@@ -3,6 +3,7 @@
 import os
 import re
 import string
+import tempfile
 import subprocess
 import sys
 import time
@@ -265,6 +266,17 @@ def export_data_to_csv(start_year, full_dataset, full_dataset_ranked):
 #     blob_full_dataset_ranked = bucket.blob(f"ranked_dataset_{start_year}_{start_year + 1}.csv")
 #     blob_full_dataset_ranked.upload_from_string(full_dataset_ranked.to_csv(index=False), content_type='text/csv')
 
+def download_duckdb_database(bucket_name, db_name):
+    storage_client = storage.Client()
+    bucket = storage_client.bucket(bucket_name)
+    blob = bucket.blob(db_name)
+    print(blob)
+    temp_dir = tempfile.TemporaryDirectory()
+    file_path = os.path.join(temp_dir.name, db_name)
+    print('path etl =', file_path)
+    blob.download_to_filename(file_path)
+    
+    return file_path
 
 def download_csv_from_bucket(bucket_name, source_blob_name):
     """Downloads a file from a Google Cloud Storage bucket."""

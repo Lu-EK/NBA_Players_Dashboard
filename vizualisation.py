@@ -4,6 +4,7 @@ import sys
 import subprocess
 import types
 import io
+import tempfile
 import pstats
 from typing import List
 from urllib.parse import quote_plus
@@ -16,6 +17,7 @@ import plotly.express as px
 import requests
 import cProfile
 import streamlit as st
+import time
 import streamlit.components.v1 as components
 from bs4 import BeautifulSoup
 from dateutil import parser
@@ -27,10 +29,13 @@ from streamlit_modal import Modal
 from streamlit_searchbox import st_searchbox
 from streamlit_theme import st_theme
 
-from etl import download_csv_from_bucket, upload_to_bucket, check_file_exists
+from etl import download_duckdb_database, download_csv_from_bucket, upload_to_bucket, check_file_exists
+from init import init_db
 
 START_YEAR = 2005
 END_YEAR = 2023
+DB_NAME = 'stats.duckdb'
+
 
 # subprocess.Popen('source venv/bin/activate', shell=True)
 
@@ -71,52 +76,41 @@ defensive_profiles = {
 gis = GoogleImagesSearch("AIzaSyC9hnhOztmyJ0S3uLueplwCtyBT3q3OQWY", "86df1f2dbf516493a")
 
 
-#conn = duckdb.connect()
-
 
 # Loop over the range of years
 # @st.cache_resource(hash_funcs={types.MethodType: lambda _: None})
 # @st.cache_resource
-def init_db(stats_list):
-    if "db_conn" in globals():
-        return db_conn
 
-    with tempfile.TemporaryDirectory() as temp_dir:
-        temp_db_path = f"{temp_dir}/duckdb.db"
-        
-        # Connect to the DuckDB database in memory
-        conn = duckdb.connect(database=temp_db_path)
+# def init_db(stats_list, conn):
+#         conn = duckdb.connect(database=':memory:', read_only=False)
+#         for year in range(START_YEAR, END_YEAR + 1):
+#             players_stats_csv = download_csv_from_bucket(
+#                 "nba_dashboard_files", f"regular_dataset_{year - 1}_{year}.csv"
+#             )
+#             players_stats_ranked_csv = download_csv_from_bucket(
+#                 "nba_dashboard_files", f"ranked_dataset_{year - 1}_{year}.csv"
+#             )
 
-        for year in range(START_YEAR, END_YEAR + 1):
-            players_stats_csv = download_csv_from_bucket(
-                "nba_dashboard_files", f"regular_dataset_{year - 1}_{year}.csv"
-            )
-            players_stats_ranked_csv = download_csv_from_bucket(
-                "nba_dashboard_files", f"ranked_dataset_{year - 1}_{year}.csv"
-            )
+#             players_stats = pd.read_csv(io.BytesIO(players_stats_csv))
+#             players_stats_ranked = pd.read_csv(io.BytesIO(players_stats_ranked_csv))
+#             # Create tables in DuckDB
+#             # print(players_stats)
+#             conn.register("players_stats_" + str(year) + "_" + str(year + 1), players_stats)
+#             conn.register(
+#                 "players_stats_ranked_" + str(year) + "_" + str(year + 1),
+#                 players_stats_ranked,
+#             )
 
-            players_stats = pd.read_csv(io.BytesIO(players_stats_csv))
-            players_stats_ranked = pd.read_csv(io.BytesIO(players_stats_ranked_csv))
-            # Create tables in DuckDB
-            # print(players_stats)
-            conn.register("players_stats_" + str(year) + "_" + str(year + 1), players_stats)
-            conn.register(
-                "players_stats_ranked_" + str(year) + "_" + str(year + 1),
-                players_stats_ranked,
-            )
+#             # Get the list of all players
+#             all_players_query = conn.execute(
+#                 f"SELECT player FROM players_stats_{year}_{year + 1} ORDER BY player"
+#             ).fetchall()
+#             all_players = [row[0] for row in all_players_query]
 
-            # Get the list of all players
-            all_players_query = conn.execute(
-                f"SELECT player FROM players_stats_{year}_{year + 1} ORDER BY player"
-            ).fetchall()
-            all_players = [row[0] for row in all_players_query]
+#             all_players_df = pd.DataFrame({"player": all_players})
+#             conn.register("all_players_" + str(year) + "_" + str(year + 1), all_players_df)
 
-            all_players_df = pd.DataFrame({"player": all_players})
-            conn.register("all_players_" + str(year) + "_" + str(year + 1), all_players_df)
-
-    globals()["db_conn"] = conn
-
-    return conn
+#         return conn
 
 
 theme = st_theme()
@@ -137,6 +131,9 @@ homepage = f"""
 </div>
 """
 
+@st.cache_resource
+def db_cached():
+    return init_db()
 
 @st.cache_data
 def search_player(player: str) -> List[any]:
@@ -316,21 +313,6 @@ def create_pie(player_name, stat, ranked_stat, year, con):
             unsafe_allow_html=True,
         )
 
-def main():
-    global conn
-    
-    if "conn" not in globals():
-        conn = init_db(stats_list)  # Initialize the database and get the connection object
-    
-    with st.sidebar:
-        st.title("NBA Players Stats Dashboard")
-        year_list = range(START_YEAR, END_YEAR + 1)
-        year = st.selectbox("Select a year", year_list, index=len(year_list) - 1)
-
-    # Pass the existing connection object to the main function
-    if "conn" in globals():
-        main_function(conn)
-
 def main_function(con):
 
     with st.sidebar:
@@ -504,7 +486,7 @@ def main_function(con):
                         if defensive_profile == profile:
                             for stat in stats:
                                 create_pie(
-                                    selected_player, stat, f"{stat} ranked", year
+                                    selected_player, stat, f"{stat} ranked", year, con
                                 )
                 else:
                     st.write("No defensive profile found for the selected player.")
@@ -594,8 +576,7 @@ def main_function(con):
 
     #con.close()
 
+con = db_cached()
 
 if __name__ == "__main__":
-    conn = init_db(stats_list)  # Initialize the database and get the connection object
-    print(id(conn))
-    main()  # Pass the connection object to the main function
+    main_function(con)  # Pass the connection object to the main function
