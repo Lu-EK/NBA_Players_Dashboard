@@ -11,13 +11,13 @@ https://nbaplayersdashboard.streamlit.app/
 
 # Stack
 
-## Python : Data ETL, analysis, and development of the web application on Streamlit.
-## SQL : Managing and querying players databases, organizing and retrieving player statistics efficiently.
-## DuckDB : In-memory analytical database management system, facilitating data manipulation and creation of dataframes.
-## Jupyter Notebook : Interactive computing environment for code execution, visualization, and documentation in a single document.
-## Streamlit : Python library for building interactive web applications for data visualization and analysis.
-## Airflow : Platform for orchestrating workflows and scheduling tasks, useful for automating data collection and processing.
-## Google API : Cloud Storage
+Python : Data ETL, analysis, and development of the web application on Streamlit.
+SQL : Managing and querying players databases, organizing and retrieving player statistics efficiently.
+DuckDB : In-memory analytical database management system, facilitating data manipulation and creation of dataframes.
+Jupyter Notebook : Interactive computing environment for code execution, visualization, and documentation.
+Streamlit : Python library for building interactive web applications for data visualization and analysis.
+Airflow : Platform for orchestrating workflows and scheduling tasks, useful in my case for automating daily data collection.
+Google API : Cloud Storage
 
 # Context
 As a basketball player, NBA fan and aspiring to work in data architecture and analysis, I created this dashboard application to provide detailed statistics on a player and his strengths, as well as the ability to compare players against each other.
