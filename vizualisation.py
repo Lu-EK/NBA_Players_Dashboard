@@ -118,18 +118,14 @@ theme = st_theme()
 with open("docs/homepage.txt", "r") as file:
     homepage_text = file.read()
 
-
-def get_stats_list(players_stats):
-    return players_stats.columns.tolist()
-
-
-stats_list = get_stats_list(pd.DataFrame())
-
 homepage = f"""
 <div style='text-align: justify;'>
 {homepage_text}
 </div>
 """
+
+def get_stats_list(players_stats):
+    return players_stats.columns.tolist()
 
 @st.cache_resource
 def db_cached():
@@ -313,7 +309,19 @@ def create_pie(player_name, stat, ranked_stat, year, con):
             unsafe_allow_html=True,
         )
 
+def get_stats_list(conn, table_name):
+    cursor = conn.cursor()
+    cursor.execute(f"SELECT * FROM {table_name} LIMIT 0")
+    column_info = cursor.description
+    column_names = [col[0] for col in column_info]
+    cursor.close()
+    return column_names
+
 def main_function(con):
+
+    column_names = con.execute(f"SELECT * FROM players_stats_2022_2023 LIMIT 0")
+    stats_names = column_names.description
+    stats_list = [col[0] for col in stats_names]
 
     with st.sidebar:
         st.title("NBA Players Stats Dashboard")
@@ -490,6 +498,7 @@ def main_function(con):
                                 )
                 else:
                     st.write("No defensive profile found for the selected player.")
+
             ## comparison with an other player
             with tab3:
                 all_players_query1 = con.execute(
@@ -508,7 +517,7 @@ def main_function(con):
                     player_exists = con.execute(
                         f"SELECT 1 FROM players_stats_{year}_{year + 1} WHERE player = '{player_compared}'"
                     ).fetchone()
-
+                    st.write()
                     if player_exists:
                         values_player_B = {}
                         for stat in stats_list[2:]:
