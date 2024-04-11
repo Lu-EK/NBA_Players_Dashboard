@@ -9,7 +9,7 @@ google-cloud-storage>=1.42.0
 numpy==1.24.3
 pandas==2.0.3
 plotly==5.9.0
-protobuf==3.12.4
+protobuf==4.25.3
 python_dateutil==2.8.2
 Requests==2.31.0
 st_theme==1.2.2
