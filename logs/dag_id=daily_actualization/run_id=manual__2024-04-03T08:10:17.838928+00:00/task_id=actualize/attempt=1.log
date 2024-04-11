@@ -1,0 +1,26 @@
+[2024-04-03T10:10:20.317+0200] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: daily_actualization.actualize manual__2024-04-03T08:10:17.838928+00:00 [queued]>
+[2024-04-03T10:10:20.321+0200] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: daily_actualization.actualize manual__2024-04-03T08:10:17.838928+00:00 [queued]>
+[2024-04-03T10:10:20.321+0200] {taskinstance.py:1361} INFO - Starting attempt 1 of 1
+[2024-04-03T10:10:20.329+0200] {taskinstance.py:1382} INFO - Executing <Task(BashOperator): actualize> on 2024-04-03 08:10:17.838928+00:00
+[2024-04-03T10:10:20.333+0200] {standard_task_runner.py:57} INFO - Started process 98138 to run task
+[2024-04-03T10:10:20.335+0200] {standard_task_runner.py:84} INFO - Running: ['airflow', 'tasks', 'run', 'daily_actualization', 'actualize', 'manual__2024-04-03T08:10:17.838928+00:00', '--job-id', '26', '--raw', '--subdir', '/home/lucas/Data Science/Project NBA/dags/dag_airflow.py', '--cfg-path', '/tmp/tmpl7zsaxfm']
+[2024-04-03T10:10:20.335+0200] {standard_task_runner.py:85} INFO - Job 26: Subtask actualize
+[2024-04-03T10:10:20.354+0200] {task_command.py:416} INFO - Running <TaskInstance: daily_actualization.actualize manual__2024-04-03T08:10:17.838928+00:00 [running]> on host ASUS-LEK
+[2024-04-03T10:10:20.380+0200] {taskinstance.py:1662} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='daily_actualization' AIRFLOW_CTX_TASK_ID='actualize' AIRFLOW_CTX_EXECUTION_DATE='2024-04-03T08:10:17.838928+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-04-03T08:10:17.838928+00:00'
+[2024-04-03T10:10:20.381+0200] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2024-04-03T10:10:20.382+0200] {subprocess.py:75} INFO - Running command: ['/usr/bin/bash', '-c', "python3 '/home/lucas/Data Science/Project NBA/actualize.py'"]
+[2024-04-03T10:10:20.389+0200] {subprocess.py:86} INFO - Output:
+[2024-04-03T10:10:20.401+0200] {subprocess.py:93} INFO - Traceback (most recent call last):
+[2024-04-03T10:10:20.401+0200] {subprocess.py:93} INFO -   File "/home/lucas/Data Science/Project NBA/actualize.py", line 5, in <module>
+[2024-04-03T10:10:20.401+0200] {subprocess.py:93} INFO -     import etl
+[2024-04-03T10:10:20.401+0200] {subprocess.py:93} INFO - ModuleNotFoundError: No module named 'etl'
+[2024-04-03T10:10:20.403+0200] {subprocess.py:97} INFO - Command exited with return code 1
+[2024-04-03T10:10:20.406+0200] {taskinstance.py:1937} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/lucas/anaconda3/lib/python3.11/site-packages/airflow/operators/bash.py", line 210, in execute
+    raise AirflowException(
+airflow.exceptions.AirflowException: Bash command failed. The command returned a non-zero exit code 1.
+[2024-04-03T10:10:20.407+0200] {taskinstance.py:1400} INFO - Marking task as FAILED. dag_id=daily_actualization, task_id=actualize, execution_date=20240403T081017, start_date=20240403T081020, end_date=20240403T081020
+[2024-04-03T10:10:20.415+0200] {standard_task_runner.py:104} ERROR - Failed to execute job 26 for task actualize (Bash command failed. The command returned a non-zero exit code 1.; 98138)
+[2024-04-03T10:10:20.426+0200] {local_task_job_runner.py:228} INFO - Task exited with return code 1
+[2024-04-03T10:10:20.432+0200] {taskinstance.py:2778} INFO - 0 downstream tasks scheduled from follow-on schedule check

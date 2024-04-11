@@ -1,15 +1,23 @@
 import datetime as dt
 import os
+import sys
+import subprocess
 import types
+import io
+import tempfile
+import pstats
 from typing import List
 from urllib.parse import quote_plus
 
 import altair as alt
 import duckdb
 import pandas as pd
+import tempfile
 import plotly.express as px
 import requests
+import cProfile
 import streamlit as st
+import time
 import streamlit.components.v1 as components
 from bs4 import BeautifulSoup
 from dateutil import parser
@@ -21,8 +29,15 @@ from streamlit_modal import Modal
 from streamlit_searchbox import st_searchbox
 from streamlit_theme import st_theme
 
-START_YEAR = 2020
+from etl import download_duckdb_database, download_csv_from_bucket, upload_to_bucket, check_file_exists
+from init import init_db
+
+START_YEAR = 2005
 END_YEAR = 2023
+DB_NAME = 'stats.duckdb'
+
+
+# subprocess.Popen('source venv/bin/activate', shell=True)
 
 st.set_page_config(
     page_title="NBA Players Stats Dashboard",
@@ -61,37 +76,42 @@ defensive_profiles = {
 gis = GoogleImagesSearch("AIzaSyC9hnhOztmyJ0S3uLueplwCtyBT3q3OQWY", "86df1f2dbf516493a")
 
 
-con = duckdb.connect()
 
 # Loop over the range of years
-for year in range(START_YEAR, END_YEAR + 1):
-    # Load data for the current year
-    players_stats = pd.read_csv(
-        f"datasets/combined/regular_dataset_{year}_{year + 1}.csv"
-    )
-    players_stats_ranked = pd.read_csv(
-        f"datasets/combined/ranked_dataset_{year}_{year + 1}.csv"
-    )
+# @st.cache_resource(hash_funcs={types.MethodType: lambda _: None})
+# @st.cache_resource
 
-    # Create tables in DuckDB
-    con.register("players_stats_" + str(year) + "_" + str(year + 1), players_stats)
-    con.register(
-        "players_stats_ranked_" + str(year) + "_" + str(year + 1), players_stats_ranked
-    )
+# def init_db(stats_list, conn):
+#         conn = duckdb.connect(database=':memory:', read_only=False)
+#         for year in range(START_YEAR, END_YEAR + 1):
+#             players_stats_csv = download_csv_from_bucket(
+#                 "nba_dashboard_files", f"regular_dataset_{year - 1}_{year}.csv"
+#             )
+#             players_stats_ranked_csv = download_csv_from_bucket(
+#                 "nba_dashboard_files", f"ranked_dataset_{year - 1}_{year}.csv"
+#             )
 
-    # Get the list of all players
-    all_players_query = con.execute(
-        f"SELECT player FROM players_stats_{year}_{year + 1} ORDER BY player"
-    ).fetchall()
-    all_players = [row[0] for row in all_players_query]
+#             players_stats = pd.read_csv(io.BytesIO(players_stats_csv))
+#             players_stats_ranked = pd.read_csv(io.BytesIO(players_stats_ranked_csv))
+#             # Create tables in DuckDB
+#             # print(players_stats)
+#             conn.register("players_stats_" + str(year) + "_" + str(year + 1), players_stats)
+#             conn.register(
+#                 "players_stats_ranked_" + str(year) + "_" + str(year + 1),
+#                 players_stats_ranked,
+#             )
 
-    all_players_df = pd.DataFrame({"player": all_players})
-    con.register("all_players_" + str(year) + "_" + str(year + 1), all_players_df)
+#             # Get the list of all players
+#             all_players_query = conn.execute(
+#                 f"SELECT player FROM players_stats_{year}_{year + 1} ORDER BY player"
+#             ).fetchall()
+#             all_players = [row[0] for row in all_players_query]
 
-stats_list = players_stats.columns.tolist()
+#             all_players_df = pd.DataFrame({"player": all_players})
+#             conn.register("all_players_" + str(year) + "_" + str(year + 1), all_players_df)
 
-ranking_east_2024 = pd.read_csv("datasets/ranking/ranking_east_2023_2024.csv")
-ranking_west_2024 = pd.read_csv("datasets/ranking/ranking_west_2023_2024.csv")
+#         return conn
+
 
 theme = st_theme()
 
@@ -104,6 +124,12 @@ homepage = f"""
 </div>
 """
 
+def get_stats_list(players_stats):
+    return players_stats.columns.tolist()
+
+@st.cache_resource
+def db_cached():
+    return init_db()
 
 @st.cache_data
 def search_player(player: str) -> List[any]:
@@ -228,7 +254,7 @@ def get_todays_games():
                 st.write("</b>", unsafe_allow_html=True)
 
 
-def create_pie(player_name, stat, ranked_stat, year):
+def create_pie(player_name, stat, ranked_stat, year, con):
     player = player_name.replace("'", "''")
     percentile_query = con.execute(
         f"SELECT \"{ranked_stat}\" FROM players_stats_ranked_{year}_{year + 1} WHERE player = '{player}'"
@@ -283,258 +309,283 @@ def create_pie(player_name, stat, ranked_stat, year):
             unsafe_allow_html=True,
         )
 
+def get_stats_list(conn, table_name):
+    cursor = conn.cursor()
+    cursor.execute(f"SELECT * FROM {table_name} LIMIT 0")
+    column_info = cursor.description
+    column_names = [col[0] for col in column_info]
+    cursor.close()
+    return column_names
 
-with st.sidebar:
-    st.title("NBA Players Stats Dashboard")
+def main_function(con):
 
-    year_list = range(START_YEAR, END_YEAR + 1)
-    year = st.selectbox("Select a year", year_list, index=len(year_list) - 1)
+    column_names = con.execute(f"SELECT * FROM players_stats_2022_2023 LIMIT 0")
+    stats_names = column_names.description
+    stats_list = [col[0] for col in stats_names]
 
-    all_players_query = con.execute(
-        f"SELECT player FROM all_players_{year}_{year + 1}"
-    ).fetchall()
-    all_players = [row[0] for row in all_players_query]
+    with st.sidebar:
+        st.title("NBA Players Stats Dashboard")
 
-    selected_player = st_searchbox(
-        search_player,
-        key="player_searchbox",
-        label="Select a player",
-        default_options=all_players,
-    )
+        year_list = range(START_YEAR, END_YEAR + 1)
+        year = st.selectbox("Select a year", year_list, index=len(year_list) - 1)
 
-    google_image_query = f"{selected_player} {year}-{year + 1} NBA"
-    num_images = 1
-    image_url = search_images(google_image_query, num_images)
+        all_players_query = con.execute(
+            f"SELECT player FROM all_players_{year}_{year + 1}"
+        ).fetchall()
+        all_players = [row[0] for row in all_players_query]
+
+        selected_player = st_searchbox(
+            search_player,
+            key="player_searchbox",
+            label="Select a player",
+            default_options=all_players,
+        )
+
+        google_image_query = f"{selected_player} {year}-{year + 1} NBA"
+        num_images = 1
+
+        if selected_player:
+            image_url = search_images(google_image_query, num_images)
+            if image_url:
+                st.image(image_url, width=350, use_column_width=False)
+            else:
+                st.write(f"No image found for {selected_player}")
+        else:
+            st.write("Select a player")
+
+        show_glossary("docs/filtered_glossary.txt")
 
     if selected_player:
-        if image_url:
-            st.image(image_url, width=350, use_column_width=False)
+        st.header(f"{selected_player} statistics in {year}-{year + 1} ")
+
+        # Replace single quotes with two single quotes in the player name
+        escaped_player_name = selected_player.replace("'", "''")
+
+        recap_stats = con.execute(
+            f"SELECT * from players_stats_{year}_{year + 1} WHERE player = '{escaped_player_name}'"
+        ).df()
+        recap_stats.drop(["Unnamed: 0", "index", "level_0"], axis=1, inplace=True)
+        if not recap_stats.empty:
+            st.write(recap_stats)
         else:
-            st.write(f"No image found for {selected_player}")
+            st.write(f"Player was inactive in {year}-{year + 1}")
     else:
-        st.write("Select a player")
-
-    show_glossary("docs/filtered_glossary.txt")
-
-
-if selected_player:
-    st.header(f"{selected_player} statistics in {year}-{year + 1} ")
-
-    # Replace single quotes with two single quotes in the player name
-    escaped_player_name = selected_player.replace("'", "''")
-
-    recap_stats = con.execute(
-        f"SELECT * from players_stats_{year}_{year + 1} WHERE player = '{escaped_player_name}'"
-    ).df()
-    recap_stats.drop(["Unnamed: 0", "index", "level_0"], axis=1, inplace=True)
-    if not recap_stats.empty:
-        st.write(recap_stats)
-    else:
-        st.write(f"Player was inactive in {year}-{year + 1}")
-else:
-    st.markdown(
-        "<h1 style='text-align: center;'>NBA Analysis Dashboard</h1>",
-        unsafe_allow_html=True,
-    )
-    col1, col2, col3 = st.columns([4, 9.5, 4])
-    with col2:
-        if theme.get("base") == "light":
-            st.image("docs/logo_dashboard_light.png", width=800)
+        st.markdown(
+            "<h1 style='text-align: center;'>NBA Analysis Dashboard</h1>",
+            unsafe_allow_html=True,
+        )
+        col1, col2, col3 = st.columns([4, 9.5, 4])
+        with col2:
+            if theme.get("base") == "light":
+                st.image("docs/logo_dashboard_light.png", width=800)
+            else:
+                st.image("docs/logo_dashboard_dark.png", width=800)
+        st.write("<br/>", unsafe_allow_html=True)
+        today = dt.date.today()
+        st.write(
+            f"<div style='text-align: center;'><h2>Games of the day: {today}</h2></div>",
+            unsafe_allow_html=True,
+        )
+        st.write("<br><br>", unsafe_allow_html=True)
+        get_todays_games()
+        st.write("<br><br>", unsafe_allow_html=True)
+        if year:
+            st.write(f"Rankings in {year}-{year + 1}")
         else:
-            st.image("docs/logo_dashboard_dark.png", width=800)
-    st.write("<br/>", unsafe_allow_html=True)
-    today = dt.date.today()
-    st.write(
-        f"<div style='text-align: center;'><h2>Games of the day: {today}</h2></div>",
-        unsafe_allow_html=True,
-    )
-    st.write("<br><br>", unsafe_allow_html=True)
-    get_todays_games()
-    st.write("<br><br>", unsafe_allow_html=True)
-    if year:
-        st.write(f"Rankings in {year}-{year + 1}")
-    else:
-        st.write("Rankings for the current year")
-    col1, col2 = st.columns(2)
-    if os.path.exists(f"datasets/ranking/ranking_west_{year}_{year + 1}.csv"):
-        with col1:
-            ranking_west_df = pd.read_csv(
-                f"datasets/ranking/ranking_west_{year}_{year + 1}.csv"
-            )
-            st.dataframe(ranking_west_df)
-    else:
-        with col1:
-            st.write("Ranking not available yet")
-
-    if os.path.exists(f"datasets/ranking/ranking_east_{year}_{year + 1}.csv"):
-        with col2:
-            ranking_east_df = pd.read_csv(
-                f"datasets/ranking/ranking_east_{year}_{year + 1}.csv"
-            )
-            st.dataframe(ranking_east_df)
-    else:
-        with col2:
-            st.write("Ranking not available yet")
-
-
-if selected_player and not recap_stats.empty:
-    tab2, tab3 = st.tabs(
-        [f"{selected_player} dashboard", "Compare with an other player"]
-    )
-
-if selected_player and not recap_stats.empty:
-    with tab2:
+            st.write("Rankings for the current year")
         col1, col2 = st.columns(2)
-        if selected_player:
+        if os.path.exists(f"datasets/ranking/ranking_west_{year}_{year + 1}.csv"):
             with col1:
+                ranking_west_df = pd.read_csv(
+                    f"datasets/ranking/ranking_west_{year}_{year + 1}.csv"
+                )
+                st.dataframe(ranking_west_df)
+        else:
+            with col1:
+                st.write("Ranking not available yet")
+
+        if os.path.exists(f"datasets/ranking/ranking_east_{year}_{year + 1}.csv"):
+            with col2:
+                ranking_east_df = pd.read_csv(
+                    f"datasets/ranking/ranking_east_{year}_{year + 1}.csv"
+                )
+                st.dataframe(ranking_east_df)
+        else:
+            with col2:
+                st.write("Ranking not available yet")
+
+    if selected_player and not recap_stats.empty:
+        tab2, tab3 = st.tabs(
+            [f"{selected_player} dashboard", "Compare with an other player"]
+        )
+
+    if selected_player and not recap_stats.empty:
+        with tab2:
+            col1, col2 = st.columns(2)
+            if selected_player:
+                with col1:
+                    st.markdown(
+                        "<p style='text-align:center; font-size: 2em;'>Offensive Profile 🔫</p>",
+                        unsafe_allow_html=True,
+                    )
+                    escaped_player_name = selected_player.replace("'", "''")
+                    offensive_profile_cursor = con.execute(
+                        f"SELECT \"Offensive Profile\" FROM players_stats_{year}_{year + 1} WHERE player = '{escaped_player_name}'"
+                    )
+                    offensive_profile_result = offensive_profile_cursor.fetchone()
+                    if offensive_profile_result:
+                        offensive_profile = offensive_profile_result[0]
+                        if theme.get("base") == "light":
+                            st.markdown(
+                                f"""
+                                <div style="display: flex; justify-content: center; align-items: center; height: 100%; border: 5px solid orange; padding: 10px; border-radius: 5px; background-color: #f9f9f9; text-align: center;">
+                                    <p style='font-size: 1.5em;'>{offensive_profile}</p>
+                                </div>""",
+                                unsafe_allow_html=True,
+                            )
+                        else:
+                            st.markdown(
+                                f"""
+                                <div style="display: flex; justify-content: center; align-items: center; height: 100%; border: 5px solid orange; padding: 10px; border-radius: 5px; background-color: #1c1c1c; text-align: center;">
+                                    <p style='font-size: 1.5em; padding-top: 5px;'>{offensive_profile}</p>
+                                </div>""",
+                                unsafe_allow_html=True,
+                            )
+                        for profile, stats in offensive_profiles.items():
+                            if offensive_profile == profile:
+                                for stat in stats:
+                                    create_pie(
+                                        selected_player,
+                                        stat,
+                                        f"{stat} ranked",
+                                        year,
+                                        con,
+                                    )
+            else:
+                st.write("No offensive profile found for the selected player.")
+            with col2:
                 st.markdown(
-                    "<p style='text-align:center; font-size: 2em;'>Offensive Profile 🔫</p>",
+                    "<p style='text-align:center; font-size: 2em;'>Defensive Profile 🛡️</p>",
                     unsafe_allow_html=True,
                 )
-                escaped_player_name = selected_player.replace("'", "''")
-                offensive_profile_cursor = con.execute(
-                    f"SELECT \"Offensive Profile\" FROM players_stats_{year}_{year + 1} WHERE player = '{escaped_player_name}'"
+                defensive_profile_cursor = con.execute(
+                    f"SELECT \"Defensive Profile\" FROM players_stats_{year}_{year + 1} WHERE player = '{escaped_player_name}'"
                 )
-                offensive_profile_result = offensive_profile_cursor.fetchone()
-                if offensive_profile_result:
-                    offensive_profile = offensive_profile_result[0]
+                defensive_profile_result = defensive_profile_cursor.fetchone()
+                if defensive_profile_result:
+                    defensive_profile = defensive_profile_result[0]
                     if theme.get("base") == "light":
                         st.markdown(
                             f"""
-                            <div style="display: flex; justify-content: center; align-items: center; height: 100%; border: 5px solid orange; padding: 10px; border-radius: 5px; background-color: #f9f9f9; text-align: center;">
-                                <p style='font-size: 1.5em;'>{offensive_profile}</p>
-                            </div>""",
+                                <div style="display: flex; justify-content: center; align-items: center; height: 100%; border: 5px solid orange; padding: 10px; border-radius: 5px; background-color: #f9f9f9; text-align: center;">
+                                    <p style='font-size: 1.5em;'>{defensive_profile}</p>
+                                </div>""",
                             unsafe_allow_html=True,
                         )
                     else:
                         st.markdown(
                             f"""
-                            <div style="display: flex; justify-content: center; align-items: center; height: 100%; border: 5px solid orange; padding: 10px; border-radius: 5px; background-color: #1c1c1c; text-align: center;">
-                                <p style='font-size: 1.5em; padding-top: 5px;'>{offensive_profile}</p>
-                            </div>""",
+                                <div style="display: flex; justify-content: center; align-items: center; height: 100%; border: 5px solid orange; padding: 10px; border-radius: 5px; background-color: #1c1c1c; text-align: center;">
+                                    <p style='font-size: 1.5em;'>{defensive_profile}</p>
+                                </div>""",
                             unsafe_allow_html=True,
                         )
-                    for profile, stats in offensive_profiles.items():
-                        if offensive_profile == profile:
+                    for profile, stats in defensive_profiles.items():
+                        if defensive_profile == profile:
                             for stat in stats:
                                 create_pie(
-                                    selected_player, stat, f"{stat} ranked", year
+                                    selected_player, stat, f"{stat} ranked", year, con
                                 )
-        else:
-            st.write("No offensive profile found for the selected player.")
-        with col2:
-            st.markdown(
-                "<p style='text-align:center; font-size: 2em;'>Defensive Profile 🛡️</p>",
-                unsafe_allow_html=True,
-            )
-            defensive_profile_cursor = con.execute(
-                f"SELECT \"Defensive Profile\" FROM players_stats_{year}_{year + 1} WHERE player = '{escaped_player_name}'"
-            )
-            defensive_profile_result = defensive_profile_cursor.fetchone()
-            if defensive_profile_result:
-                defensive_profile = defensive_profile_result[0]
-                if theme.get("base") == "light":
-                    st.markdown(
-                        f"""
-                            <div style="display: flex; justify-content: center; align-items: center; height: 100%; border: 5px solid orange; padding: 10px; border-radius: 5px; background-color: #f9f9f9; text-align: center;">
-                                <p style='font-size: 1.5em;'>{defensive_profile}</p>
-                            </div>""",
-                        unsafe_allow_html=True,
-                    )
                 else:
-                    st.markdown(
-                        f"""
-                            <div style="display: flex; justify-content: center; align-items: center; height: 100%; border: 5px solid orange; padding: 10px; border-radius: 5px; background-color: #1c1c1c; text-align: center;">
-                                <p style='font-size: 1.5em;'>{defensive_profile}</p>
-                            </div>""",
-                        unsafe_allow_html=True,
-                    )
-                for profile, stats in defensive_profiles.items():
-                    if defensive_profile == profile:
-                        for stat in stats:
-                            create_pie(selected_player, stat, f"{stat} ranked", year)
-            else:
-                st.write("No defensive profile found for the selected player.")
-        ## comparison with an other player
-        with tab3:
-            all_players_query1 = con.execute(
-                f"SELECT player FROM all_players_{year}_{year + 1}"
-            ).fetchall()
-            all_players1 = [row[0] for row in all_players_query1]
-            selected_player_comparison = st_searchbox(
-                search_player,
-                key="player_comparison_searchbox",
-                label="Select a player",
-                default_options=all_players1,
-            )
-            col1, col2, col3 = st.columns([1, 2, 2])
-            if selected_player_comparison:
-                player_compared = selected_player_comparison.replace("'", "''")
-                player_exists = con.execute(
-                    f"SELECT 1 FROM players_stats_{year}_{year + 1} WHERE player = '{player_compared}'"
-                ).fetchone()
+                    st.write("No defensive profile found for the selected player.")
 
-                if player_exists:
-                    values_player_B = {}
-                    for stat in stats_list[2:]:
-                        value_stat_player_B = con.execute(
-                            f"SELECT \"{stat}\" FROM players_stats_{year}_{year + 1} WHERE player = '{player_compared}'"
-                        ).fetchone()
-                        values_player_B[stat] = (
-                            value_stat_player_B[0] if value_stat_player_B else None
-                        )
-
-                    # Iterate over player stats and display them in the columns
-                    for index in range(len(stats_list[3:])):
-                        stat = stats_list[3:][index]
-                        with col1:
-                            st.write("")
-                            st.write(
-                                f"<h5 style='text-align:center;'>{stat}</h5>",
-                                unsafe_allow_html=True,
-                            )
-                            st.write("<hr>", unsafe_allow_html=True)
-
-                        with col2:
-                            value_stat_player_A = con.execute(
-                                f"SELECT \"{stat}\" FROM players_stats_{year}_{year + 1} WHERE player = '{selected_player}'"
+            ## comparison with an other player
+            with tab3:
+                all_players_query1 = con.execute(
+                    f"SELECT player FROM all_players_{year}_{year + 1}"
+                ).fetchall()
+                all_players1 = [row[0] for row in all_players_query1]
+                selected_player_comparison = st_searchbox(
+                    search_player,
+                    key="player_comparison_searchbox",
+                    label="Select a player",
+                    default_options=all_players1,
+                )
+                col1, col2, col3 = st.columns([1, 2, 2])
+                if selected_player_comparison:
+                    player_compared = selected_player_comparison.replace("'", "''")
+                    player_exists = con.execute(
+                        f"SELECT 1 FROM players_stats_{year}_{year + 1} WHERE player = '{player_compared}'"
+                    ).fetchone()
+                    st.write()
+                    if player_exists:
+                        values_player_B = {}
+                        for stat in stats_list[2:]:
+                            value_stat_player_B = con.execute(
+                                f"SELECT \"{stat}\" FROM players_stats_{year}_{year + 1} WHERE player = '{player_compared}'"
                             ).fetchone()
-                            value_stat_player_A = (
-                                value_stat_player_A[0] if value_stat_player_A else None
+                            values_player_B[stat] = (
+                                value_stat_player_B[0] if value_stat_player_B else None
                             )
-                            if index < 5:
-                                if theme.get("base") == "light":
-                                    COLOR_A = COLOR_B = "black"
-                                else:
-                                    COLOR_A = COLOR_B = "white"
-                            elif value_stat_player_A > values_player_B[stat]:
-                                COLOR_A = "green"
-                                COLOR_B = "red"
-                            elif value_stat_player_A < values_player_B[stat]:
-                                COLOR_A = "red"
-                                COLOR_B = "green"
-                            else:
-                                if theme.get("base") == "light":
-                                    COLOR_A = COLOR_B = "black"
-                                else:
-                                    COLOR_A = COLOR_B = "white"
-                            st.write("")
-                            st.write(
-                                f"<h5 style='text-align:center; color:{COLOR_A};'>{value_stat_player_A}</h5>",
-                                unsafe_allow_html=True,
-                            )
-                            st.write("<hr>", unsafe_allow_html=True)
 
-                        with col3:
-                            st.write("")
-                            st.write(
-                                f"<h5 style='text-align:center; color:{COLOR_B};'>{values_player_B[stat]}</h5>",
-                                unsafe_allow_html=True,
-                            )
-                            st.write("<hr>", unsafe_allow_html=True)
-            else:
-                st.write(f"Please select a player to compare to {selected_player}")
-else:
-    st.write("<br>", unsafe_allow_html=True)
+                        # Iterate over player stats and display them in the columns
+                        for index in range(len(stats_list[3:])):
+                            stat = stats_list[3:][index]
+                            with col1:
+                                st.write("")
+                                st.write(
+                                    f"<h5 style='text-align:center;'>{stat}</h5>",
+                                    unsafe_allow_html=True,
+                                )
+                                st.write("<hr>", unsafe_allow_html=True)
 
-con.close()
+                            with col2:
+                                value_stat_player_A = con.execute(
+                                    f"SELECT \"{stat}\" FROM players_stats_{year}_{year + 1} WHERE player = '{selected_player}'"
+                                ).fetchone()
+                                value_stat_player_A = (
+                                    value_stat_player_A[0]
+                                    if value_stat_player_A
+                                    else None
+                                )
+                                if index < 5:
+                                    if theme.get("base") == "light":
+                                        COLOR_A = COLOR_B = "black"
+                                    else:
+                                        COLOR_A = COLOR_B = "white"
+                                elif value_stat_player_A > values_player_B[stat]:
+                                    COLOR_A = "green"
+                                    COLOR_B = "red"
+                                elif value_stat_player_A < values_player_B[stat]:
+                                    COLOR_A = "red"
+                                    COLOR_B = "green"
+                                else:
+                                    if theme.get("base") == "light":
+                                        COLOR_A = COLOR_B = "black"
+                                    else:
+                                        COLOR_A = COLOR_B = "white"
+                                st.write("")
+                                st.write(
+                                    f"<h5 style='text-align:center; color:{COLOR_A};'>{value_stat_player_A}</h5>",
+                                    unsafe_allow_html=True,
+                                )
+                                st.write("<hr>", unsafe_allow_html=True)
+
+                            with col3:
+                                st.write("")
+                                st.write(
+                                    f"<h5 style='text-align:center; color:{COLOR_B};'>{values_player_B[stat]}</h5>",
+                                    unsafe_allow_html=True,
+                                )
+                                st.write("<hr>", unsafe_allow_html=True)
+                else:
+                    st.write(f"Please select a player to compare to {selected_player}")
+    else:
+        st.write("<br>", unsafe_allow_html=True)
+
+    #con.close()
+
+con = db_cached()
+
+if __name__ == "__main__":
+    main_function(con)  # Pass the connection object to the main function

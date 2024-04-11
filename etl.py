@@ -1,24 +1,29 @@
 ## Libraraies and modules
 
 import os
+import re
+import string
+import tempfile
 import subprocess
+import sys
+import time
+import traceback
+import urllib.error
+import urllib.parse
+import urllib.request
+from io import StringIO
+from urllib.request import urlopen
 
 import duckdb
 import numpy as np
 import pandas as pd
+from bs4 import BeautifulSoup
+from google.cloud import storage
 
 from Categorization import defensive_profile, offensive_profile
 
-START_YEAR = 2020
-END_YEAR = 2024
-
-# Functions to assign the offensive and defensive roles
-subprocess.run(["python3", "Categorization.py"])
-
-# Create directory if it doesn't exist
-directory = "/home/lucas/Data Science/Project NBA/datasets/combined"
-if not os.path.exists(directory):
-    os.makedirs(directory)
+START_YEAR = 2005
+END_YEAR = 2025
 
 
 # def create_yearly_dataframes(year):
@@ -36,34 +41,40 @@ if not os.path.exists(directory):
 
 ## Functions
 
+
 class get_data:
-
     def dataset_players(self, season, mode):
-        url = f'https://www.basketball-reference.com/leagues/NBA_{season}_{mode}.html'
-        table_web = BeautifulSoup(urlopen(url), 'html.parser').findAll('table')
+        url = f"https://www.basketball-reference.com/leagues/NBA_{season}_{mode}.html"
+        try:
+            time.sleep(5)
+            response = urlopen(url)
+            table_web = BeautifulSoup(response, "html.parser").findAll("table")
 
-        df = pd.read_html(str(table_web))[0] 
-        df = df.drop(df[df.Player == 'Player'].index)
-        df = df.drop('Rk', axis=1) 
-        df.insert(0,'Season',season)
-        df = df.apply(pd.to_numeric, errors='coerce').fillna(df)
+            df = pd.read_html(StringIO(str(table_web)))[0]
+            # df = df.drop(df[df.Player == 'Rk'].index)
+            # df = df.drop('Rk', axis=1)
+            df.insert(0, "Season", season)
+            df = df.apply(pd.to_numeric, errors="coerce").fillna(df)
+            return df
+        except HttpError as e:
+            if e.resp.status == 429:
+                st.error("Request quota exceeded. Please try again later.")
+            sys.exit("Something went wrong. Sorry !")
 
-        return df
 
 def create_yearly_dataframes(year):
     # File paths
-    regular_df = dataset_obj.dataset_players(year, 'per_game')
-    advanced_df = dataset_obj.dataset_players(year, 'advanced')
-    shooting_splits_df = dataset_obj.dataset_players(year, 'shooting')
+    get_data_obj = get_data()
+    regular_df = get_data_obj.dataset_players(year, "per_game")
+    advanced_df = get_data_obj.dataset_players(year, "advanced")
+    shooting_splits_df = get_data_obj.dataset_players(year, "shooting")
 
     # Read CSV files
-    #regular_df = pd.read_csv(regular_dataset_path)
-    #advanced_df = pd.read_csv(advanced_dataset_path)
-    #shooting_splits_df = pd.read_csv(shooting_splits_path)
+    # regular_df = pd.read_csv(regular_dataset_path)
+    # advanced_df = pd.read_csv(advanced_dataset_path)
+    # shooting_splits_df = pd.read_csv(shooting_splits_path)
 
     return regular_df, advanced_df, shooting_splits_df
-
-
 
 
 def process_glossary_file(input_file, output_file):
@@ -81,7 +92,9 @@ def process_glossary_file(input_file, output_file):
 
 def transform_data(regular_dataset, advanced_dataset, shooting_splits):
     # In the case of multiples occurrences of a player, keep only the first occurrence
-    regular_dataset = regular_dataset[~regular_dataset["Player"].duplicated(keep="first")]
+    regular_dataset = regular_dataset[
+        ~regular_dataset["Player"].duplicated(keep="first")
+    ]
     advanced_dataset = advanced_dataset[
         ~advanced_dataset["Player"].duplicated(keep="first")
     ]
@@ -99,11 +112,21 @@ def transform_data(regular_dataset, advanced_dataset, shooting_splits):
     full_dataset = full_dataset.drop(columns=["Unnamed: 24", "Unnamed: 19"])
 
     # Transform shooting percentages to concatenate with the full dataset
-    shooting_splits.columns = shooting_splits.iloc[0]
+    shooting_splits.columns = shooting_splits.columns.get_level_values(1)
     shooting_splits = shooting_splits.drop(shooting_splits.index[0])
-    # shooting_splits = shooting_splits[(shooting_splits['MP'].astype(int) / shooting_splits['G'].astype(int) >= 24) & (shooting_splits['G'].astype(int) >= 25)].reset_index()
+    shooting_splits.reset_index(drop=True, inplace=True)
+    shooting_splits.drop_duplicates(
+        subset=shooting_splits.columns[2], keep="first", inplace=True
+    )
+    shooting_splits = shooting_splits.loc[
+        :, ~shooting_splits.columns.str.startswith("Unnamed")
+    ]
+    shooting_splits.reset_index(drop=True, inplace=True)
 
+    # shooting_splits = shooting_splits[(shooting_splits['MP'].astype(int) / shooting_splits['G'].astype(int) >= 24) & (shooting_splits['G'].astype(int) >= 25)].reset_index()
     # Remove players that played less than 24MPG so far, and less than 25 games
+    full_dataset["MP"] = pd.to_numeric(full_dataset["MP"], errors="coerce")
+    full_dataset["G"] = pd.to_numeric(full_dataset["G"], errors="coerce")
     full_dataset = full_dataset[(full_dataset["MP"] >= 24) & (full_dataset["G"] >= 25)]
 
     # Round numbers
@@ -148,33 +171,40 @@ def transform_data(regular_dataset, advanced_dataset, shooting_splits):
         },
         inplace=True,
     )
-    full_dataset.drop(
-        columns=["#", "%FGA", "%3PA", "Att.", "player_code"], inplace=True
-    )
+    # full_dataset.drop(
+    #    columns=["#", "%FGA", "%3PA", "Att.", "player_code"], inplace=True
+    # )
     full_dataset = full_dataset.loc[:, ~full_dataset.columns.duplicated()]
     full_dataset.iloc[:, -4:] = full_dataset.iloc[:, -4:].apply(
         lambda x: x.astype(float) * 100
     )
-    full_dataset["%FGA 3P"] = 100 - full_dataset.iloc[:, -4:].sum(axis=1)
+    #full_dataset["%FGA 3P"] = 1 - full_dataset[
+    #    ["%FGA 0-3", "%FGA 3-10", "%FGA 10-16", "%FGA 16-3P"]
+    #].sum(axis=1)
 
     # Select only the columns that are numeric for mean calculation
     numeric_columns = full_dataset.iloc[:, :].select_dtypes(include="number")
-    full_dataset.iloc[5:, :] = full_dataset.iloc[5:, :].round(1)
     # Calculate the mean
     # avg = numeric_columns.mean().round(1)
     # full_dataset.loc['Average'] = avg
 
     # add AST/TOV
     full_dataset.insert(21, "AST/TOV", (full_dataset["AST"] / full_dataset["TOV"]))
-    full_dataset["AST/TOV"] = round(full_dataset["AST/TOV"], 1)
+    # full_dataset["AST/TOV"] = round(full_dataset["AST/TOV"], 1)
+    full_dataset["AST/TOV"] = full_dataset["AST/TOV"].astype(float).round(1)
 
     # Add std_areas_FGA
-    fga_area_columns = full_dataset.iloc[:, -5:]
+    fga_area_columns = full_dataset[
+        ["%FGA 0-3", "%FGA 3-10", "%FGA 10-16", "%FGA 16-3P", "%3PA"]
+    ]
+
     full_dataset["std_areas_FGA"] = fga_area_columns.apply(
         lambda row: np.std(row), axis=1
     )
-    full_dataset["std_areas_FGA"] = round(full_dataset["std_areas_FGA"], 1)
+    full_dataset["std_areas_FGA"] = round(full_dataset["std_areas_FGA"], 2)
 
+    full_dataset.iloc[5:, :] = full_dataset.iloc[5:, :].round(1)
+    full_dataset = full_dataset.drop(["", "Att.", "#"], axis=1)
     # Create a copy of the original DataFrame
     full_dataset_ranked = full_dataset.copy()
 
@@ -200,8 +230,8 @@ def transform_data(regular_dataset, advanced_dataset, shooting_splits):
         )
 
     # Add profiles
-    full_dataset.insert(3, "Offensive Profile", 0)
-    full_dataset.insert(4, "Defensive Profile", 0)
+    full_dataset.insert(3, "Offensive Profile", "")
+    full_dataset.insert(4, "Defensive Profile", "")
 
     for index, row in full_dataset.iterrows():
         # Assign offensive profile to a player
@@ -224,20 +254,85 @@ def export_data_to_csv(start_year, full_dataset, full_dataset_ranked):
         f"/home/lucas/Data Science/Project NBA/datasets/combined/ranked_dataset_{start_year}_{start_year + 1}.csv"
     )
 
-    # return full_dataset, full_dataset_ranked
+
+# def export_csv_to_google_cloud(start_year, full_dataset, full_dataset_ranked, bucket):
+
+#     client = storage.Client()
+#     bucket = client.get_bucket(bucket_name)
+
+#     blob_full_dataset = bucket.blob(f"regular_dataset_{start_year}_{start_year + 1}.csv")
+#     blob_full_dataset.upload_from_string(full_dataset.to_csv(index=False), content_type='text/csv')
+
+#     blob_full_dataset_ranked = bucket.blob(f"ranked_dataset_{start_year}_{start_year + 1}.csv")
+#     blob_full_dataset_ranked.upload_from_string(full_dataset_ranked.to_csv(index=False), content_type='text/csv')
+
+def download_duckdb_database(bucket_name, db_name):
+    storage_client = storage.Client()
+    bucket = storage_client.bucket(bucket_name)
+    blob = bucket.blob(db_name)
+    print(blob)
+    temp_dir = tempfile.TemporaryDirectory()
+    file_path = os.path.join(temp_dir.name, db_name)
+    print('path etl =', file_path)
+    blob.download_to_filename(file_path)
+    
+    return file_path
+
+def download_csv_from_bucket(bucket_name, source_blob_name):
+    """Downloads a file from a Google Cloud Storage bucket."""
+    storage_client = storage.Client()
+    bucket = storage_client.bucket(bucket_name)
+    blob = bucket.blob(source_blob_name)
+    #if os.path.exists(destination_file_name):
+        #os.remove()
+    file = blob.download_as_string()
+
+    return file
 
 
-for year in range(START_YEAR, END_YEAR):
-    regular_df, advanced_df, shooting_splits_df = create_yearly_dataframes(year)
-    # Assigning DataFrames with custom names
-    # globals()[f'regular_dataset_{year}_{year+1}'] = regular_df
-    # globals()[f'advanced_dataset_{year}_{year+1}'] = advanced_df
-    # lobals()[f'shooting_splits_{year}_{year+1}'] = shooting_splits_df
-    full_dataset, full_dataset_ranked = transform_data(
-        regular_df, advanced_df, shooting_splits_df
-    )
-    export_data_to_csv(year, full_dataset, full_dataset_ranked)
+def upload_to_bucket(bucket_name, source_file_name, destination_blob_name):
+    """Uploads a file to the Google Cloud Storage bucket."""
 
-process_glossary_file("docs/glossary.txt", "docs/filtered_glossary.txt")
+    storage_client = storage.Client()
+    bucket = storage_client.bucket(bucket_name)
+    blob = bucket.blob(destination_blob_name)
+    if blob.exists():
+        blob.delete()
+    blob.upload_from_filename(source_file_name, content_type="text/csv")
 
-print("Extraction and transformation executed")
+def check_file_exists(bucket_name, source_file_name):
+    """Checks if a file already exists in the bucket"""
+    storage_client = storage.Client()
+    bucket = storage_client.bucket(bucket_name)
+    blob = bucket.blob(source_file_name)
+    return blob.exists()
+
+if __name__ == "__main__":
+    # Functions to assign the offensive and defensive roles
+    subprocess.run(["python3", "Categorization.py"])
+
+    # Create directory if it doesn't exist
+    directory = "/home/lucas/Data Science/Project NBA/datasets/combined"
+    if not os.path.exists(directory):
+        os.makedirs(directory)
+
+    for year in range(START_YEAR, END_YEAR):
+        regular_df, advanced_df, shooting_splits_df = create_yearly_dataframes(year - 1)
+        full_dataset, full_dataset_ranked = transform_data(
+            regular_df, advanced_df, shooting_splits_df
+        )
+
+        upload_to_bucket(
+            "nba_dashboard_files",
+            f"/home/lucas/Data Science/Project NBA/datasets/combined/regular_dataset_{year - 1}_{year}.csv",
+            f"regular_dataset_{year - 1}_{year}.csv",
+        )
+        upload_to_bucket(
+            "nba_dashboard_files",
+            f"/home/lucas/Data Science/Project NBA/datasets/combined/ranked_dataset_{year - 1}_{year}.csv",
+            f"ranked_dataset_{year - 1}_{year}.csv",
+        )
+
+    process_glossary_file("docs/glossary.txt", "docs/filtered_glossary.txt")
+
+    print("Extraction and transformation executed")
