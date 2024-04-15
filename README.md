@@ -4,7 +4,7 @@ Find the statistics of your favorite player and compare him with another!
 The aim of this project is to access the statistics of the player of your choice, obtain the characteristics of his player profile and compare him with another player.
 
 # Interface
-https://nbaplayersdashboard.streamlit.app/
+https://nba-players-dashboard.streamlit.app/
 
 # Project
 ![alt text](docs/schema_project.png)
