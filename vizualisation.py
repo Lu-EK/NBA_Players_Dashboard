@@ -29,13 +29,14 @@ from streamlit_searchbox import st_searchbox
 from streamlit_theme import st_theme
 
 from etl import (check_file_exists, download_csv_from_bucket,
-                 download_duckdb_database, upload_to_bucket)
+                 download_duckdb_database, upload_to_bucket,
+                 upload_url_to_bucket)
 from init import init_db
 
 START_YEAR = 2005
 END_YEAR = 2023
 DB_NAME = "stats.duckdb"
-
+GC_NAME = "nba_dashboard_files"
 
 st.set_page_config(
     page_title="NBA Players Stats Dashboard",
@@ -117,7 +118,7 @@ def compare_player(player, stat, ranked_stat):
     )
 
     player_compared = selected_player_comparison.replace("'", "''")
-    col1, col2, col3 = st.columns([1, 2, 2]) 
+    col1, col2, col3 = st.columns([1, 2, 2])
 
     # Header row for the table
     col1.markdown("<p style='text-align:center;'>Stat</p>", unsafe_allow_html=True)
@@ -306,12 +307,22 @@ def main_function(con):
         )
 
         google_image_query = f"{selected_player} {year}-{year + 1} NBA"
+        image_name = f"{selected_player}_{year}_{year + 1}.jpg"
         num_images = 1
 
         if selected_player:
-            image_url = search_images(google_image_query, num_images)
+            if not check_file_exists(GC_NAME, image_name):
+                image_url = search_images(google_image_query, num_images)
+                upload_url_to_bucket(
+                    GC_NAME, f"{selected_player}_NBA_{year}.txt", image_url
+                )
+            else:
+                image_url = download_csv_from_bucket(
+                    GC_NAME, f"{selected_player}_NBA_{year}.txt"
+                )
             if image_url:
                 st.image(image_url, width=350, use_column_width=False)
+
             else:
                 st.write(f"No image found for {selected_player}")
         else:
@@ -353,30 +364,6 @@ def main_function(con):
         st.write("<br><br>", unsafe_allow_html=True)
         get_todays_games()
         st.write("<br><br>", unsafe_allow_html=True)
-        if year:
-            st.write(f"Rankings in {year}-{year + 1}")
-        else:
-            st.write("Rankings for the current year")
-        col1, col2 = st.columns(2)
-        if os.path.exists(f"datasets/ranking/ranking_west_{year}_{year + 1}.csv"):
-            with col1:
-                ranking_west_df = pd.read_csv(
-                    f"datasets/ranking/ranking_west_{year}_{year + 1}.csv"
-                )
-                st.dataframe(ranking_west_df)
-        else:
-            with col1:
-                st.write("Ranking not available yet")
-
-        if os.path.exists(f"datasets/ranking/ranking_east_{year}_{year + 1}.csv"):
-            with col2:
-                ranking_east_df = pd.read_csv(
-                    f"datasets/ranking/ranking_east_{year}_{year + 1}.csv"
-                )
-                st.dataframe(ranking_east_df)
-        else:
-            with col2:
-                st.write("Ranking not available yet")
 
     if selected_player and not recap_stats.empty:
         tab2, tab3 = st.tabs(
@@ -557,4 +544,4 @@ def main_function(con):
 con = db_cached()
 
 if __name__ == "__main__":
-    main_function(con) 
+    main_function(con)

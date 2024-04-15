@@ -17,6 +17,7 @@ from urllib.request import urlopen
 import duckdb
 import numpy as np
 import pandas as pd
+import requests
 from bs4 import BeautifulSoup
 from google.cloud import storage
 
@@ -24,6 +25,7 @@ from Categorization import defensive_profile, offensive_profile
 
 START_YEAR = 2005
 END_YEAR = 2025
+
 
 class get_data:
     def dataset_players(self, season, mode):
@@ -221,6 +223,7 @@ def export_data_to_csv(start_year, full_dataset, full_dataset_ranked):
         f"/home/lucas/Data Science/Project NBA/datasets/combined/ranked_dataset_{start_year}_{start_year + 1}.csv"
     )
 
+
 def download_duckdb_database(bucket_name, db_name):
     storage_client = storage.Client()
     bucket = storage_client.bucket(bucket_name)
@@ -246,6 +249,15 @@ def download_csv_from_bucket(bucket_name, source_blob_name):
     return file
 
 
+def upload_image_to_bucket(bucket_name, file_name, image_url):
+    storage_client = storage.Client()
+    bucket = storage_client.get_bucket(bucket_name)
+    blob = bucket.blob(file_name)
+    response = requests.get(image_url)
+    blob.upload_from_string(response.content)
+    return f"gs://{bucket_name}/{file_name}"
+
+
 def upload_to_bucket(bucket_name, source_file_name, destination_blob_name):
     """Uploads a file to the Google Cloud Storage bucket."""
 
@@ -255,6 +267,28 @@ def upload_to_bucket(bucket_name, source_file_name, destination_blob_name):
     if blob.exists():
         blob.delete()
     blob.upload_from_filename(source_file_name, content_type="text/csv")
+
+
+def upload_url_to_bucket(bucket_name, url_file_name, image_url):
+    """Uploads the provided URL as a text file to the specified Google Cloud Storage bucket."""
+
+    # Initialize Google Cloud Storage client
+    storage_client = storage.Client()
+
+    # Get the bucket
+    bucket = storage_client.bucket(bucket_name)
+
+    # Check if the URL file already exists in the bucket, and delete it if it does
+    blob = bucket.blob(url_file_name)
+    if blob.exists():
+        blob.delete()
+
+    # Create a blob object for the URL file
+    blob = bucket.blob(url_file_name)
+
+    # Upload the URL content as a text file
+    image_url_bytes = image_url[0].encode()
+    blob.upload_from_string(image_url_bytes, content_type="text/plain")
 
 
 def check_file_exists(bucket_name, source_file_name):

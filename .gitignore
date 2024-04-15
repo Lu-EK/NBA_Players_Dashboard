@@ -1,4 +1,3 @@
-/dags
 /logs
 airflow.cfg
 airflow.db
