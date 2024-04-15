@@ -1,23 +1,22 @@
+import cProfile
 import datetime as dt
-import os
-import sys
-import subprocess
-import types
 import io
-import tempfile
+import os
 import pstats
+import subprocess
+import sys
+import tempfile
+import time
+import types
 from typing import List
 from urllib.parse import quote_plus
 
 import altair as alt
 import duckdb
 import pandas as pd
-import tempfile
 import plotly.express as px
 import requests
-import cProfile
 import streamlit as st
-import time
 import streamlit.components.v1 as components
 from bs4 import BeautifulSoup
 from dateutil import parser
@@ -29,15 +28,15 @@ from streamlit_modal import Modal
 from streamlit_searchbox import st_searchbox
 from streamlit_theme import st_theme
 
-from etl import download_duckdb_database, download_csv_from_bucket, upload_to_bucket, check_file_exists
+from etl import (check_file_exists, download_csv_from_bucket,
+                 download_duckdb_database, upload_to_bucket,
+                 upload_url_to_bucket)
 from init import init_db
 
 START_YEAR = 2005
 END_YEAR = 2023
-DB_NAME = 'stats.duckdb'
-
-
-# subprocess.Popen('source venv/bin/activate', shell=True)
+DB_NAME = "stats.duckdb"
+GC_NAME = "nba_dashboard_files"
 
 st.set_page_config(
     page_title="NBA Players Stats Dashboard",
@@ -75,44 +74,6 @@ defensive_profiles = {
 # API
 gis = GoogleImagesSearch("AIzaSyC9hnhOztmyJ0S3uLueplwCtyBT3q3OQWY", "86df1f2dbf516493a")
 
-
-
-# Loop over the range of years
-# @st.cache_resource(hash_funcs={types.MethodType: lambda _: None})
-# @st.cache_resource
-
-# def init_db(stats_list, conn):
-#         conn = duckdb.connect(database=':memory:', read_only=False)
-#         for year in range(START_YEAR, END_YEAR + 1):
-#             players_stats_csv = download_csv_from_bucket(
-#                 "nba_dashboard_files", f"regular_dataset_{year - 1}_{year}.csv"
-#             )
-#             players_stats_ranked_csv = download_csv_from_bucket(
-#                 "nba_dashboard_files", f"ranked_dataset_{year - 1}_{year}.csv"
-#             )
-
-#             players_stats = pd.read_csv(io.BytesIO(players_stats_csv))
-#             players_stats_ranked = pd.read_csv(io.BytesIO(players_stats_ranked_csv))
-#             # Create tables in DuckDB
-#             # print(players_stats)
-#             conn.register("players_stats_" + str(year) + "_" + str(year + 1), players_stats)
-#             conn.register(
-#                 "players_stats_ranked_" + str(year) + "_" + str(year + 1),
-#                 players_stats_ranked,
-#             )
-
-#             # Get the list of all players
-#             all_players_query = conn.execute(
-#                 f"SELECT player FROM players_stats_{year}_{year + 1} ORDER BY player"
-#             ).fetchall()
-#             all_players = [row[0] for row in all_players_query]
-
-#             all_players_df = pd.DataFrame({"player": all_players})
-#             conn.register("all_players_" + str(year) + "_" + str(year + 1), all_players_df)
-
-#         return conn
-
-
 theme = st_theme()
 
 with open("docs/homepage.txt", "r") as file:
@@ -124,12 +85,15 @@ homepage = f"""
 </div>
 """
 
+
 def get_stats_list(players_stats):
     return players_stats.columns.tolist()
+
 
 @st.cache_resource
 def db_cached():
     return init_db()
+
 
 @st.cache_data
 def search_player(player: str) -> List[any]:
@@ -154,7 +118,7 @@ def compare_player(player, stat, ranked_stat):
     )
 
     player_compared = selected_player_comparison.replace("'", "''")
-    col1, col2, col3 = st.columns([1, 2, 2])  # Adjusting widths relative to each other
+    col1, col2, col3 = st.columns([1, 2, 2])
 
     # Header row for the table
     col1.markdown("<p style='text-align:center;'>Stat</p>", unsafe_allow_html=True)
@@ -309,6 +273,7 @@ def create_pie(player_name, stat, ranked_stat, year, con):
             unsafe_allow_html=True,
         )
 
+
 def get_stats_list(conn, table_name):
     cursor = conn.cursor()
     cursor.execute(f"SELECT * FROM {table_name} LIMIT 0")
@@ -317,8 +282,8 @@ def get_stats_list(conn, table_name):
     cursor.close()
     return column_names
 
-def main_function(con):
 
+def main_function(con):
     column_names = con.execute(f"SELECT * FROM players_stats_2022_2023 LIMIT 0")
     stats_names = column_names.description
     stats_list = [col[0] for col in stats_names]
@@ -342,12 +307,22 @@ def main_function(con):
         )
 
         google_image_query = f"{selected_player} {year}-{year + 1} NBA"
+        image_name = f"{selected_player}_{year}_{year + 1}.jpg"
         num_images = 1
 
         if selected_player:
-            image_url = search_images(google_image_query, num_images)
+            if not check_file_exists(GC_NAME, image_name):
+                image_url = search_images(google_image_query, num_images)
+                upload_url_to_bucket(
+                    GC_NAME, f"{selected_player}_NBA_{year}.txt", image_url
+                )
+            else:
+                image_url = download_csv_from_bucket(
+                    GC_NAME, f"{selected_player}_NBA_{year}.txt"
+                )
             if image_url:
                 st.image(image_url, width=350, use_column_width=False)
+
             else:
                 st.write(f"No image found for {selected_player}")
         else:
@@ -389,30 +364,6 @@ def main_function(con):
         st.write("<br><br>", unsafe_allow_html=True)
         get_todays_games()
         st.write("<br><br>", unsafe_allow_html=True)
-        if year:
-            st.write(f"Rankings in {year}-{year + 1}")
-        else:
-            st.write("Rankings for the current year")
-        col1, col2 = st.columns(2)
-        if os.path.exists(f"datasets/ranking/ranking_west_{year}_{year + 1}.csv"):
-            with col1:
-                ranking_west_df = pd.read_csv(
-                    f"datasets/ranking/ranking_west_{year}_{year + 1}.csv"
-                )
-                st.dataframe(ranking_west_df)
-        else:
-            with col1:
-                st.write("Ranking not available yet")
-
-        if os.path.exists(f"datasets/ranking/ranking_east_{year}_{year + 1}.csv"):
-            with col2:
-                ranking_east_df = pd.read_csv(
-                    f"datasets/ranking/ranking_east_{year}_{year + 1}.csv"
-                )
-                st.dataframe(ranking_east_df)
-        else:
-            with col2:
-                st.write("Ranking not available yet")
 
     if selected_player and not recap_stats.empty:
         tab2, tab3 = st.tabs(
@@ -438,7 +389,8 @@ def main_function(con):
                         if theme.get("base") == "light":
                             st.markdown(
                                 f"""
-                                <div style="display: flex; justify-content: center; align-items: center; height: 100%; border: 5px solid orange; padding: 10px; border-radius: 5px; background-color: #f9f9f9; text-align: center;">
+                                <div style="display: flex; justify-content: center; align-items: center; height: 100%; border: 5px solid orange;
+                                padding: 10px; border-radius: 5px; background-color: #f9f9f9; text-align: center;">
                                     <p style='font-size: 1.5em;'>{offensive_profile}</p>
                                 </div>""",
                                 unsafe_allow_html=True,
@@ -446,7 +398,8 @@ def main_function(con):
                         else:
                             st.markdown(
                                 f"""
-                                <div style="display: flex; justify-content: center; align-items: center; height: 100%; border: 5px solid orange; padding: 10px; border-radius: 5px; background-color: #1c1c1c; text-align: center;">
+                                <div style="display: flex; justify-content: center; align-items: center; height: 100%; border: 5px solid orange;
+                                padding: 10px; border-radius: 5px; background-color: #1c1c1c; text-align: center;">
                                     <p style='font-size: 1.5em; padding-top: 5px;'>{offensive_profile}</p>
                                 </div>""",
                                 unsafe_allow_html=True,
@@ -477,7 +430,8 @@ def main_function(con):
                     if theme.get("base") == "light":
                         st.markdown(
                             f"""
-                                <div style="display: flex; justify-content: center; align-items: center; height: 100%; border: 5px solid orange; padding: 10px; border-radius: 5px; background-color: #f9f9f9; text-align: center;">
+                                <div style="display: flex; justify-content: center; align-items: center; height: 100%; border: 5px solid orange;
+                                padding: 10px; border-radius: 5px; background-color: #f9f9f9; text-align: center;">
                                     <p style='font-size: 1.5em;'>{defensive_profile}</p>
                                 </div>""",
                             unsafe_allow_html=True,
@@ -485,7 +439,8 @@ def main_function(con):
                     else:
                         st.markdown(
                             f"""
-                                <div style="display: flex; justify-content: center; align-items: center; height: 100%; border: 5px solid orange; padding: 10px; border-radius: 5px; background-color: #1c1c1c; text-align: center;">
+                                <div style="display: flex; justify-content: center; align-items: center; height: 100%; border: 5px solid orange;
+                                padding: 10px; border-radius: 5px; background-color: #1c1c1c; text-align: center;">
                                     <p style='font-size: 1.5em;'>{defensive_profile}</p>
                                 </div>""",
                             unsafe_allow_html=True,
@@ -583,9 +538,10 @@ def main_function(con):
     else:
         st.write("<br>", unsafe_allow_html=True)
 
-    #con.close()
+    # con.close()
+
 
 con = db_cached()
 
 if __name__ == "__main__":
-    main_function(con)  # Pass the connection object to the main function
+    main_function(con)

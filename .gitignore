@@ -1,4 +1,3 @@
-/dags
 /logs
 airflow.cfg
 airflow.db
@@ -7,4 +6,5 @@ standalone_admin_password.txt
 .gitignore
 /__pycache__
 /datasets
+profiling_results.txt
 
