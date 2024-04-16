@@ -6,6 +6,8 @@ import pstats
 import subprocess
 import sys
 import tempfile
+import base64
+from pathlib import Path
 import time
 import types
 from typing import List
@@ -84,6 +86,16 @@ homepage = f"""
 {homepage_text}
 </div>
 """
+
+def img_to_bytes(img_path):
+    img_bytes = Path(img_path).read_bytes()
+    encoded = base64.b64encode(img_bytes).decode()
+    return encoded
+def img_to_html(img_path):
+    img_html = "<img src='data:image/png;base64,{}' class='img-fluid'>".format(
+      img_to_bytes(img_path)
+    )
+    return img_html
 
 
 def get_stats_list(players_stats):
@@ -298,7 +310,7 @@ def main_function(con):
             f"SELECT player FROM all_players_{year}_{year + 1}"
         ).fetchall()
         all_players = [row[0] for row in all_players_query]
-
+    
         selected_player = st_searchbox(
             search_player,
             key="player_searchbox",
@@ -364,6 +376,31 @@ def main_function(con):
         st.write("<br><br>", unsafe_allow_html=True)
         get_todays_games()
         st.write("<br><br>", unsafe_allow_html=True)
+
+        col4, col5 = st.columns(2)
+        # Apply CSS styles to center the columns
+
+        # Center the image under the link
+        with col4:
+            st.markdown(
+                "<center><div style='font-size: 20px;'>"
+                "<a href='https://github.com/Lu-EK/NBA_Players_Dashboard'>GitHub Repository</a><br>"
+                "</div></center>",
+                unsafe_allow_html=True
+            )
+            st.write("<br>", unsafe_allow_html=True)
+            st.markdown("<p style='text-align: center; color: grey;'>"+img_to_html('docs/GitHub-logo.png')+"</p>", unsafe_allow_html=True)
+
+        # Apply CSS styles to center the columns and enlarge the text
+        with col5:
+            st.markdown(
+                "<center><div style='font-size: 20px;'>"
+                "<a href='https://www.linkedin.com/in/lucas-ellong-kotto/'>LinkedIn Profile</a><br>"
+                "</div></center>",
+                unsafe_allow_html=True
+            )
+            st.write("<br>", unsafe_allow_html=True)
+            st.markdown("<p style='text-align: center; color: grey;'>"+img_to_html('docs/linkedin.png')+"</p>", unsafe_allow_html=True)
 
     if selected_player and not recap_stats.empty:
         tab2, tab3 = st.tabs(
@@ -460,12 +497,13 @@ def main_function(con):
                     f"SELECT player FROM all_players_{year}_{year + 1}"
                 ).fetchall()
                 all_players1 = [row[0] for row in all_players_query1]
-                selected_player_comparison = st_searchbox(
-                    search_player,
-                    key="player_comparison_searchbox",
-                    label="Select a player",
-                    default_options=all_players1,
-                )
+                if year:
+                    selected_player_comparison = st_searchbox(
+                        search_player,
+                        key="player_comparison_searchbox",
+                        label="Select a player",
+                        default_options=all_players1,
+                    )
                 col1, col2, col3 = st.columns([1, 2, 2])
                 if selected_player_comparison:
                     player_compared = selected_player_comparison.replace("'", "''")
