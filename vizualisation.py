@@ -28,6 +28,7 @@ from nba_api.live.nba.endpoints import scoreboard
 from pandas import DataFrame
 from streamlit_modal import Modal
 from streamlit_searchbox import st_searchbox
+import streamlit_theme
 from streamlit_theme import st_theme
 
 from etl import (check_file_exists, download_csv_from_bucket,
