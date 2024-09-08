@@ -30,9 +30,11 @@ from streamlit_modal import Modal
 from streamlit_searchbox import st_searchbox
 try:
     import streamlit_theme
-    from streamlit_theme import st_theme
+    theme = streamlit_theme.st_theme()
 except ImportError:
     st.warning("Streamlit Theme package is not available, using default styling.")
+    theme = None  # or set a default theme if available
+
 
 
 from etl import (check_file_exists, download_csv_from_bucket,
