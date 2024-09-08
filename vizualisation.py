@@ -28,8 +28,12 @@ from nba_api.live.nba.endpoints import scoreboard
 from pandas import DataFrame
 from streamlit_modal import Modal
 from streamlit_searchbox import st_searchbox
-import streamlit_theme
-from streamlit_theme import st_theme
+try:
+    import streamlit_theme
+    from streamlit_theme import st_theme
+except ImportError:
+    st.warning("Streamlit Theme package is not available, using default styling.")
+
 
 from etl import (check_file_exists, download_csv_from_bucket,
                  download_duckdb_database, upload_to_bucket,
