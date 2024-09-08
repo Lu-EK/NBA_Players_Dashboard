@@ -5,7 +5,7 @@ duckdb==1.0.1.dev5313
 google_api_python_client==2.48.0
 Google_Images_Search==1.4.7
 nba_api==1.5.2
-numpy==2.1.1
+numpy==2.0.2
 pandas==2.2.2
 plotly==5.24.0
 protobuf==5.28.0
