@@ -12,7 +12,7 @@ protobuf
 python_dateutil==2.8.2
 Requests==2.32.3
 st_theme==1.2.3
-streamlit==1.35.0
+streamlit==1.38.0
 streamlit_modal==0.1.2
 streamlit_searchbox==0.1.16
 streamlit_theme==0.58.0
