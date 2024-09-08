@@ -8,7 +8,7 @@ nba_api==1.5.2
 numpy==1.26.4
 pandas==2.2.2
 plotly==5.24.0
-protobuf==3.20.0
+protobuf
 python_dateutil==2.8.2
 Requests==2.32.3
 st_theme==1.2.3
